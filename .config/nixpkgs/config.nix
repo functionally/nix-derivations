@@ -40,7 +40,7 @@
 #             (import <nixos-unstable> {}).google-chrome
               unstable.google-chrome
               # Communication
-              discord
+#             discord
               gajim
               skype
               slack
