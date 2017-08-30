@@ -58,6 +58,17 @@
             ];
         };
 
-    };
+        lemurHaskell = self.haskell.packages.ghc7103.ghcWithPackages
+          (
+            haskellPackages: with haskellPackages;
+            [
+              # libraries
+              arrows async cgi criterion
+              # tools
+              cabal-install haskintex
+            ]
+          );
+
+      };
 
 }
