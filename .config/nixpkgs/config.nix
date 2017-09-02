@@ -1,3 +1,5 @@
+{ pkgs }:
+
 {
 
   allowUnfree = true;
@@ -78,6 +80,7 @@
             cabal-install
           # ghcmod7
             ghcid
+            hasktags
             hdevtools
             hlint
             pointfree
