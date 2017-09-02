@@ -73,9 +73,9 @@
           overrides = myHaskellPackages false;
         };
 
-        ghcEnv = pkgs.myEnvFun {
-          name = "ghc7";
-          buildInputs = with haskell7Packages; [
+        ghcEnv = pkgs.buildEnv {
+          name = "env-ghc7";
+          paths = with haskell7Packages; [
             (ghcWithHoogle (h: [ ]))
             cabal-install
           # ghcmod7
