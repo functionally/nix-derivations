@@ -24,6 +24,7 @@
             blender
             gephi
             ggobi
+            unstable.google-chrome
             gramps
             graphviz
             guvcview
@@ -41,7 +42,7 @@
             rstudio
             scid
             stockfish
-            unstable.google-chrome
+            zotero
             # Communication
 #           discord
             gajim
@@ -254,6 +255,8 @@
         };
 
         protege = callPackage ./protege.nix {};
+
+        zotero = callPackage ./zotero.nix {};
 
       };
 
