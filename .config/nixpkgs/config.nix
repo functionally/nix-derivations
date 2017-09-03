@@ -35,6 +35,7 @@
             octave
             pandoc
             paraview
+            protege
             qgis
             remmina
             rstudio
@@ -251,6 +252,8 @@
             cabal2nix
           ];
         };
+
+        protege = callPackage ./protege.nix {};
 
       };
 
