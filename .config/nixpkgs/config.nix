@@ -19,20 +19,27 @@
             imagemagick
             librdf_raptor2
             librdf_rasqal
+            tetex
             # Graphical
             blender
             gephi
             ggobi
+            gramps
             graphviz
             guvcview
+            hdf5
             inkscape
             libreoffice
+            maxima
             meshlab
+            octave
             pandoc
             paraview
             qgis
+            remmina
             rstudio
             scid
+            stockfish
             unstable.google-chrome
             # Communication
 #           discord
