@@ -23,6 +23,7 @@
             # Graphical
             blender
             gephi
+            gimp
             ggobi
             unstable.google-chrome
             gramps
