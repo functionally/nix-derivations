@@ -2,8 +2,10 @@
 
 let
 
-  name = "zotero-${version}";
+  aname = "zotero";
+  name = "${aname}-${version}";
   version = "5.0.17";
+  target = "$out/share/${aname}";
 
 in
 
@@ -13,7 +15,7 @@ in
 
     src = fetchurl {
       name = "Zotero-${version}_linux-x86_64.tar.bz2";
-      url = https://download.zotero.org/client/release/5.0.17/Zotero-5.0.17_linux-x86_64.tar.bz2;
+      url = "https://download.zotero.org/client/release/${version}/Zotero-${version}_linux-x86_64.tar.bz2";
       sha256 = "6e2a3dfd2cf72f0fc2686b1358ce2c87abc48a558ad3fce10752fc36ac7e91cd";
     };
 
@@ -22,20 +24,20 @@ in
     ];
 
     installPhase = ''
-      mkdir -p $out/share/Zotero $out/bin
-      cp -r . $out/share/Zotero
-      patchelf --set-interpreter ${stdenv.glibc}/lib/ld-linux-x86-64.so.2 $out/share/Zotero/zotero-bin
-      patchelf --set-rpath $(pwd):$libPath                                $out/share/Zotero/zotero-bin
-      patchelf --set-rpath $(pwd):$libPath                                $out/share/Zotero/libmozgtk.so
-      patchelf --set-rpath $(pwd):$libPath                                $out/share/Zotero/libxul.so
-      sed -e "s@^CALLDIR=.*@CALLDIR=$out/share/Zotero@" zotero          > $out/bin/zotero
+      mkdir -p ${target} $out/bin
+      cp -r . ${target}
+      patchelf --set-interpreter ${stdenv.glibc}/lib/ld-linux-x86-64.so.2 ${target}/zotero-bin
+      patchelf --set-rpath ${target}:$libPath                             ${target}/zotero-bin
+      patchelf --set-rpath ${target}:$libPath                             ${target}/libmozgtk.so
+      patchelf --set-rpath ${target}:$libPath                             ${target}/libxul.so
+      sed -e "s@^CALLDIR=.*@CALLDIR=${target}@" zotero                  > $out/bin/zotero
       chmod +x $out/bin/zotero
       mkdir $out/share/applications
-      sed -e "s@#out#@$out@" ${desktopItem}/share/applications/zotero.desktop > $out/share/applications/zotero.desktop
+      sed -e "s@#out#@$out@" ${desktopItem}/share/applications/${aname}.desktop > $out/share/applications/${aname}.desktop
     '';
 
     desktopItem = makeDesktopItem {
-      name = "zotero";
+      name = aname;
       exec = "zotero -url %U";
       desktopName = "Zotero";
       genericName = meta.description;

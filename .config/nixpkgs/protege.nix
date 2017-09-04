@@ -2,8 +2,10 @@
 
 let
 
-  name = "protege-${version}";
+  aname = "protege";
+  name = "${aname}--${version}";
   version = "5.2.0";
+  target = "$out/share/Protege-${version}";
 
 in
 
@@ -20,28 +22,26 @@ in
     buildInputs = [ unzip ];
 
     buildCommand = ''
-      mkdir -p $out/share $out/bin
+      mkdir -p $out/share/applications $out/bin
       cd $out
       unzip $src -d share
-      sed -e "2,10d"                              \
-          -e "1acd $out/share/Protege-${version}" \
-          -e "s@^java@${jre}/bin//&@"             \
-          $out/share/Protege-${version}/run.sh    > bin/protege
+      sed -e "2,10d"                  \
+          -e "1acd ${target}"         \
+          -e "s@^java@${jre}/bin//&@" \
+          ${target}/run.sh            > bin/protege
       chmod +x bin/protege
-      mkdir $out/share/applications
-      sed -e "s@#out#@$out@" ${desktopItem}/share/applications/protege.desktop > $out/share/applications/protege.desktop
+      sed -e "s@#out#@$out@" ${desktopItem}/share/applications/${aname}.desktop > $out/share/applications/${aname}.desktop
     '';
 
     desktopItem = makeDesktopItem {
-      name = "protege";
+      name = aname;
       exec = "protege";
       desktopName = "Protégé Desktop";
       genericName = meta.description;
       categories = "Development;";
       type = "Application";
-      mimeType = "text/plain";
       terminal = "false";
-      icon = "#out#/share/Protege-5.0.2/app/Protege.ico";
+      icon = "#out#/share/Protege-${version}/app/Protege.ico";
     };
 
     meta = {
