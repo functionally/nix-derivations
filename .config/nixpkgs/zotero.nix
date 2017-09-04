@@ -24,7 +24,7 @@ in
     ];
 
     installPhase = ''
-      mkdir -p ${target} $out/bin
+      mkdir -p $out/share/applications $out/bin ${target}
       cp -r . ${target}
       patchelf --set-interpreter ${stdenv.glibc}/lib/ld-linux-x86-64.so.2 ${target}/zotero-bin
       patchelf --set-rpath ${target}:$libPath                             ${target}/zotero-bin
@@ -32,7 +32,6 @@ in
       patchelf --set-rpath ${target}:$libPath                             ${target}/libxul.so
       sed -e "s@^CALLDIR=.*@CALLDIR=${target}@" zotero                  > $out/bin/zotero
       chmod +x $out/bin/zotero
-      mkdir $out/share/applications
       sed -e "s@#out#@$out@" ${desktopItem}/share/applications/${aname}.desktop > $out/share/applications/${aname}.desktop
     '';
 
