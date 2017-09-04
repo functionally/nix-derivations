@@ -24,6 +24,7 @@
             blender
             gephi
             gimp
+            globusconnectpersonal
             ggobi
             unstable.google-chrome
             gramps
@@ -255,9 +256,9 @@
           ];
         };
 
-        protege = callPackage ./protege.nix {};
-
-        zotero = callPackage ./zotero.nix {};
+        protege               = callPackage ./protege.nix               {};
+        zotero                = callPackage ./zotero.nix                {};
+        globusconnectpersonal = callPackage ./globusconnectpersonal.nix {};
 
       };
 
