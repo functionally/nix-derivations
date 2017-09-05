@@ -21,7 +21,10 @@
             librdf_rasqal
             tetex
             # Graphical
+            anki
             blender
+            evince
+            freemind
             gephi
             gimp
             globusconnectpersonal
@@ -43,6 +46,7 @@
             remmina
             rstudio
             scid
+            scribus
             stockfish
             zotero
             # Communication
