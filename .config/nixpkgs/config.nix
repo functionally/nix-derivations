@@ -62,7 +62,6 @@
             xfce.parole
             # Programming
             jre
-            python3
             R
             # Services
             awscli
@@ -259,6 +258,19 @@
           paths = [
             nix-prefetch-git
             cabal2nix
+          ];
+        };
+
+        pythonEnv = pkgs.buildEnv {
+          name = "env-python";
+          paths = [
+            python3
+            python35Packages.async-timeout
+            python35Packages.asyncio
+            python35Packages.numpy
+            python35Packages.pandas
+            python35Packages.protobuf3_0
+            python35Packages.websockets
           ];
         };
 
