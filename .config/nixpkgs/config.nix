@@ -19,7 +19,8 @@
             imagemagick
             librdf_raptor2
             librdf_rasqal
-            tetex
+            texlive.combined.scheme-small
+#           tetex
             # Graphical
             anki
             blender
@@ -39,7 +40,8 @@
             maxima
             meshlab
             octave
-            pandoc
+            haskellPackages.pandoc
+            haskellPackages.pandoc-citeproc
             paraview
             protege
             qgis
