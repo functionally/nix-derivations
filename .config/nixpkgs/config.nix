@@ -45,7 +45,7 @@
             paraview
             protege
             qgis
-            remmina
+#           remmina
             rstudio
             scid
             scribus
@@ -61,8 +61,12 @@
             xfce.mousepad
             xfce.parole
             # Programming
+#           erlang
+#           gnuapl
+#           gprolog
             jre
             R
+#           rhino
             # Services
             awscli
             google-cloud-sdk
