@@ -19,6 +19,7 @@
             imagemagick
             librdf_raptor2
             librdf_rasqal
+            sc-im
             texlive.combined.scheme-small
 #           tetex
             # Graphical
