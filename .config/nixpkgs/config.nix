@@ -19,6 +19,7 @@
             imagemagick
             librdf_raptor2
             librdf_rasqal
+            saxonb
             sc-im
             texlive.combined.scheme-small
 #           tetex
@@ -206,8 +207,9 @@
         localHaskellPackages = libProf: self: super:
           with pkgs.haskell.lib; let pkg = self.callPackage; in rec {
 
-            raft = pkg /scratch/raft {};
-            daft = pkg /scratch/daft {};
+            raft        = pkg /scratch/haskell/raft        {};
+            daft        = pkg /scratch/haskell/daft        {};
+            handa-gdata = pkg /scratch/haskell/handa-gdata {};
 
           # ghcmod7 = pkg ./ghc-mod-4.1.6.nix {};
 
