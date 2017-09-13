@@ -47,7 +47,7 @@
             paraview
             protege
             qgis
-#           remmina
+            remmina
             rstudio
             scid
             scribus
@@ -64,13 +64,22 @@
             xfce.parole
             # Programming
 #           erlang
+#           fsharp
+#           glpk
 #           gnuapl
+#           gnu-smalltalk
+#           go
 #           gprolog
             jre
+            julia_05
+#           mono46
+#           monodevelop
             R
-#           rhino
+            rhino
+#           squeak
             # Services
             awscli
+            drive
             google-cloud-sdk
           ];
         };
