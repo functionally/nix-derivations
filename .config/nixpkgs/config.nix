@@ -81,6 +81,10 @@
             awscli
             drive
             google-cloud-sdk
+            # Fonts
+            gentium
+            google-fonts
+            hack-font
           ];
         };
 
