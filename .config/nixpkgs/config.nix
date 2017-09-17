@@ -52,6 +52,7 @@
             scid
             scribus
             stockfish
+            vlc
             zotero
             # Communication
 #           discord
