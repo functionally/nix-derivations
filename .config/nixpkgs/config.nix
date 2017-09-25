@@ -4,6 +4,8 @@
 
   allowUnfree = true;
 
+# allowBroken = true;
+
   packageOverrides = super:
     let
       self = super.pkgs;
@@ -16,11 +18,14 @@
           paths = [
             # Command-line
             ffmpeg
+            graphviz
             imagemagick
             librdf_raptor2
             librdf_rasqal
+            mc
             saxonb
             sc-im
+#           stow
             texlive.combined.scheme-small
 #           tetex
             # Graphical
@@ -29,12 +34,12 @@
             evince
             freemind
             gephi
+            ggobi
+#           ghostscriptX
             gimp
             globusconnectpersonal
-            ggobi
             unstable.google-chrome
             gramps
-            graphviz
             guvcview
             hdf5
             inkscape
@@ -66,6 +71,7 @@
             # Programming
 #           erlang
 #           fsharp
+#           ghostscript
 #           glpk
 #           gnuapl
 #           gnu-smalltalk
@@ -82,6 +88,8 @@
             awscli
             drive
             google-cloud-sdk
+            # Servers
+#           rdf4store
             # Fonts
             gentium
             google-fonts
