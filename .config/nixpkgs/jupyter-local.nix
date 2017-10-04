@@ -71,6 +71,101 @@ let
       };
     };
   
+    mbedtls = stdenv.mkDerivation rec {
+      name = "mbedtls-2.1.1";
+      buildInputs = [ cmake perl ];
+      src = fetchurl {
+        url = "https://cache.julialang.org/https://tls.mbed.org/download/mbedtls-2.1.1-apache.tgz";
+        sha256 = "0mx7740vrdbbi81ggraz0cj96vcjaljb0n6c3glq2l5favqvc9cg";
+      };
+      installPhase = ''
+        mkdir -p $out
+        cp -r .  $out/
+      '';
+    };
+    zmq = stdenv.mkDerivation rec {
+      name = "zeromq-3.2.5";
+      buildInputs = [ ];
+      src = fetchurl {
+        url = "https://github.com/zeromq/zeromq3-x/releases/download/v3.2.5/zeromq-3.2.5.tar.gz";
+        sha256 = "0911r7q4i1x9gnfinj39vx08fnz59mf05vl75zdkws36lib3wr89";
+      };
+      installPhase = ''
+        mkdir -p $out
+        cp -r .  $out/
+      '';
+    };
+    src_METADATA = fetchgit {
+      url = "https://github.com/JuliaLang/METADATA.jl.git";
+      rev = "87047e227c95ff1331978dd9dc9ce8ff0fc676d0";
+      sha256 = "11n0yj98kidcmn3nn1m645vixn41fia85pdxw7s2p3crfjx7q2k2";
+      fetchSubmodules = true;
+      leaveDotGit = true;
+    };
+    src_BinDeps = fetchgit {
+      url = "https://github.com/JuliaLang/BinDeps.jl.git";
+      rev = "264e086062f3c39adba7997f187bd54bc0e6b218";
+      sha256 = "04r05p4mj4hdy8djp3qpn97cf83l9yiq6n1cafi7gpn9h408rsd1";
+      fetchSubmodules = true;
+      leaveDotGit = true;
+    };
+    src_Compat = fetchgit {
+      url = "https://github.com/JuliaLang/Compat.jl.git";
+      rev = "956b34b719347e6ebaec9b920bfeca7b4d42d593";
+      sha256 = "19r8vblajs8y1ibhhgaib8xsa5lcbk80jkbq7fvrhn6dzlmmcc0a";
+      fetchSubmodules = true;
+      leaveDotGit = true;
+    };
+    src_Conda = fetchgit {
+      url = "https://github.com/JuliaPy/Conda.jl.git";
+      rev = "f7a05aa054d653cf40feb62084305fc84136bfd1";
+      sha256 = "0wsrf8wlw58xacvsd73fnavpkhlgv3j3zfb325xmfiyzdcgh1nh1";
+      fetchSubmodules = true;
+      leaveDotGit = true;
+    };
+    src_IJulia = fetchgit {
+      url = "https://github.com/JuliaLang/IJulia.jl.git";
+      rev = "70d1b9022bbb6c403f36c1143d2f716ce7c51a00";
+      sha256 = "1f76615a459xb88nzfhgvll465v3s18l9ars4gwb492s4f50ijiy";
+      fetchSubmodules = true;
+      leaveDotGit = true;
+    };
+    src_JSON = fetchgit {
+      url = "https://github.com/JuliaIO/JSON.jl.git";
+      rev = "565fa448a345c62591c007916255ffd4c235fc09";
+      sha256 = "10qd1avq4xm8wap6l7ba879a0jd2j27nmhg74rdsx4hprmdiya04";
+      fetchSubmodules = true;
+      leaveDotGit = true;
+    };
+    src_MbedTLS = fetchgit {
+      url = "https://github.com/JuliaWeb/MbedTLS.jl.git";
+      rev = "173250ee12dc581fa8f22d8ab5173a89e528497e";
+      sha256 = "1489bn3x2li1mxwwf6f134mvc6xxwq96zmgrhmc7xa380g7wqizc";
+      fetchSubmodules = true;
+      leaveDotGit = true;
+    };
+    src_SHA = fetchgit {
+      url = "https://github.com/staticfloat/SHA.jl.git";
+      rev = "337a8f78f450c6a0a1dc50ed1a43eca00bc558e7";
+      sha256 = "1d04w0lbw6vpnr01xdj7h0l88q5cd0v0la3ypnsnwgi5dx6h27vs";
+      fetchSubmodules = true;
+      leaveDotGit = true;
+    };
+    src_URIParser = fetchgit {
+      url = "https://github.com/JuliaWeb/URIParser.jl.git";
+      rev = "0ee051738dab941a467f1d49bead09b1d100a1c0";
+      sha256 = "07i9vavsk22xhkl3x2h8zskpsnv0vss9aq377xz9hvawl9yvgbk8";
+      fetchSubmodules = true;
+      leaveDotGit = true;
+    };
+    src_ZMQ = fetchgit {
+      url = "https://github.com/JuliaInterop/ZMQ.jl.git";
+      rev = "581a9d6f1890973c168af89d87ebeeebc0d2881b";
+      sha256 = "17jylc8pak5q5zca4xl0064xfhw61k5j53mffz6ws6vxw4r5rvgv";
+      fetchSubmodules = true;
+      leaveDotGit = true;
+    };
+
     jupyter_config_dir = stdenv.mkDerivation {
       name = "jupyter-config";
       buildInputs = [
@@ -111,6 +206,7 @@ in
     buildInputs = [
       python35Packages.jupyter jupyter_config_dir
       sparql-kernel python35Packages.notebook python35Packages.SPARQLWrapper python35Packages.rdflib graphviz
+      julia_05 cmake gcc perl
     ];
     shellHook = ''
       mkdir -p $PWD/.R
@@ -120,7 +216,7 @@ in
       export HOME=$PWD
       export JUPYTER_PATH=${jupyter_config_dir}/share/jupyter
       export JUPYTER_CONFIG_DIR=${jupyter_config_dir}/share/jupyter
-      jupyter notebook --no-browser
-      exit
+#     jupyter notebook --no-browser
+#     exit
     '';
   }
