@@ -30,6 +30,7 @@
 #           tetex
             # Graphical
             anki
+            baobab
             blender
             evince
             freemind
