@@ -306,6 +306,7 @@
         protege               = callPackage ./protege.nix               {};
         zotero                = callPackage ./zotero.nix                {};
         globusconnectpersonal = callPackage ./globusconnectpersonal.nix {};
+        rivet-tda             = callPackage ./rivet.nix                 {};
 
       };
 
