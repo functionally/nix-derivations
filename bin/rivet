@@ -1,6 +1,5 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -i bash -p rivet-tda
-#!nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs-channels/archive/nixos-17.09.tar.gz
 
 mkdir .rivet
 chmod u+ws .rivet

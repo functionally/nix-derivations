@@ -23,6 +23,7 @@
             librdf_raptor2
             librdf_rasqal
             mc
+            perseus
             saxonb
             sc-im
 #           stow

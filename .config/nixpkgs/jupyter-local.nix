@@ -51,6 +51,10 @@ let
         # Custom packages
         data_table
         ggplot2
+        igraph
+        FNN
+        RcppEigen
+        BH
       ];
     };
   
@@ -205,8 +209,21 @@ in
     name = "jupyter-local";
     buildInputs = [
       python35Packages.jupyter jupyter_config_dir
+      python35Packages.Keras
+      python35Packages.Theano
+      python35Packages.bootstrapped-pip
+    # python35Packages.ggplot
+      python35Packages.matplotlib
+      python35Packages.numpy
+      python35Packages.pandas
+      python35Packages.scikitlearn
+      python35Packages.scipy
+      python35Packages.seaborn
+      python35Packages.statsmodels
+      python35Packages.tensorflow
       sparql-kernel python35Packages.notebook python35Packages.SPARQLWrapper python35Packages.rdflib graphviz
       julia_05 cmake gcc perl
+      gmp mpfr
     ];
     shellHook = ''
       mkdir -p $PWD/.R

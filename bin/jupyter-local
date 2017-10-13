@@ -1,6 +1,5 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -i bash /home/bbush/.config/nixpkgs/jupyter-local.nix
-#!nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs-channels/archive/nixos-17.09.tar.gz
 
 export HOME=$PWD
 
