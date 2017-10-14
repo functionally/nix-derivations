@@ -27,7 +27,8 @@
             saxonb
             sc-im
 #           stow
-            texlive.combined.scheme-small
+#           texlive.combined.scheme-small
+            texlive.combined.scheme-full
 #           tetex
             # Graphical
             anki
