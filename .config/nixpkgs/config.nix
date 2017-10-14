@@ -255,13 +255,13 @@
             (ghcWithHoogle (h: [ ]))
             cabal-install
           # ghcmod7
-          # ghcid
+            ghcid
             hasktags
             hdevtools
             hlint
             pointfree
             pointful
-          # threadscope
+            threadscope
           ];
         };
 
@@ -275,13 +275,13 @@
             (ghcWithHoogle (h: [ ]))
             cabal-install
             ghc-mod
-          # ghcid
+            ghcid
             hasktags
             hdevtools
             hlint
             pointfree
             pointful
-          # threadscope
+            threadscope
           ];
         };
 
