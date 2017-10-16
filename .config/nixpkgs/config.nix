@@ -10,94 +10,256 @@
     let
       self = super.pkgs;
       unstable = import <nixos-unstable>{};
+      old1703 = import <nixos-17.03>{};
     in
       with self; rec {
  
-        localEnv = with pkgs; buildEnv {
-          name = "env-local";
+        fullEnv = with pkgs; buildEnv {
+          name = "env-full";
           paths = [
-            # Command-line
+            chessEnv
+            cloudEnv
+            commEnv
+            dataEnv
+            deskEnv
+            fontEnv
+            langEnv
+            netEnv
+            termEnv
+            texEnv
+            toolEnv
+            vimEnv
+            haskellEnv
+            ghcEnv7
+            ghcEnv8
+            pythonEnv
+          ];
+        };
+
+        lemurEnv = with pkgs; buildEnv {
+          name = "env-lemur";
+          paths = [
+            chessEnv
+            cloudEnv
+            commEnv
+            dataEnv
+            deskEnv
+            fontEnv
+            netEnv
+            termEnv
+            texEnv
+            toolEnv
+            vimEnv
+          ];
+        };
+
+        gazelleEnv = with pkgs; buildEnv {
+          name = "env-gazelle";
+          paths = [
+            cloudEnv
+            dataEnv
+            netEnv
+            termEnv
+            toolEnv
+            vimEnv
+          ];
+        };
+
+        nrelEnv = with pkgs; buildEnv {
+          name = "env-nrel";
+          paths = [
+            cloudEnv
+            dataEnv
+            netEnv
+            termEnv
+            texEnv
+            toolEnv
+            vimEnv
+          ];
+        };
+
+        chessEnv = with pkgs; buildEnv {
+          name = "env-chess";
+          paths = [
+          # chessdb
+          # eboard
+            scid
+            stockfish
+          # xboard
+          ];
+        };
+
+        cloudEnv = with pkgs; buildEnv {
+          name = "env-cloud";
+          paths = [
+            awscli
+            drive
+            google-cloud-sdk
+          ];
+        };
+
+        commEnv = with pkgs; buildEnv {
+          name = "env-comm";
+          paths = [
+            discord
+            gajim
+            skype
+            slack
+            tigervnc
+          ];
+        };
+
+        dataEnv = with pkgs; buildEnv {
+          name = "env-data";
+          paths = [
             ffmpeg
             graphviz
+          # hdf5
             imagemagick
             librdf_raptor2
             librdf_rasqal
-            mc
-            perseus
+          # perseus
             saxonb
-            sc-im
-#           stow
-#           texlive.combined.scheme-small
-            texlive.combined.scheme-full
-#           tetex
-            # Graphical
-            anki
+          ];
+        };
+
+        deskEnv = with pkgs; buildEnv {
+          name = "env-desk";
+          paths = [
+          # anki
             baobab
             blender
             evince
             freemind
             gephi
             ggobi
-#           ghostscriptX
+            ghostscriptX
             gimp
-            globusconnectpersonal
             unstable.google-chrome
             gramps
             guvcview
-            hdf5
             inkscape
             libreoffice
-            maxima
-            meshlab
-            octave
-            haskellPackages.pandoc
-            haskellPackages.pandoc-citeproc
+            old1703.meshlab
+            xfce.mousepad
             paraview
+            xfce.parole
             protege
             qgis
             remmina
             rstudio
-            scid
             scribus
-            stockfish
             vlc
             zotero
-            # Communication
-#           discord
-            gajim
-            skype
-            slack
-            tigervnc
-            # Xfce
-            xfce.mousepad
-            xfce.parole
-            # Programming
-#           erlang
-#           fsharp
-#           ghostscript
-#           glpk
-#           gnuapl
-#           gnu-smalltalk
-#           go
-#           gprolog
-            jre
-            julia_05
-#           mono46
-#           monodevelop
-            R
-            rhino
-#           squeak
-            # Services
-            awscli
-            drive
-            google-cloud-sdk
-            # Servers
-#           rdf4store
-            # Fonts
+          ];
+        };
+
+        fontEnv = with pkgs; buildEnv {
+          name = "env-font";
+          paths = [
             gentium
             google-fonts
             hack-font
+            sc-im
           ];
+        };
+
+        langEnv = with pkgs; buildEnv {
+          name = "env-lang";
+          paths = [
+            erlang
+            fsharp
+            ghostscript
+            glpk
+            gnu-smalltalk
+            gnuapl
+            go
+            gprolog
+            jre
+            julia_05
+            maxima
+            mono46
+            monodevelop
+            octave
+            R
+            rhino
+            squeak
+          ];
+        };
+
+        netEnv = with pkgs; buildEnv {
+          name = "env-net";
+          paths = [
+            cacert
+            dnsutils
+          # globusconnectpersonal
+            openssl
+            telnet
+            traceroute
+            wget
+            whois
+          ];
+        };
+
+        termEnv = with pkgs; buildEnv {
+          name = "env-term";
+          paths = [
+            atop
+            bvi
+            htop
+            mc
+            pv
+            screen
+            tmux
+            tree
+          # vim
+          ];
+        };
+
+        texEnv = with pkgs; buildEnv {
+          name = "env-tex";
+          paths = [
+          # tetex
+          # texlive.combined.scheme-full
+            texlive.combined.scheme-small
+          ];
+        };
+
+        toolEnv = with pkgs; buildEnv {
+          name = "env-tool";
+          paths = [
+            aspellDicts.en
+            bc
+            binutils
+            coreutils
+            diffstat
+            diffutils
+            dos2unix
+            file
+            findutils
+            gawk
+            git
+            gnumake
+            gnupg
+            mercurial
+            mkpasswd
+            nix-repl
+            nixpkgs-lint
+            haskellPackages.pandoc
+            haskellPackages.pandoc-citeproc
+            parallel
+            patchelf
+            patchutils
+            pbzip2
+          # stow
+            unzip
+            zip
+          ];
+        };
+
+        vimEnv = pkgs.buildEnv {
+          name = "env-vim";
+          paths = [ vimLocal ];
         };
 
         vimLocal = vim_configurable.customize {
@@ -224,31 +386,6 @@
           ];
         };
  
-        vimEnv = pkgs.buildEnv {
-          name = "env-vim";
-          paths = [ vimLocal ];
-        };
-
-        localHaskellPackages = libProf: self: super:
-          with pkgs.haskell.lib; let pkg = self.callPackage; in rec {
-
-            raft        = pkg /scratch/haskell/raft        {};
-            daft        = pkg /scratch/haskell/daft        {};
-            handa-gdata = pkg /scratch/haskell/handa-gdata {};
-
-          # ghcmod7 = pkg ./ghc-mod-4.1.6.nix {};
-
-            mkDerivation = args: super.mkDerivation (args // {
-              enableLibraryProfiling = libProf;
-              enableExecutableProfiling = false;
-            });
-
-          };
-
-        haskell7Packages = super.haskell.packages.ghc7103.override {
-          overrides = localHaskellPackages false;
-        };
-
         ghcEnv7 = pkgs.buildEnv {
           name = "env-ghc7";
           paths = with haskell7Packages; [
@@ -265,7 +402,7 @@
           ];
         };
 
-        haskell8Packages = super.haskell.packages.ghc802.override {
+        haskell7Packages = super.haskell.packages.ghc7103.override {
           overrides = localHaskellPackages false;
         };
 
@@ -284,6 +421,26 @@
             threadscope
           ];
         };
+
+        haskell8Packages = super.haskell.packages.ghc802.override {
+          overrides = localHaskellPackages false;
+        };
+
+        localHaskellPackages = libProf: self: super:
+          with pkgs.haskell.lib; let pkg = self.callPackage; in rec {
+
+            raft        = pkg /scratch/haskell/raft        {};
+            daft        = pkg /scratch/haskell/daft        {};
+            handa-gdata = pkg /scratch/haskell/handa-gdata {};
+
+          # ghcmod7 = pkg ./ghc-mod-4.1.6.nix {};
+
+            mkDerivation = args: super.mkDerivation (args // {
+              enableLibraryProfiling = libProf;
+              enableExecutableProfiling = false;
+            });
+
+          };
 
         haskellEnv = pkgs.buildEnv {
           name = "env-haskell";
