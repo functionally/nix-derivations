@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, peregrine ? false }:
 
 {
 
@@ -11,6 +11,7 @@
       self = super.pkgs;
       unstable = import <nixos-unstable>{};
       old1703 = import <nixos-17.03>{};
+      old1709 = import <nixos-17.09>{};
     in
       with self; rec {
  
@@ -467,6 +468,50 @@
         zotero                = callPackage ./zotero.nix                {};
         globusconnectpersonal = callPackage ./globusconnectpersonal.nix {};
         rivet-tda             = callPackage ./rivet.nix                 {};
+
+        # The following are required by Peregrine.
+        libuv = super.stdenv.lib.overrideDerivation super.libuv (attrs: {
+          doCheck = !peregrine;
+        });
+        sharutils = super.stdenv.lib.overrideDerivation super.sharutils (attrs: {
+          doCheck = !peregrine;
+        });
+        gnutls = super.stdenv.lib.overrideDerivation super.gnutls (attrs: {
+          doCheck = !peregrine;
+        });
+        nix = super.stdenv.lib.overrideDerivation super.nix (attrs: {
+          doInstallCheck = !peregrine;
+        });
+        jemalloc = super.stdenv.lib.overrideDerivation super.jemalloc (attrs: {
+          doCheck = !peregrine;
+        });
+        libgit2 = super.stdenv.lib.overrideDerivation super.libgit2 (attrs: {
+          src = fetchurl {
+            name = attrs.name + ".tar.gz";
+            url = "http://github.com/libgit2/libgit2/tarball/v" + attrs.version;
+            sha256 = "07bdqc1m3vmfk7i1ck1w4xcj88kfk74rir1zz3nfjc5vmykkibrv";
+          };
+        });
+        go_bootstrap = super.stdenv.lib.overrideDerivation super.go_bootstrap (attrs: {
+          preBuild = ''
+            find src -type f -name  user_test.go -ls -delete
+            find src -type f -name pprof_test.go -ls -delete
+          '';
+        });
+        go_1_8 = super.stdenv.lib.overrideDerivation super.go_1_8 (attrs: {
+          preBuild = ''
+            find src -type f -name  user_test.go -ls -delete
+            find src -type f -name pprof_test.go -ls -delete
+          '';
+        });
+        python = super.python.override {
+          packageOverrides = python-self: python-super: {
+            dulwich = python-super.dulwich.overrideAttrs ( oldAttrs: {
+              doInstallCheck = !peregrine;
+            });
+          };
+        };
+        python2Packages = python.pkgs;
 
       };
 
