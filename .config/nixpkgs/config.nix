@@ -113,13 +113,20 @@
         dataEnv = with pkgs; buildEnv {
           name = "env-data";
           paths = [
+          # easytag
+          # exif
             ffmpeg
+          # gdal
+          # gpsbabel
             graphviz
           # hdf5
+            id3v2
             imagemagick
+          # lame
             librdf_raptor2
             librdf_rasqal
           # perseus
+          # proj
             saxonb
           ];
         };
@@ -130,6 +137,7 @@
           # anki
             baobab
             blender
+          # calibre
             evince
             freemind
             gephi
@@ -176,6 +184,7 @@
             gnuapl
             go
             gprolog
+          # html-tidy
             jre
             julia_05
             maxima
@@ -192,11 +201,15 @@
           name = "env-net";
           paths = [
             cacert
+            cifs-utils
             dnsutils
           # globusconnectpersonal
+          # miniHttpd
             openssl
+            tcpdump
             telnet
             traceroute
+            vrpn
             wget
             whois
           ];
@@ -254,7 +267,25 @@
             pbzip2
           # stow
             unzip
+          # usbutils
+          # xxd
             zip
+          ];
+        };
+
+        extraEnv = with pkgs; buildEnv {
+          name = "env-extra";
+          paths = [
+            ant
+            aspell
+            cvs
+            fop
+            getmail
+            libpst
+            protobuf
+            qrencode
+            rcs
+            subversion
           ];
         };
 
@@ -468,6 +499,7 @@
         zotero                = callPackage ./zotero.nix                {};
         globusconnectpersonal = callPackage ./globusconnectpersonal.nix {};
         rivet-tda             = callPackage ./rivet.nix                 {};
+        google-earth          = callPackage ./google-earth.nix          {};
 
         # The following are required by Peregrine.
         libuv = super.stdenv.lib.overrideDerivation super.libuv (attrs: {
