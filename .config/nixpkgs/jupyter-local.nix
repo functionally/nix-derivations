@@ -49,12 +49,29 @@ let
         repr
         uuid
         # Custom packages
-        data_table
-        ggplot2
-        igraph
-        FNN
-        RcppEigen
         BH
+        data_table
+      # DBI
+      # dplr
+        FNN
+        ggplot2
+      # highr
+        Hmisc
+      # httr
+        igraph
+        kernlab
+      # knitr
+        lubridate
+      # quantmod
+        RcppEigen
+      # reshape2
+      # shiny
+      # SPARQL
+      # sqldf
+        stringr
+      # TDA
+        tidyr
+      # yaml
       ];
     };
   
