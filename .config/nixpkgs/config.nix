@@ -120,11 +120,12 @@
           # gpsbabel
             graphviz
           # hdf5
-            id3v2
+          # id3v2
             imagemagick
           # lame
             librdf_raptor2
             librdf_rasqal
+            librdf_redland
           # perseus
           # proj
             saxonb
@@ -185,7 +186,7 @@
             gnuapl
             go
             gprolog
-          # html-tidy
+            html-tidy
             jre
             julia_05
             maxima
@@ -202,7 +203,7 @@
           name = "env-net";
           paths = [
             cacert
-            cifs-utils
+          # cifs-utils
             dnsutils
           # globusconnectpersonal
           # miniHttpd
@@ -210,7 +211,7 @@
             tcpdump
             telnet
             traceroute
-            vrpn
+          # vrpn
             wget
             whois
           ];
