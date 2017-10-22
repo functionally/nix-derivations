@@ -145,6 +145,7 @@
             ghostscriptX
             gimp
             unstable.google-chrome
+          # googleearth
             gramps
             guvcview
             inkscape
