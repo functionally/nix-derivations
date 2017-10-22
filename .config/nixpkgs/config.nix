@@ -291,6 +291,15 @@
           ];
         };
 
+        devEnv = pkgs.buildEnv {
+          name = "env-dev";
+          paths = [
+            spacenavd
+            spnavcfg
+            vrpn
+          ];
+        };
+
         vimEnv = pkgs.buildEnv {
           name = "env-vim";
           paths = [ vimLocal ];
@@ -502,6 +511,8 @@
         globusconnectpersonal = callPackage ./globusconnectpersonal.nix {};
         rivet-tda             = callPackage ./rivet.nix                 {};
         google-earth          = callPackage ./google-earth.nix          {};
+        spacenavd             = callPackage ./spacenavd.nix             {};
+        spnavcfg              = callPackage ./spnavcfg.nix              {};
 
         # The following are required by Peregrine.
         libuv = super.stdenv.lib.overrideDerivation super.libuv (attrs: {
