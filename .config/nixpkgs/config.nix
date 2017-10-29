@@ -129,6 +129,7 @@
           # perseus
           # proj
             saxonb
+            scim
           ];
         };
 
@@ -523,7 +524,24 @@
         });
         gnutls = super.stdenv.lib.overrideDerivation super.gnutls (attrs: {
           doCheck = !peregrine;
+#         configureFlags = [
+#           (__elemAt attrs.configureFlags 0)
+#           (__elemAt attrs.configureFlags 1)
+#           (__elemAt attrs.configureFlags 2)
+#         ];
         });
+#       unbound = super.stdenv.lib.overrideDerivation super.unbound (attrs: {
+#         configureFlags = [
+#           (__elemAt attrs.configureFlags 0)
+#           (__elemAt attrs.configureFlags 1)
+#           (__elemAt attrs.configureFlags 2)
+#           (__elemAt attrs.configureFlags 3)
+#           (__elemAt attrs.configureFlags 4)
+#           (__elemAt attrs.configureFlags 5)
+#           (__elemAt attrs.configureFlags 7)
+#           (__elemAt attrs.configureFlags 8)
+#         ];
+#       });
         nix = super.stdenv.lib.overrideDerivation super.nix (attrs: {
           doInstallCheck = !peregrine;
         });
