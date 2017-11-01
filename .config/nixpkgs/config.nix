@@ -508,15 +508,17 @@
           ];
         };
 
-        protege               = callPackage ./protege.nix               {};
-        zotero                = callPackage ./zotero.nix                {};
-        globusconnectpersonal = callPackage ./globusconnectpersonal.nix {};
-        rivet-tda             = callPackage ./rivet.nix                 {};
-        google-earth          = callPackage ./google-earth.nix          {};
-        spacenavd             = callPackage ./spacenavd.nix             {};
-        spnavcfg              = callPackage ./spnavcfg.nix              {};
+      } // (
 
-      } // (if peregrine then {
+        let
+          toPackage = file: _: {
+            name  = builtins.replaceStrings [ ".nix" ] [ "" ] file;
+            value = super.callPackage (./. + "/custom/${file}") { };
+          };
+        in
+          super.lib.mapAttrs' toPackage (builtins.readDir ./custom)
+
+      ) // (if peregrine then {
 
         # The following are required by Peregrine.
         libuv = super.stdenv.lib.overrideDerivation super.libuv (attrs: {
