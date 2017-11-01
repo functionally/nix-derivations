@@ -471,20 +471,21 @@
         };
 
         localHaskellPackages = libProf: self: super:
-          with pkgs.haskell.lib; let pkg = self.callPackage; in rec {
-
-            raft        = pkg /scratch/haskell/raft        {};
-            daft        = pkg /scratch/haskell/daft        {};
-            handa-gdata = pkg /scratch/haskell/handa-gdata {};
-
-          # ghcmod7 = pkg ./ghc-mod-4.1.6.nix {};
-
-            mkDerivation = args: super.mkDerivation (args // {
-              enableLibraryProfiling = libProf;
-              enableExecutableProfiling = false;
-            });
-
-          };
+          with pkgs.haskell.lib;
+          let
+            toPackage = file: _: {
+              name  = builtins.replaceStrings [ ".nix" ] [ "" ] file;
+              value = self.callPackage (./. + "/haskell/${file}") { };
+            };
+            packages = pkgs.lib.mapAttrs' toPackage (builtins.readDir ./haskell);
+          in
+            packages // {
+            # ghcmod7 = pkg ./ghc-mod-4.1.6.nix {};
+              mkDerivation = args: super.mkDerivation (args // {
+                enableLibraryProfiling = libProf;
+                enableExecutableProfiling = false;
+              });
+            };
 
         haskellEnv = pkgs.buildEnv {
           name = "env-haskell";
