@@ -516,44 +516,40 @@
         spacenavd             = callPackage ./spacenavd.nix             {};
         spnavcfg              = callPackage ./spnavcfg.nix              {};
 
+      } // (if peregrine then {
+
         # The following are required by Peregrine.
         libuv = super.stdenv.lib.overrideDerivation super.libuv (attrs: {
-          doCheck = !peregrine;
+          doCheck = false;
         });
         sharutils = super.stdenv.lib.overrideDerivation super.sharutils (attrs: {
-          doCheck = !peregrine;
+          doCheck = false;
         });
         gnutls = super.stdenv.lib.overrideDerivation super.gnutls (attrs: {
-          doCheck = !peregrine;
-          configureFlags =
-            if peregrine
-              then [
-                     (__elemAt attrs.configureFlags 0)
-                     (__elemAt attrs.configureFlags 1)
-                     (__elemAt attrs.configureFlags 2)
-                   ]
-              else attrs.configureFlags;
+          doCheck = false;
+          configureFlags = [
+            (__elemAt attrs.configureFlags 0)
+            (__elemAt attrs.configureFlags 1)
+            (__elemAt attrs.configureFlags 2)
+          ];
         });
         unbound = super.stdenv.lib.overrideDerivation super.unbound (attrs: {
-          configureFlags =
-            if peregrine
-              then [
-                     (__elemAt attrs.configureFlags 0)
-                     (__elemAt attrs.configureFlags 1)
-                     (__elemAt attrs.configureFlags 2)
-                     (__elemAt attrs.configureFlags 3)
-                     (__elemAt attrs.configureFlags 4)
-                     (__elemAt attrs.configureFlags 5)
-                     (__elemAt attrs.configureFlags 7)
-                     (__elemAt attrs.configureFlags 8)
-                   ]
-              else attrs.configureFlags;
+          configureFlags = [
+            (__elemAt attrs.configureFlags 0)
+            (__elemAt attrs.configureFlags 1)
+            (__elemAt attrs.configureFlags 2)
+            (__elemAt attrs.configureFlags 3)
+            (__elemAt attrs.configureFlags 4)
+            (__elemAt attrs.configureFlags 5)
+            (__elemAt attrs.configureFlags 7)
+            (__elemAt attrs.configureFlags 8)
+          ];
         });
         nix = super.stdenv.lib.overrideDerivation super.nix (attrs: {
-          doInstallCheck = !peregrine;
+          doInstallCheck = false;
         });
         jemalloc = super.stdenv.lib.overrideDerivation super.jemalloc (attrs: {
-          doCheck = !peregrine;
+          doCheck = false;
         });
         libgit2 = super.stdenv.lib.overrideDerivation super.libgit2 (attrs: {
           src = fetchurl {
@@ -577,12 +573,12 @@
         python = super.python.override {
           packageOverrides = python-self: python-super: {
             dulwich = python-super.dulwich.overrideAttrs ( oldAttrs: {
-              doInstallCheck = !peregrine;
+              doInstallCheck = false;
             });
           };
         };
         python2Packages = python.pkgs;
 
-      };
+      } else {});
 
 }
