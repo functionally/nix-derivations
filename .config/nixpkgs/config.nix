@@ -146,12 +146,14 @@
             ggobi
             ghostscriptX
             gimp
-            unstable.google-chrome
+#           unstable.google-chrome
+            google-chrome
           # googleearth
             gramps
             guvcview
             inkscape
             libreoffice
+            musescore
             old1703.meshlab
             xfce.mousepad
             paraview
