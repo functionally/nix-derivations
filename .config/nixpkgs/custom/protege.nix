@@ -3,7 +3,7 @@
 let
 
   aname = "protege";
-  name = "${aname}--${version}";
+  name = "${aname}-${version}";
   version = "5.2.0";
   target = "$out/share/Protege-${version}";
 
