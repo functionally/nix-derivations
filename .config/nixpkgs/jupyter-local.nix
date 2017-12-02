@@ -75,9 +75,9 @@ let
       ];
     };
   
-    sparql-kernel = python35.pkgs.buildPythonPackage {
+    sparql-kernel = python3.pkgs.buildPythonPackage {
       name = "sparqlkernel-1.0.5";
-      buildInputs = [ python35Packages.notebook python35Packages.SPARQLWrapper python35Packages.rdflib ];
+      buildInputs = [ python3Packages.notebook python3Packages.SPARQLWrapper python3Packages.rdflib ];
       src = fetchgit {
         url = "https://github.com/paulovn/sparql-kernel";
         rev = "f91d56a029ebb2a8517181a124437e02c1e226c7";
@@ -190,10 +190,10 @@ let
     jupyter_config_dir = stdenv.mkDerivation {
       name = "jupyter-config";
       buildInputs = [
-        python35Packages.jupyter
+        python3Packages.jupyter
         haskellPackages.ihaskell
         IRkernel
-        sparql-kernel python35Packages.notebook python35Packages.SPARQLWrapper python35Packages.rdflib graphviz
+        sparql-kernel python3Packages.notebook python3Packages.SPARQLWrapper python3Packages.rdflib graphviz
       ];
       ir_json = builtins.toJSON {
         argv = [ "${R}/bin/R"
@@ -225,20 +225,20 @@ in
   stdenv.mkDerivation rec {
     name = "jupyter-local";
     buildInputs = [
-      python35Packages.jupyter jupyter_config_dir
-      python35Packages.Keras
-      python35Packages.Theano
-      python35Packages.bootstrapped-pip
-    # python35Packages.ggplot
-      python35Packages.matplotlib
-      python35Packages.numpy
-      python35Packages.pandas
-      python35Packages.scikitlearn
-      python35Packages.scipy
-      python35Packages.seaborn
-      python35Packages.statsmodels
-      python35Packages.tensorflow
-      sparql-kernel python35Packages.notebook python35Packages.SPARQLWrapper python35Packages.rdflib graphviz
+      python3Packages.jupyter jupyter_config_dir
+      python3Packages.Keras
+      python3Packages.Theano
+      python3Packages.bootstrapped-pip
+    # python3Packages.ggplot
+      python3Packages.matplotlib
+      python3Packages.numpy
+      python3Packages.pandas
+      python3Packages.scikitlearn
+      python3Packages.scipy
+      python3Packages.seaborn
+      python3Packages.statsmodels
+      python3Packages.tensorflow
+      sparql-kernel python3Packages.notebook python3Packages.SPARQLWrapper python3Packages.rdflib graphviz
       julia_05 cmake gcc perl
       gmp mpfr
     ];

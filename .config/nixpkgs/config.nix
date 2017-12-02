@@ -500,13 +500,25 @@
         pythonEnv = pkgs.buildEnv {
           name = "env-python";
           paths = [
-            python3
-            python35Packages.async-timeout
-            python35Packages.asyncio
-            python35Packages.numpy
-            python35Packages.pandas
-            python35Packages.protobuf3_0
-            python35Packages.websockets
+            (python3.withPackages (ps: with ps; [
+              async-timeout
+              asyncio
+              bootstrapped-pip
+            # ggplot
+            # jupyter
+            # Keras
+              matplotlib
+              numpy
+              pandas
+              protobuf3_2
+              scikitlearn
+              scipy
+              seaborn
+              statsmodels
+              tensorflow
+            # Theano
+              websockets
+            ]))
           ];
         };
 
