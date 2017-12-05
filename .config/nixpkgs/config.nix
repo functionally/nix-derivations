@@ -12,6 +12,7 @@
       unstable = import <nixos-unstable>{};
       old1703 = import <nixos-17.03>{};
       old1709 = import <nixos-17.09>{};
+
     in
       with self; rec {
  
@@ -271,6 +272,7 @@
             patchutils
             pbzip2
           # stow
+            time
             unzip
           # usbutils
           # xxd
