@@ -291,14 +291,18 @@
           name = "env-extra";
           paths = [
             ant
+          # apacheKafka
             aspell
             cvs
             fop
             getmail
+          # hadoop
             libpst
+            nethack
             protobuf
             qrencode
             rcs
+          # spark
             subversion
           ];
         };
