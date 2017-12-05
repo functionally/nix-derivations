@@ -8,10 +8,17 @@
 
   packageOverrides = super:
     let
+      fetchNixpkgs = import ./fetchNixpkgs.nix;
       self = super.pkgs;
       unstable = import <nixos-unstable>{};
       old1703 = import <nixos-17.03>{};
       old1709 = import <nixos-17.09>{};
+      ref1709 = import (
+        fetchNixpkgs {
+          rev = "b62c50ce5d3b6053f6f4afa10f2c4013ac0bfe9c";
+          sha256 = "0maw671jf54nx6gdlqhr5srl8kk78951mj847r325824f5bg8rsj";
+        }
+      ) { config = {}; };
 
     in
       with self; rec {
