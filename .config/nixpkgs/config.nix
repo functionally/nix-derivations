@@ -164,6 +164,7 @@
 #           unstable.google-chrome
             google-chrome
           # googleearth
+          # google-earth
             gramps
             guvcview
             inkscape
