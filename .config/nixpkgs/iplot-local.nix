@@ -1,4 +1,4 @@
-{ stdenv, fetchgit, fetchurl, R, rPackages, openssl, zlib }:
+with import <nixpkgs> {};
 
 let
 
@@ -35,47 +35,20 @@ let
       '';
   };
 
-  roxygen2 =
-    let
-      aname = "roxygen2";
-      version = "6.0.1";
-      snapshot = "2017-11-27";
-    in
-      deriveR {
-        name = "r-${aname}-${version}";
-        src = fetchurl {
-          name = "${aname}-${version}.tar.gz";
-          url = "http://mran.revolutionanalytics.com/snapshot/${snapshot}/src/contrib/${aname}_${version}.tar.gz";
-          sha256="0xpzziminf225kjwhyl51kgkzhplyzhk5farhf5s822krl2xqbfj";
-        };
-        buildInputs = [
-          rPackages.brew
-          rPackages.commonmark
-          rPackages.desc
-          rPackages.digest
-          rPackages.R6
-          rPackages.Rcpp
-          rPackages.stringi
-          rPackages.stringr
-          rPackages.xml2
-        ];
-      };
-
   iplot =
     let
       aname = "iplot";
-      version = "dev";
+      version = "1.0";
     in
       deriveR {
         name = "r-${aname}-${version}";
         src = fetchgit {
-          url = "https://github.nrel.gov/InsightCenter/iplot";
-          rev = "1177irxsddg70kmpg9jbi5fxp8k635zfr0h9ch6jf589jx0fz00";
-          sha256="1177irxsddg70kmpg9jbi5fxp8k635zfr0h9ch6jf589jx0fz00b";
+          url = "https://github.nrel.gov/bbush/iplot";
+          rev = "e36ce4dbebd646f21fd11cf71a9f270829cd87ff";
+          sha256="0x1p9vns8jmkkw2wf4zhlqxky97a2rnnikq73d8x3bvb7hxdyjmf";
         };
-        postPatch = "
-          sed -e '/Imports/s/0\.12\.13/0.12.11/' -i DESCRIPTION
-        ";
+        postPatch = ''
+        '';
         buildInputs = [
           openssl
           zlib
@@ -88,9 +61,12 @@ in
 
   stdenv.mkDerivation rec {
     name = "r-iplot-local";
+    phases = "buildPhase";
+    dontBuild = true;
     buildInputs = [
       R
       iplot
+      rPackages.codetools
       rPackages.data_table
       rPackages.ggplot2
       rPackages.jsonlite
