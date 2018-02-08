@@ -38,14 +38,14 @@ let
   iplot =
     let
       aname = "iplot";
-      version = "1.0";
+      version = "1.1.0";
     in
       deriveR {
         name = "r-${aname}-${version}";
         src = fetchgit {
-          url = "https://github.nrel.gov/bbush/iplot";
-          rev = "e36ce4dbebd646f21fd11cf71a9f270829cd87ff";
-          sha256="0x1p9vns8jmkkw2wf4zhlqxky97a2rnnikq73d8x3bvb7hxdyjmf";
+          url = "https://github.nrel.gov/InsightCenter/iplot.git";
+          rev = "f9d6090bceabc83bda520452c8b0098610ad3d64";
+          sha256="0ynrm3v68b2f20s8kc4x23hcxfnyzhzpn6ig9x47zs90yn5zdn9n";
         };
         postPatch = ''
         '';
@@ -71,6 +71,7 @@ in
       rPackages.ggplot2
       rPackages.jsonlite
       rPackages.Rcpp
+      rPackages.plotrix
     ];
     shellHook = ''
       R
