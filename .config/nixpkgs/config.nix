@@ -351,11 +351,11 @@
             set tw=1000
             set smartcase
             set smarttab
-            set smartindent
-            set autoindent
+            set nosmartindent
+            set noautoindent
             set softtabstop=2
             set shiftwidth=2
-            "et expandtab
+            set noexpandtab
             set incsearch
             set mouse=a
             set history=1000
@@ -385,33 +385,32 @@
             let g:syntastic_check_on_open = 0
             let g:syntastic_check_on_wq = 0
             
-            " Set up ghc-mod.  See <http://www.stephendiehl.com/posts/vim_2016.html#ghc-mod-1>.
-            
-            """"let g:ghcmod_ghc_options = ['-Wall']
-            
-            map <silent> tw :GhcModTypeInsert<CR>
-            map <silent> ts :GhcModSplitFunCase<CR>
-            map <silent> tq :GhcModType<CR>
-            map <silent> te :GhcModTypeClear<CR>
-            
-            " Set up supertab.  See <http://www.stephendiehl.com/posts/vim_2016.html#supertab>.
-            
-            let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
-            
-            if has("gui_running")
-              imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
-            else " no gui
-              if has("unix")
-                inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
-              endif
-            endif
-            
-            let g:haskellmode_completion_ghc = 1
-            autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-            
-            """"" Set up nerdtree.  See <http://www.stephendiehl.com/posts/vim_2016.html#nerdtree>.
+            """"" Set up ghc-mod.  See <http://www.stephendiehl.com/posts/vim_2016.html#ghc-mod-1>.
             """"
-            """"map <Leader>n :NERDTreeToggle<CR>
+            """"let g:ghcmod_ghc_options = ['-Wall']
+            """"
+            """"map <silent> tw :GhcModTypeInsert<CR>
+            """"map <silent> ts :GhcModSplitFunCase<CR>
+            """"map <silent> tq :GhcModType<CR>
+            """"map <silent> te :GhcModTypeClear<CR>
+            
+            """"" Set up supertab.  See <http://www.stephendiehl.com/posts/vim_2016.html#supertab>.
+            """"
+            """"let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
+            """"
+            """"if has("gui_running")
+            """"  imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+            """"else " no gui
+            """"  if has("unix")
+            """"    inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+            """"  endif
+            """"endif
+            """"
+            """"let g:haskellmode_completion_ghc = 1
+            """"autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+            
+            " Set up nerdtree.  See <http://www.stephendiehl.com/posts/vim_2016.html#nerdtree>.
+            
             map <Leader>n :Ntree<CR>
             
             " Set up tabularize.  See <http://www.stephendiehl.com/posts/vim_2016.html#tabularize>.
@@ -436,18 +435,19 @@
           vimrcConfig.vam.pluginDictionaries = [
             {
               names = [
-                "ctrlp"
-                "ghc-mod-vim"
-                "neco-ghc"
-                "neocomplete"
+                "ctrlp"                 # See <https://github.com/kien/ctrlp.vim>.
+              # "ghc-mod-vim"
+              # "neco-ghc"
+              # "neocomplete"
               # "snipmate"
-                "Supertab"
-                "Syntastic"
+              # "Supertab"
+                "Syntastic"             # See <https://github.com/vim-syntastic/syntastic>.
                 "Tabular"
               # "tlib"
               # "vim-addon-mw-utils"
+                "vim-hdevtools"
               # "vim-nerdtree-tabs"
-                "vimproc"
+                "vimproc"               # See <https://github.com/Shougo/vimproc.vim>.
               ];
             }
           ];
@@ -478,7 +478,7 @@
           paths = with haskell8Packages; [
             (ghcWithHoogle (h: [ ]))
             cabal-install
-            ghc-mod
+          # ghc-mod
             ghcid
             hasktags
             hdevtools
@@ -503,11 +503,7 @@
             packages = pkgs.lib.mapAttrs' toPackage (builtins.readDir ./haskell);
           in
             packages // {
-            # ghcmod7 = pkg ./ghc-mod-4.1.6.nix {};
-              mkDerivation = args: super.mkDerivation (args // {
-                enableLibraryProfiling = libProf;
-                enableExecutableProfiling = false;
-              });
+               ghcmod7 = super.ghc-mod.override { cabal-helper = super.cabal-helper; };
             };
 
         haskellEnv = pkgs.buildEnv {
