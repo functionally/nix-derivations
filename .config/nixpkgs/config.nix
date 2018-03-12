@@ -1,31 +1,37 @@
-{ pkgs, peregrine ? false }:
+{ pkgs, localUnfree ? true, localBroken ? false, nrelHPC ? false }:
 
 {
 
-  allowUnfree = true;
+  allowUnfree = localUnfree;
 
-# allowBroken = true;
+  allowBroken = localBroken;
 
   packageOverrides = super:
     let
-      cfg = { allowUnfree = true; };
+
       fetchNixpkgs = import ./fetchNixpkgs.nix;
+
       self = super.pkgs;
+
+      cfg = { allowUnfree = localUnfree; allowBroken = localBroken; };
       unstable = import <nixos-unstable>{ config = cfg; };
-      old1703 = import <nixos-17.03>{ config = cfg; };
-      old1709 = import <nixos-17.09>{ config = cfg; };
-      pin1709 = import (
+      old1703  = import <nixos-17.03>{ config = cfg; };
+      old1709  = import <nixos-17.09>{ config = cfg; };
+      pin1709  = import (
         fetchNixpkgs {
           rev = "b62c50ce5d3b6053f6f4afa10f2c4013ac0bfe9c";
           sha256 = "0maw671jf54nx6gdlqhr5srl8kk78951mj847r325824f5bg8rsj";
         }
       ) { config = cfg; };
-      recent = import (
+      recent   = import (
         fetchNixpkgs {
           rev = "f7ac0760a14999837462e7338ef81e5632c93b2f";
           sha256 = "0x5fmjk98ipi6jx5784fz5nymn6a3rpv5m4i69z3rhp0djn4hipc";
         }
       ) { config = cfg; };
+
+    excludeList = xs: if nrelHPC then [] else xs;     
+    includeSet  = xs: if nrelHPC then xs else {};     
 
     in
       with self; rec {
@@ -90,6 +96,7 @@
             termEnv
             texEnv
             toolEnv
+          ] ++ excludeList [
             vimEnv
           ];
         };
@@ -109,8 +116,9 @@
           name = "env-cloud";
           paths = [
             awscli
-            drive
             google-cloud-sdk
+          ] ++ excludeList [
+            drive
           ];
         };
 
@@ -239,7 +247,6 @@
         termEnv = with pkgs; buildEnv {
           name = "env-term";
           paths = [
-            atop
             bvi
             htop
             mc
@@ -248,6 +255,8 @@
             tmux
             tree
           # vim
+          ] ++ excludeList [
+            atop
           ];
         };
 
@@ -533,9 +542,10 @@
               scipy
               seaborn
               statsmodels
-              tensorflow
             # Theano
               websockets
+            ] ++ excludeList [
+              tensorflow
             ]))
           ];
         };
@@ -622,7 +632,7 @@
         in
           super.lib.mapAttrs' toPackage (builtins.readDir ./custom)
 
-      ) // (if peregrine then {
+      ) // includeSet {
 
         # The following are required by Peregrine.
         libuv = super.stdenv.lib.overrideDerivation super.libuv (attrs: {
@@ -685,6 +695,6 @@
         };
         python2Packages = python.pkgs;
 
-      } else {});
+      };
 
 }
