@@ -1,4 +1,4 @@
-{stdenv, fetchgit, openssl, zlib, R, rPackages}:
+{gitLocal ? false, stdenv, fetchgit, openssl, zlib, R, rPackages}:
 
 let
 
@@ -44,10 +44,11 @@ in
     deriveR {
       name = "r-${aname}-${version}";
       src = fetchgit {
-        url = "git://127.0.0.1/";
-      # url = "https://github.nrel.gov/InsightCenter/iplot.git";
-        rev = "f9d6090bceabc83bda520452c8b0098610ad3d64";
-        sha256="0ynrm3v68b2f20s8kc4x23hcxfnyzhzpn6ig9x47zs90yn5zdn9n";
+        url    = if gitLocal
+                   then "git://127.0.0.1/"
+                   else "https://github.nrel.gov/InsightCenter/iplot.git";
+        rev    = "f9d6090bceabc83bda520452c8b0098610ad3d64";
+        sha256 ="0ynrm3v68b2f20s8kc4x23hcxfnyzhzpn6ig9x47zs90yn5zdn9n";
       };
       postPatch = ''
       '';
