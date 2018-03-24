@@ -479,7 +479,7 @@
           ];
         };
 
-        haskell7Packages = super.haskell.packages.ghc7103.override {
+        haskell7Packages = pin1709.haskell.packages.ghc7103.override {
           overrides = localHaskellPackages false;
         };
 
