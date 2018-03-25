@@ -125,7 +125,7 @@
         commEnv = with pkgs; buildEnv {
           name = "env-comm";
           paths = [
-            discord
+            unstable.discord
             gajim
             recent.skype
             slack
