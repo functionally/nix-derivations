@@ -472,6 +472,7 @@
             ghcid
             hasktags
             hdevtools
+            hindent
             hlint
             pointfree
             pointful
@@ -492,6 +493,7 @@
             ghcid
             hasktags
             hdevtools
+            hindent
             hlint
             pointfree
             pointful
