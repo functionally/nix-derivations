@@ -230,11 +230,11 @@
           name = "env-net";
           paths = [
             cacert
-          # cifs-utils
             dnsutils
           # globusconnectpersonal
           # miniHttpd
             openssl
+            samba
             tcpdump
             telnet
             traceroute
