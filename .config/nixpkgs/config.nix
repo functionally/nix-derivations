@@ -21,13 +21,13 @@
       pin1709  = import (
         fetchNixpkgs {
           rev = "b62c50ce5d3b6053f6f4afa10f2c4013ac0bfe9c";
-          sha256 = "0maw671jf54nx6gdlqhr5srl8kk78951mj847r325824f5bg8rsj";
+        # sha256 = "0maw671jf54nx6gdlqhr5srl8kk78951mj847r325824f5bg8rsj";
         }
       ) { config = cfg; };
       recent   = import (
         fetchNixpkgs {
           rev = "f7ac0760a14999837462e7338ef81e5632c93b2f";
-          sha256 = "0x5fmjk98ipi6jx5784fz5nymn6a3rpv5m4i69z3rhp0djn4hipc";
+        # sha256 = "0x5fmjk98ipi6jx5784fz5nymn6a3rpv5m4i69z3rhp0djn4hipc";
         }
       ) { config = cfg; };
 
@@ -292,6 +292,7 @@
             patchelf
             patchutils
             pbzip2
+            pinentry
           # stow
             time
             unzip
@@ -542,7 +543,7 @@
               matplotlib
               numpy
               pandas
-              protobuf3_2
+              protobuf
               scikitlearn
               scipy
               seaborn

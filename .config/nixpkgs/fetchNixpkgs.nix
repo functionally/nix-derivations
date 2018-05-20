@@ -6,8 +6,9 @@
 ####   fetchNixpkgs = import ./fetchNixpkgs.nix;
 #### 
 ####   nixpkgs = fetchNixpkgs {
-####      rev = "76d649b59484607901f0c1b8f737d8376a904019";
-####      sha256 = "01c2f4mj4ahir0sxk9kxbymg2pki1pc9a3y6r9x6ridry75fzb8h";
+####      rev          = "3389f23412877913b9d22a58dfb241684653d7e9";
+####      sha256       = "1zf05a90d29bpl7j56y20r3kmrl4xkvg7gsfi55n6bb2r0xp2ma5";
+####      outputSha256 = "0wgm7sk9fca38a50hrsqwz6q79z35gqgb9nw80xz7pfdr4jy9pf8";
 ####   };
 #### 
 ####   pkgs = import nixpkgs { config = {}; };
@@ -15,53 +16,10 @@
 ####   ...
 
 { rev                             # The Git revision of nixpkgs to fetch
-, sha256                          # The SHA256 of the downloaded data
+#, sha256                          # The SHA256 of the downloaded data
 , system ? builtins.currentSystem # This is overridable if necessary
 }:
 
-with {
-  ifThenElse = { bool, thenValue, elseValue }: (
-    if bool then thenValue else elseValue);
-};
-
-ifThenElse {
-  bool = (0 <= builtins.compareVersions builtins.nixVersion "1.12");
-
-  # In Nix 1.12, we can just give a `sha256` to `builtins.fetchTarball`.
-  thenValue = (
-    builtins.fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/${rev}.tar.gz";
-      inherit sha256;
-    });
-
-  # This hack should at least work for Nix 1.11
-  elseValue = (
-    (rec {
-      tarball = import <nix/fetchurl.nix> {
-        url = "https://github.com/NixOS/nixpkgs/archive/${rev}.tar.gz";
-        inherit sha256;
-      };
-
-      builtin-paths = import <nix/config.nix>;
-      
-      script = builtins.toFile "nixpkgs-unpacker" ''
-        "$coreutils/mkdir" "$out"
-        cd "$out"
-        "$gzip" --decompress < "$tarball" | "$tar" -x --strip-components=1
-      '';
-
-      nixpkgs = builtins.derivation {
-        name = "nixpkgs-${builtins.substring 0 6 rev}";
-
-        builder = builtins.storePath builtin-paths.shell;
-
-        args = [ script ];
-
-        inherit tarball system;
-
-        tar       = builtins.storePath builtin-paths.tar;
-        gzip      = builtins.storePath builtin-paths.gzip;
-        coreutils = builtins.storePath builtin-paths.coreutils;
-      };
-    }).nixpkgs);
+builtins.fetchTarball {
+  url = "https://github.com/NixOS/nixpkgs/archive/${rev}.tar.gz";
 }
