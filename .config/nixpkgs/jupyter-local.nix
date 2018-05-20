@@ -55,6 +55,7 @@ let
       # dplr
         FNN
         ggplot2
+        GGally
       # highr
         Hmisc
       # httr

@@ -1,4 +1,4 @@
-{ pkgs, localUnfree ? true, localBroken ? false, nrelHPC ? false }:
+{ pkgs, localUnfree ? true, localBroken ? false, workarounds ? false }:
 
 {
 
@@ -17,6 +17,7 @@
       unstable = import <nixos-unstable>{ config = cfg; };
       old1703  = import <nixos-17.03>{ config = cfg; };
       old1709  = import <nixos-17.09>{ config = cfg; };
+      old1803  = import <nixos-18.03>{ config = cfg; };
       pin1709  = import (
         fetchNixpkgs {
           rev = "b62c50ce5d3b6053f6f4afa10f2c4013ac0bfe9c";
@@ -30,38 +31,16 @@
         }
       ) { config = cfg; };
 
-    excludeList = xs: if nrelHPC then [] else xs;     
-    includeSet  = xs: if nrelHPC then xs else {};     
+      excludeList = xs: if workarounds then [] else xs;     
+      includeSet  = xs: if workarounds then xs else {};     
 
     in
       with self; rec {
  
-        fullEnv = with pkgs; buildEnv {
-          name = "env-full";
+        nativeGraphicalEnv = with pkgs; buildEnv {
+          name = "env-native-graphical";
+          # Custom environment for NixOS installations with X11.
           paths = [
-            chessEnv
-            cloudEnv
-            commEnv
-            dataEnv
-            deskEnv
-            fontEnv
-            langEnv
-            netEnv
-            termEnv
-            texEnv
-            toolEnv
-            vimEnv
-            haskellEnv
-            ghcEnv7
-            ghcEnv8
-            pythonEnv
-          ];
-        };
-
-        lemurEnv = with pkgs; buildEnv {
-          name = "env-lemur";
-          paths = [
-            chessEnv
             cloudEnv
             commEnv
             dataEnv
@@ -72,23 +51,28 @@
             texEnv
             toolEnv
             vimEnv
+          ] ++ excludeList [
+            chessEnv
           ];
         };
 
-        gazelleEnv = with pkgs; buildEnv {
-          name = "env-gazelle";
+        nativeServerEnv = with pkgs; buildEnv {
+          name = "env-native-server";
+          # Custom environment for NixOS installations without X11.
           paths = [
             cloudEnv
             dataEnv
             netEnv
             termEnv
+            texEnv
             toolEnv
             vimEnv
           ];
         };
 
-        nrelEnv = with pkgs; buildEnv {
-          name = "env-nrel";
+        hostedServerEnv = with pkgs; buildEnv {
+          name = "env-hosted-server";
+          # Custom environment for non-NixOS installations.
           paths = [
             cloudEnv
             dataEnv
@@ -103,6 +87,7 @@
 
         chessEnv = with pkgs; buildEnv {
           name = "env-chess";
+          # Chess tools.
           paths = [
           # chessdb
           # eboard
@@ -114,8 +99,10 @@
 
         cloudEnv = with pkgs; buildEnv {
           name = "env-cloud";
+          # Cloud tools.
           paths = [
             awscli
+          # ec2-api-tools
             google-cloud-sdk
           ] ++ excludeList [
             drive
@@ -124,6 +111,7 @@
 
         commEnv = with pkgs; buildEnv {
           name = "env-comm";
+          # Graphical clients for communication.
           paths = [
             unstable.discord
             gajim
@@ -135,6 +123,7 @@
 
         dataEnv = with pkgs; buildEnv {
           name = "env-data";
+          # Data tools.
           paths = [
           # easytag
           # exif
@@ -158,6 +147,7 @@
 
         deskEnv = with pkgs; buildEnv {
           name = "env-desk";
+          # Graphical desktop tools.
           paths = [
           # anki
             baobab
@@ -169,11 +159,11 @@
             ggobi
             ghostscriptX
             gimp
-#           unstable.google-chrome
+          # unstable.google-chrome
             google-chrome
           # googleearth
           # google-earth
-            gramps
+          # gramps
             guvcview
             inkscape
             libreoffice
@@ -187,6 +177,7 @@
             remmina
             rstudio
             scribus
+            shutter
             vlc
             zotero
           ];
@@ -194,16 +185,17 @@
 
         fontEnv = with pkgs; buildEnv {
           name = "env-font";
+          # Fonts.
           paths = [
             gentium
             google-fonts
             hack-font
-            sc-im
           ];
         };
 
         langEnv = with pkgs; buildEnv {
           name = "env-lang";
+          # Programming languages.
           paths = [
             erlang
             fsharp
@@ -228,6 +220,7 @@
 
         netEnv = with pkgs; buildEnv {
           name = "env-net";
+          # Networking tools.
           paths = [
             cacert
             dnsutils
@@ -246,6 +239,7 @@
 
         termEnv = with pkgs; buildEnv {
           name = "env-term";
+          # Terminal tools.
           paths = [
             bvi
             htop
@@ -262,6 +256,7 @@
 
         texEnv = with pkgs; buildEnv {
           name = "env-tex";
+          # TeX tools.
           paths = [
           # tetex
           # texlive.combined.scheme-full
@@ -271,6 +266,7 @@
 
         toolEnv = with pkgs; buildEnv {
           name = "env-tool";
+          # Tools and utilities.
           paths = [
             aspellDicts.en
             bc
@@ -307,6 +303,7 @@
 
         extraEnv = with pkgs; buildEnv {
           name = "env-extra";
+          # Miscellaneous tools.
           paths = [
             ant
           # apacheKafka
@@ -327,6 +324,7 @@
 
         devEnv = pkgs.buildEnv {
           name = "env-dev";
+          # Miscellaneous software development derviations.
           paths = [
             spacenavd
             spnavcfg
@@ -336,6 +334,7 @@
 
         vimEnv = pkgs.buildEnv {
           name = "env-vim";
+          # Customized Vim.
           paths = [ vimLocal ];
         };
 
@@ -465,10 +464,11 @@
  
         ghcEnv7 = pkgs.buildEnv {
           name = "env-ghc7";
+          # GHC 7 tools.
           paths = with haskell7Packages; [
             (ghcWithHoogle (h: [ ]))
             cabal-install
-          # ghcmod7
+            ghcmod7
             ghcid
             hasktags
             hdevtools
@@ -486,10 +486,11 @@
 
         ghcEnv8 = pkgs.buildEnv {
           name = "env-ghc8";
+          # GHC 8 tools.
           paths = with haskell8Packages; [
             (ghcWithHoogle (h: [ ]))
             cabal-install
-          # ghc-mod
+            ghc-mod
             ghcid
             hasktags
             hdevtools
@@ -520,6 +521,7 @@
 
         haskellEnv = pkgs.buildEnv {
           name = "env-haskell";
+          # Nix tools for Haskell.
           paths = [
             nix-prefetch-git
             cabal2nix
@@ -528,14 +530,15 @@
 
         pythonEnv = pkgs.buildEnv {
           name = "env-python";
+          # Custom Python environment.
           paths = [
             (python3.withPackages (ps: with ps; [
               async-timeout
               asyncio
               bootstrapped-pip
             # ggplot
-            # jupyter
-            # Keras
+              jupyter
+              Keras
               matplotlib
               numpy
               pandas
@@ -544,10 +547,9 @@
               scipy
               seaborn
               statsmodels
-            # Theano
-              websockets
-            ] ++ excludeList [
+              Theano
               tensorflow
+              websockets
             ]))
           ];
         };
@@ -609,18 +611,47 @@
                in
                  pkgs.buildEnv {
                    name = "env-r";
+                   # Custom R environment.
                    paths = with rPackages; [
 #                super.rstudioWrapper.override {
 #                  packages = with self.rPackages; [
                      R
-                   # iplot
+                     BH
                      codetools
+                     crayon
                      data_table
+                   # DBI
+                     digest
+                   # dplr
+                     evaluate
+                     FNN
+                     GGally
                      ggplot2
+                   # highr
+                     Hmisc
+                   # httr
+                     igraph
+                   # iplot
                      jsonlite
+                     kernlab
+                   # knitr
+                     lubridate
+                     pbdZMQ
                      plotrix
+                   # quantmod
                      Rcpp
+                     RcppEigen
+                     repr
+                   # reshape2
                      shiny
+                   # shiny
+                   # SPARQL
+                   # sqldf
+                     stringr
+                   # TDA
+                   # tidyr
+                     uuid
+                   # yaml
                    ];
                  };
 
