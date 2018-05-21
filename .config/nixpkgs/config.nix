@@ -503,7 +503,7 @@
           ];
         };
 
-        haskell8Packages = super.haskell.packages.ghc802.override {
+        haskell8Packages = old1709.haskell.packages.ghc802.override {
           overrides = localHaskellPackages false;
         };
 
