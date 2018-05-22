@@ -543,7 +543,7 @@
               matplotlib
               numpy
               pandas
-              protobuf
+              protobuf3_2
               scikitlearn
               scipy
               seaborn
