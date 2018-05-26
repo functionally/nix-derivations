@@ -138,6 +138,9 @@
             librdf_raptor2
             librdf_rasqal
             librdf_redland
+            mongodb
+            mongodb-tools
+            old1803.kafkacat
           # perseus
           # proj
             saxonb
