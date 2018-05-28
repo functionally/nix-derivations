@@ -31,7 +31,7 @@
   fileSystems."/scratch/zotero.bwbush.io"           = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=zotero.bwbush.io"           ]; };
   fileSystems."/scratch/sangha.bwbush.io"           = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=sangha.bwbush.io"           ]; };
   fileSystems."/scratch/personal.bwbush.io"         = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=personal.bwbush.io"         ]; };
-  fileSystems."/scratch/data"                       = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=data"                       ]; };
+  fileSystems."//data"                              = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=data"                       ]; };
   fileSystems."/scratch/deploy.brianwbush.info"     = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=deploy.brianwbush.info"     ]; };
   fileSystems."/scratch/staging.bwbush.io"          = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=staging.bwbush.io"          ]; };
   fileSystems."/scratch/staging.brianwbush.info"    = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=staging.brianwbush.info"    ]; };
