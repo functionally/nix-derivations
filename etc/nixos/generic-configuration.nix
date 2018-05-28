@@ -45,10 +45,12 @@
     # allowedTCPPorts = [ ... ];
     # allowedUDPPorts = [ ... ];
       extraCommands = ''
-        #  Formerly for chromecast, see <https://github.com/NixOS/nixpkgs/issues/3107#issue-36677896>.
-        iptables -I INPUT -p udp -m udp --dport 32768:61000 -j nixos-fw-accept
-        # For chromecast, see <https://github.com/NixOS/nixpkgs/issues/3107#issuecomment-377716548>.
-        iptables -I INPUT -p udp -m udp -s 192.168.0.0/16 --match multiport --dports 1900,5353 -j ACCEPT 
+        iptables -I INPUT -p udp -s 192.168.0.0/16 --match multiport --dports 1900,5353 -m udp                           -j nixos-fw-accept # chromecast, see <https://github.com/NixOS/nixpkgs/issues/3107#issuecomment-377716548>
+        iptables -I INPUT -p tcp                                     --dport   2181     -m state --state NEW,ESTABLISHED -j nixos-fw-accept # zookeeper
+        iptables -I INPUT -p tcp                                     --dport   5820     -m state --state NEW,ESTABLISHED -j nixos-fw-accept # stardog
+        iptables -I INPUT -p tcp                                     --dport   9092     -m state --state NEW,ESTABLISHED -j nixos-fw-accept # kafka
+        iptables -I INPUT -p tcp                                     --dport  27017     -m state --state NEW,ESTABLISHED -j nixos-fw-accept # mongodb
+        iptables -I INPUT -p tcp                                     --dport  32749     -m state --state NEW,ESTABLISHED -j nixos-fw-accept # gridcoinresearchd
       '';
     };
 
