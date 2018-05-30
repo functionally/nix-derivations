@@ -116,11 +116,15 @@
   # Some programs need SUID wrappers, can be configured further or are started in user sessions.
   programs = {
     bash.enableCompletion = true;
-    mtr.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
+    mtr.enable = true;
   };
+
+  security.chromiumSuidSandbox.enable = true;
+
+# virtualisation.virtualbox.host.enable
 
 }
