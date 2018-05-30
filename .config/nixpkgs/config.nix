@@ -157,6 +157,7 @@
             blender
           # calibre
             evince
+            flashprint
             freemind
             gephi
             ggobi
@@ -182,6 +183,7 @@
             scribus
             shutter
             vlc
+            unity3d
             zotero
           ];
         };
@@ -245,6 +247,7 @@
           # Terminal tools.
           paths = [
             bvi
+            python3Packages.glances
             htop
             mc
             pv
