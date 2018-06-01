@@ -1,6 +1,9 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -i bash -p jre zookeeper apacheKafka
 
+unset JAVA_HOME
+unset JRE_HOME
+
 BASE_DIR=/data/kafka
 KAFKA_DIR=$BASE_DIR/kafka-logs
 ZOOKEEPER_DIR=$BASE_DIR/zookeeper-logs
