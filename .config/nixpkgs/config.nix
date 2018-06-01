@@ -265,8 +265,8 @@
           # TeX tools.
           paths = [
           # tetex
-          # texlive.combined.scheme-full
-            texlive.combined.scheme-small
+            texlive.combined.scheme-full
+          # texlive.combined.scheme-small
           ];
         };
 
