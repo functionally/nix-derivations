@@ -39,7 +39,7 @@ in
 
   let
     aname = "iplot";
-    version = "1.1.0";
+    version = "1.1.0-74c4daa";
   in
     deriveR {
       name = "r-${aname}-${version}";
@@ -47,14 +47,15 @@ in
         url    = if gitLocal
                    then "git://127.0.0.1/"
                    else "https://github.nrel.gov/InsightCenter/iplot.git";
-        rev    = "f9d6090bceabc83bda520452c8b0098610ad3d64";
-        sha256 ="0ynrm3v68b2f20s8kc4x23hcxfnyzhzpn6ig9x47zs90yn5zdn9n";
+        rev    = "74c4daa6772a54dce97a5258fd3b37afc0fd9c0e";
+        sha256 ="008za795lldfn29qlb6wagcz3y9qkhrh0ykygavhlnniv3rw3pz5";
       };
       postPatch = ''
       '';
       buildInputs = [
         openssl
         zlib
+        rPackages.codetools
         rPackages.Rcpp
         rPackages.jsonlite
       ];
