@@ -183,7 +183,6 @@
             scribus
             shutter
             vlc
-            unity3d
             zotero
           ];
         };
@@ -214,7 +213,7 @@
             jre
             julia_05
             maxima
-            mono46
+            mono
             monodevelop
             octave
             R
@@ -229,7 +228,7 @@
           paths = [
             cacert
             dnsutils
-          # globusconnectpersonal
+            globusconnectpersonal
           # miniHttpd
             openssl
             samba
@@ -532,6 +531,18 @@
           paths = [
             nix-prefetch-git
             cabal2nix
+          ];
+        };
+
+        unityEnv = with old1803; buildEnv {
+          name = "env-unity";
+          # Unity.
+          paths = [
+            fsharp
+            mono
+            monodevelop
+            steam-run-native
+            unity3d
           ];
         };
 

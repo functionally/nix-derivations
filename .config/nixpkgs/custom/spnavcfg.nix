@@ -4,7 +4,7 @@
 stdenv.mkDerivation rec {
   name    = "${pname}-${version}";
   pname   = "spnavcfg";
-  version = "0.6";
+  version = "0.3";
 
   src = fetchurl {
     name   = "${pname}-${version}.tar.gz";

@@ -14,7 +14,7 @@ in
     inherit name;
 
     src = fetchurl {
-      name = "Zotero-${version}_linux-x86_64.tar.bz2";
+      name = "globus-${version}_linux-x86_64.tar.bz2";
       url = "https://s3.amazonaws.com/connect.globusonline.org/linux/stable/${name}.tgz";
       sha256 = "2b8ea6880b3044f73cd5bc0b0368eb5bd5834b12d0c0dc645fb2f26f5db2ac60";
     };
