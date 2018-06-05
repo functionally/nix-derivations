@@ -1,9 +1,10 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -i bash /home/bbush/.config/nixpkgs/jupyter-local.nix
+#!nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs-channels/archive/nixos-18.03.tar.gz
 
 export HOME=$PWD
 
 julia -e 'Pkg.add("IJulia");'
-jupyter notebook --no-browser
+jupyter notebook --no-browser --ip 0.0.0.0
 
 rm -rf .ihaskell .ipython .julia .julia_history .jupyter .local .R

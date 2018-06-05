@@ -240,7 +240,7 @@ in
       python3Packages.statsmodels
       python3Packages.tensorflow
       sparql-kernel python3Packages.notebook python3Packages.SPARQLWrapper python3Packages.rdflib graphviz
-      julia_05 cmake gcc perl
+      julia cmake gcc perl
       gmp mpfr
     ];
     shellHook = ''
