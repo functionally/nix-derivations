@@ -565,6 +565,7 @@
               scipy
               seaborn
               statsmodels
+              spyder
               Theano
               tensorflow
               websockets
