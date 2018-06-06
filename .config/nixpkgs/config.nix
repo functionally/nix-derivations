@@ -386,6 +386,8 @@
             set t_Co=256
             
             set cmdheight=1
+
+            set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
             
             " Set up syntastic.  See <http://www.stephendiehl.com/posts/vim_2016.html#syntastic>.
             
