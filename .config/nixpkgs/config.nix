@@ -162,7 +162,7 @@
             freemind
             gephi
             ggobi
-            ghostscriptX
+          # ghostscriptX
             gimp
           # unstable.google-chrome
             google-chrome
@@ -185,6 +185,7 @@
             shutter
             old1803.slic3r
             vlc
+            xclip
             zotero
           ];
         };
@@ -366,7 +367,7 @@
             "et number
             "et nowrap
             set showmode
-            set tw=1000
+            set tw=10000
             set smartcase
             set smarttab
             set nosmartindent
@@ -390,8 +391,13 @@
             
             set cmdheight=1
 
+            set laststatus=2
             set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-            
+          
+           " Turn off autoindent. 
+
+            nnoremap <F8> :setl noai nocin nosi inde=<CR>
+ 
             " Set up syntastic.  See <http://www.stephendiehl.com/posts/vim_2016.html#syntastic>.
             
             map <Leader>s :SyntasticToggleMode<CR>
