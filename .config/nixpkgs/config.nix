@@ -156,6 +156,7 @@
             baobab
             blender
           # calibre
+            cura
             evince
             flashprint
             freemind
@@ -182,6 +183,7 @@
             rstudio
             scribus
             shutter
+            old1803.slic3r
             vlc
             zotero
           ];
@@ -284,6 +286,7 @@
             findutils
             gawk
             git
+            git-lfs
             gnumake
             gnupg
             inotify-tools

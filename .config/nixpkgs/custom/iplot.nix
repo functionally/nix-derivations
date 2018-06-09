@@ -1,4 +1,4 @@
-{gitLocal ? false, stdenv, fetchgit, openssl, zlib, R, rPackages}:
+{gitLocal ? true, stdenv, fetchgit, openssl, zlib, R, rPackages}:
 
 let
 
