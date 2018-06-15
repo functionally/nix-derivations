@@ -1,3 +1,5 @@
+# FIXME: Slicing fail in the GUI, but works at the command line.
+
 {
   stdenv, fetchurl, dpkg, patchelf, makeDesktopItem,
   gcc, mesa, qt5, udev
@@ -45,6 +47,11 @@ in
       --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
       --set-rpath "${libPath}" \
       $out/share/${name}/FlashPrint/FlashPrint
+    ln -s $out/share/${name}/FlashPrint/engine/ffslicer.exe $out/bin/ffslicer.exe
+    patchelf \
+      --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
+      --set-rpath "${libPath}" \
+      $out/share/${name}/FlashPrint/engine/ffslicer.exe
   '';
 
   desktopItem = makeDesktopItem {

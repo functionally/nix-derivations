@@ -156,7 +156,7 @@
             baobab
             blender
           # calibre
-            cura
+          # cura
             evince
             flashprint
             old1803.freecad
@@ -184,7 +184,7 @@
             rstudio
             scribus
             shutter
-            old1803.slic3r
+          # old1803.slic3r
             vlc
             xclip
             zotero
