@@ -159,6 +159,7 @@
             cura
             evince
             flashprint
+            old1803.freecad
             freemind
             gephi
             ggobi
