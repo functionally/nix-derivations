@@ -185,6 +185,7 @@
             scribus
             shutter
           # old1803.slic3r
+            teigha
             vlc
             xclip
             zotero
