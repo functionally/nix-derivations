@@ -31,12 +31,12 @@
         }
       ) { config = cfg; };
 
-      excludeList = xs: if workarounds then [] else xs;     
-      includeSet  = xs: if workarounds then xs else {};     
+      excludeList = xs: if workarounds then [] else xs;
+      includeSet  = xs: if workarounds then xs else {};
 
     in
       with self; rec {
- 
+
         nativeGraphicalEnv = with pkgs; buildEnv {
           name = "env-native-graphical";
           # Custom environment for NixOS installations with X11.
@@ -355,16 +355,16 @@
         # name = "vim-local";
           vimrcConfig.customRC = ''
             " General settings.
-            
+
             syntax on
-            
+
             " Set up filetype.
-            
+
             filetype indent off
             filetype plugin on
-            
+
             " Miscellaneous settings.
-            
+
             set nocompatible
             "et number
             "et nowrap
@@ -381,16 +381,16 @@
             set mouse=a
             set history=1000
             set clipboard=unnamedplus,autoselect
-            
+
             set completeopt=menuone,menu,longest
-            
+
             set wildignore+=*\\tmp\\*,*.swp,*.swo,*.zip,.git,.cabal-sandbox
             set wildmode=longest,list,full
             set wildmenu
             set completeopt+=longest
-            
+
             set t_Co=256
-            
+
             set cmdheight=1
 
             set laststatus=2
@@ -401,31 +401,31 @@
             nnoremap <F8> :setl noai nocin nosi inde=<CR>
  
             " Set up syntastic.  See <http://www.stephendiehl.com/posts/vim_2016.html#syntastic>.
-            
+
             map <Leader>s :SyntasticToggleMode<CR>
-            
+
             set statusline+=%#warningmsg#
             set statusline+=%{SyntasticStatuslineFlag()}
             set statusline+=%*
-            
+
             let g:syntastic_always_populate_loc_list = 1
             let g:syntastic_auto_loc_list = 0
             let g:syntastic_check_on_open = 0
             let g:syntastic_check_on_wq = 0
-            
+
             " Set up ghc-mod.  See <http://www.stephendiehl.com/posts/vim_2016.html#ghc-mod-1>.
-            
+
             let g:ghcmod_ghc_options = ['-Wall']
-            
+
             map <silent> tw :GhcModTypeInsert<CR>
             map <silent> ts :GhcModSplitFunCase<CR>
             map <silent> tq :GhcModType<CR>
             map <silent> te :GhcModTypeClear<CR>
-            
+
             " Set up supertab.  See <http://www.stephendiehl.com/posts/vim_2016.html#supertab>.
-            
+
             let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
-            
+
             if has("gui_running")
               imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
             else " no gui
@@ -433,30 +433,30 @@
                 inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
               endif
             endif
-            
+
             let g:haskellmode_completion_ghc = 1
             autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-            
+
             " Set up nerdtree.  See <http://www.stephendiehl.com/posts/vim_2016.html#nerdtree>.
-            
+
             map <Leader>n :Ntree<CR>
-            
+
             " Set up tabularize.  See <http://www.stephendiehl.com/posts/vim_2016.html#tabularize>.
-            
+
             let g:haskell_tabular = 1
-            
+
             vmap a= :Tabularize /=<CR>
             vmap a; :Tabularize /::<CR>
             vmap a- :Tabularize /-><CR>
-            
+
             " Set up ctrl-p.  See <http://www.stephendiehl.com/posts/vim_2016.html#ctrl-p>.
-            
+
             map <silent> <Leader>t :CtrlP()<CR>
             noremap <leader>b<space> :CtrlPBuffer<cr>
             let g:ctrlp_custom_ignore = '\v[\/]dist$'
-            
+
             " Set up pointfree.  See <http://www.stephendiehl.com/posts/vim_haskell.html>.
-            
+
             autocmd FileType haskell set formatprg=pointfree\ `cat`
             '';
           vimrcConfig.vam.knownPlugins = vimPlugins; # optional
@@ -480,7 +480,7 @@
             }
           ];
         };
- 
+
         ghcEnv7 = pkgs.buildEnv {
           name = "env-ghc7";
           # GHC 7 tools.
@@ -566,23 +566,53 @@
             (python3.withPackages (ps: with ps; [
               async-timeout
               asyncio
+              bokeh
               bootstrapped-pip
+            # catboost
+            # dist-keras
+            # elephas
+            # eli5
+            # gensim
             # ggplot
               jupyter
               Keras
+            # lightgbm
               matplotlib
+            # nltk
               numpy
               pandas
+            # pip
+            # pipenv
+              plotly
+            # protobuf
               protobuf3_2
+              pydot
+              pytorch
               scikitlearn
               scipy
+              scrapy
               seaborn
-              statsmodels
+            # spacy
+            # spark-deep-learning
               spyder
-              Theano
+              statsmodels
               tensorflow
+            # tensorflow_hub
+            # tensorflowjs
+              Theano
               websockets
+              xgboost
             ]))
+          ];
+        };
+
+        pipEnv = pkgs.buildEnv {
+          name = "env-pip";
+          paths = [
+            (unstable.python3.withPackages (ps: with ps; [
+              unstable.pipenv
+            ]))
+          # unstable.pipenv
           ];
         };
 
@@ -652,7 +682,7 @@
                      codetools
                      crayon
                      data_table
-                   # DBI
+                     DBI
                      digest
                    # dplr
                      evaluate
@@ -665,25 +695,30 @@
                      igraph
                    # iplot
                      jsonlite
+                   # keras
                      kernlab
                    # knitr
+                     kSamples
                      lubridate
+                     memo
                      pbdZMQ
                      plotrix
-                   # quantmod
+                     quantmod
                      Rcpp
                      RcppEigen
                      repr
                    # reshape2
+                     rpart
                      shiny
-                   # shiny
-                   # SPARQL
-                   # sqldf
+                     shinyjs
+                     SPARQL
+                     sqldf
                      stringr
                    # TDA
+                     tensorflow
                    # tidyr
                      uuid
-                   # yaml
+                     yaml
                    ];
                  };
 
