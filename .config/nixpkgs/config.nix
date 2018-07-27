@@ -223,6 +223,7 @@
             octave
             R
             rhino
+            sage
             squeak
           ];
         };
@@ -522,6 +523,28 @@
         };
 
         haskell8Packages = old1709.haskell.packages.ghc802.override {
+          overrides = localHaskellPackages false;
+        };
+
+        ghcEnvLatest = pkgs.buildEnv {
+          name = "env-ghc-latest";
+          # LatestGHC tools.
+          paths = with haskellLatestPackages; [
+            (ghcWithHoogle (h: [ ]))
+            cabal-install
+          # ghc-mod
+            ghcid
+          # hasktags
+            hdevtools
+            hindent
+            hlint
+            pointfree
+            pointful
+          # threadscope
+          ];
+        };
+
+        haskellLatestPackages = unstable.haskell.packages.ghc822.override {
           overrides = localHaskellPackages false;
         };
 
