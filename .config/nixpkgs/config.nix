@@ -282,10 +282,13 @@
             aspellDicts.en
             bc
             binutils
+            btrfs-dedupe
             coreutils
             diffstat
             diffutils
             dos2unix
+          # fcrackzip
+            fdupes
             file
             findutils
             gawk
@@ -294,10 +297,13 @@
             gnumake
             gnupg
             inotify-tools
+          # john
+            lzma
             mercurial
             mkpasswd
             nix-repl
             nixpkgs-lint
+            p7zip
             haskellPackages.pandoc
             haskellPackages.pandoc-citeproc
             parallel
@@ -305,8 +311,11 @@
             patchutils
             pbzip2
             pinentry
+            pixz
+          # pxz
           # stow
             time
+            unar
             unzip
           # usbutils
           # xxd
