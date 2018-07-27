@@ -239,6 +239,10 @@ in
       python3Packages.seaborn
       python3Packages.statsmodels
       python3Packages.tensorflow
+      python3Packages.geopandas
+      python3Packages.fiona
+      python3Packages.h5py
+      python3Packages.shapely
       sparql-kernel python3Packages.notebook python3Packages.SPARQLWrapper python3Packages.rdflib graphviz
       julia cmake gcc perl
       gmp mpfr
