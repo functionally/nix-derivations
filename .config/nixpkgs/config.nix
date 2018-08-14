@@ -301,6 +301,7 @@
             lzma
             mercurial
             mkpasswd
+          # mpack
             nix-repl
             nixpkgs-lint
             p7zip
@@ -319,6 +320,7 @@
             unzip
           # usbutils
           # xxd
+          # zbackup
             zip
           ];
         };
