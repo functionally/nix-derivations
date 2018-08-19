@@ -622,6 +622,7 @@
               protobuf3_2
               pydot
               pytorch
+              rasterio
               scikitlearn
               scipy
               scrapy
