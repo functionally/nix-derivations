@@ -50,6 +50,7 @@ let
         uuid
         # Custom packages
         BH
+        circlize
         data_table
       # DBI
       # dplr
@@ -227,24 +228,35 @@ in
     name = "jupyter-local";
     buildInputs = [
       python3Packages.jupyter jupyter_config_dir
-      python3Packages.Keras
-      python3Packages.Theano
+      python3Packages.bokeh
       python3Packages.bootstrapped-pip
+      python3Packages.cachetools
+      python3Packages.fiona
+      python3Packages.flask
+      python3Packages.geopandas
     # python3Packages.ggplot
+      python3Packages.h5py
+    # python3Packages.json
+      python3Packages.Keras
       python3Packages.matplotlib
       python3Packages.numpy
       python3Packages.pandas
+      python3Packages.plotly
+      python3Packages.pydot
+    # python3Packages.pytorch
       python3Packages.scikitlearn
       python3Packages.scipy
+      python3Packages.scrapy
       python3Packages.seaborn
+      python3Packages.shapely
+      python3Packages.spyder
       python3Packages.statsmodels
       python3Packages.tensorflow
-      python3Packages.geopandas
-      python3Packages.fiona
-      python3Packages.h5py
-      python3Packages.shapely
+      python3Packages.Theano
+      python3Packages.websockets
+      python3Packages.xgboost
       sparql-kernel python3Packages.notebook python3Packages.SPARQLWrapper python3Packages.rdflib graphviz
-      julia cmake gcc perl
+      julia cmake gcc gfortran perl # clp blas liblapack glpk metis cbc
       gmp mpfr
     ];
     shellHook = ''

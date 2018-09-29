@@ -302,6 +302,7 @@
             mercurial
             mkpasswd
           # mpack
+            nix-index
             nix-repl
             nixpkgs-lint
             p7zip
@@ -593,6 +594,14 @@
           ];
         };
 
+        juliaEnv = pkgs.buildEnv {
+          name = "env-julia";
+          paths = [
+            old1803.julia
+            busybox
+          ];
+        };
+
         pythonEnv = pkgs.buildEnv {
           name = "env-python";
           # Custom Python environment.
@@ -606,8 +615,12 @@
             # dist-keras
             # elephas
             # eli5
+            # fiona
+              flask
             # gensim
+            # geopandas
             # ggplot
+              h5py
               jupyter
               Keras
             # lightgbm
