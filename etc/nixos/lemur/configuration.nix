@@ -30,17 +30,17 @@
     "/data" = {
       device = "/dev/vgmain/user";
       fsType = "btrfs";
-      options = [ "subvol=@data" "compress=lzo" ];
+      options = [ "subvol=@data" "compress=zstd" ];
     };
     "/home" = {
       device = "/dev/vgmain/user";
       fsType = "btrfs";
-      options = [ "subvol=@home" "compress=zlib" ];
+      options = [ "subvol=@home" "compress=zstd" ];
     };
     "/scratch" = {
       device = "/dev/vgmain/user";
       fsType = "btrfs";
-      options = [ "subvol=@scratch" "compress=zlib" ];
+      options = [ "subvol=@scratch" "compress=zstd" ];
     };
   };
 
