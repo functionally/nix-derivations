@@ -51,29 +51,39 @@ let
         # Custom packages
         BH
         circlize
+        codetools
         data_table
-      # DBI
+        DBI
       # dplr
         FNN
-        ggplot2
         GGally
-      # highr
+        ggplot2
+        highr
         Hmisc
-      # httr
+        httr
         igraph
+      # iplot
+        keras
         kernlab
-      # knitr
+        knitr
+        kSamples
         lubridate
-      # quantmod
+        memo
+        plotrix
+        quantmod
+        Rcpp
         RcppEigen
-      # reshape2
-      # shiny
-      # SPARQL
-      # sqldf
+        reshape2
+        rpart
+        shiny
+        shinyjs
+        SPARQL
+        sqldf
         stringr
       # TDA
+        tensorflow
         tidyr
-      # yaml
+        yaml
       ];
     };
   
@@ -228,30 +238,46 @@ in
     name = "jupyter-local";
     buildInputs = [
       python3Packages.jupyter jupyter_config_dir
+      python3Packages.async-timeout
+      python3Packages.asyncio
       python3Packages.bokeh
       python3Packages.bootstrapped-pip
-      python3Packages.cachetools
+    # python3Packages.catboost
+    # python3Packages.dist-keras
+    # python3Packages.elephas
+    # python3Packages.eli5
       python3Packages.fiona
       python3Packages.flask
+      python3Packages.gensim
       python3Packages.geopandas
     # python3Packages.ggplot
       python3Packages.h5py
     # python3Packages.json
+      python3Packages.jupyter
       python3Packages.Keras
+    # python3Packages.lightgbm
       python3Packages.matplotlib
+      python3Packages.nltk
       python3Packages.numpy
       python3Packages.pandas
+      python3Packages.pip
+                      pipenv
       python3Packages.plotly
+      python3Packages.protobuf
       python3Packages.pydot
     # python3Packages.pytorch
+    # python3Packages.rasterio
       python3Packages.scikitlearn
       python3Packages.scipy
       python3Packages.scrapy
       python3Packages.seaborn
-      python3Packages.shapely
+      python3Packages.spacy
+    # python3Packages.spark-deep-learning
       python3Packages.spyder
       python3Packages.statsmodels
       python3Packages.tensorflow
+    # python3Packages.tensorflow_hub
+    # python3Packages.tensorflowjs
       python3Packages.Theano
       python3Packages.websockets
       python3Packages.xgboost
