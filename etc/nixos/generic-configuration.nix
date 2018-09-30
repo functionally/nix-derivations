@@ -27,6 +27,8 @@
     domain = "lan";
 
     nameservers = [
+    # Use `ip route` to find DNS on "Google Starbucks".
+    # "172.31.98.1"
       "8.8.8.8"
       "8.8.4.4"
       "9.9.9.9"
@@ -39,6 +41,8 @@
       192.168.86.45 stick-1
       192.168.86.44 LS210DBB
       192.168.86.41 HPC68886
+    # Use `ip route` to find DNS on "Google Starbucks".
+    # 172.31.98.1 aruba.odyssys.net
     '';
 
     firewall = {
@@ -81,12 +85,13 @@
     udev.extraRules = ''
       SUBSYSTEM=="usb", ATTR{idVendor}=="27b8", ATTR{idProduct}=="01ed", MODE="0666", GROUP="plugdev" OWNER="bbush"
       KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1050", ATTRS{idProduct}=="0120", MODE="0666", TAG+="uaccess"
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="096e", ATTRS{idProduct}=="085a", MODE="0666", TAG+="uaccess"
       KERNEL=="event[0-9]*", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c626", MODE="0664", GROUP="plugdev", SYMLINK+="input/spacenavigator"
     '';
 
     printing = {
       enable = true;
-      drivers = [ pkgs.hplip ];
+      drivers = [ pkgs.hplip pkgs.epson-escpr ];
     };
 
     openssh.enable = true;
