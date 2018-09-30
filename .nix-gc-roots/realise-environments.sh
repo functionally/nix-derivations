@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ee="haskellEnv ghcEnv7 pythonEnv rEnv"
+ee="haskellEnv ghcEnv7 ghcEnv8 juliaEnv pythonEnv rEnv"
 
 case "$(hostname)" in
   "lemur")
