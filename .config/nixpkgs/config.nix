@@ -18,6 +18,7 @@
       old1703  = import <nixos-17.03>{ config = cfg; };
       old1709  = import <nixos-17.09>{ config = cfg; };
       old1803  = import <nixos-18.03>{ config = cfg; };
+      old1809  = import <nixos-18.09>{ config = cfg; };
       pin1709  = import (
         fetchNixpkgs {
           rev = "b62c50ce5d3b6053f6f4afa10f2c4013ac0bfe9c";
@@ -159,14 +160,15 @@
           # cura
             evince
             flashprint
-            old1803.freecad
+          # old1803.freecad
+            freecad
             freemind
             gephi
             ggobi
           # ghostscriptX
             gimp
-          # unstable.google-chrome
-            google-chrome
+            unstable.google-chrome
+          # google-chrome
           # googleearth
           # google-earth
           # gramps
@@ -174,7 +176,7 @@
             inkscape
             libreoffice
             musescore
-            old1703.meshlab
+            unstable.meshlab
             xfce.mousepad
             paraview
             xfce.parole
@@ -185,7 +187,7 @@
             scribus
             shutter
           # old1803.slic3r
-            teigha
+          # teigha
             vlc
             xclip
             zotero
@@ -582,11 +584,30 @@
           ];
         };
 
-        unityEnv = with old1803; buildEnv {
+        unity3d = super.stdenv.lib.overrideDerivation super.unity3d (attrs: {
+          preFixup = ''
+            find $unitydir -name PlaybackEngines -prune -o \( -type f -name \*.so -not -name libunity-nosuid.so \) -print | while read path
+            do
+              oldrpath=$(patchelf --print-rpath "$path")
+              # TODO: Combine the three sed scripts into one.
+              newrpath=$(echo $oldrpath | sed -e "s/:/\n/g" | sed -e "/^\/usr/d ; /^\/home/d ; /^\/tmp/d" | sed -e :a -e "/$/N; s/\n/:/; ta")
+              if [[ "$newrpath" != "$oldrpath" ]]
+              then
+                patchelf --set-rpath "$newrpath" "$path" || echo Error setting rpath: $path
+              fi
+            done
+
+          '' + attrs.preFixup;
+        });
+
+        unityEnv = buildEnv {
           name = "env-unity";
-          # Unity.
+          # Custome Unity3d environment.
           paths = [
+            android-studio
+            androidndk
             fsharp
+            openjdk
             mono
             monodevelop
             steam-run-native
@@ -596,8 +617,9 @@
 
         juliaEnv = pkgs.buildEnv {
           name = "env-julia";
+          # Custom Julia environment.
           paths = [
-            old1803.julia
+            julia
             busybox
           ];
         };
@@ -615,32 +637,32 @@
             # dist-keras
             # elephas
             # eli5
-            # fiona
+              fiona
               flask
-            # gensim
-            # geopandas
+              gensim
+              geopandas
             # ggplot
               h5py
+            # json
               jupyter
               Keras
             # lightgbm
               matplotlib
-            # nltk
+              nltk
               numpy
               pandas
-            # pip
-            # pipenv
+              pip
+              pipenv
               plotly
-            # protobuf
-              protobuf3_2
+              protobuf
               pydot
-              pytorch
-              rasterio
+            # pytorch
+            # rasterio
               scikitlearn
               scipy
               scrapy
               seaborn
-            # spacy
+              spacy
             # spark-deep-learning
               spyder
               statsmodels
@@ -727,6 +749,7 @@
 #                  packages = with self.rPackages; [
                      R
                      BH
+                     circlize
                      codetools
                      crayon
                      data_table
@@ -737,15 +760,15 @@
                      FNN
                      GGally
                      ggplot2
-                   # highr
+                     highr
                      Hmisc
-                   # httr
+                     httr
                      igraph
                    # iplot
                      jsonlite
-                   # keras
+                     keras
                      kernlab
-                   # knitr
+                     knitr
                      kSamples
                      lubridate
                      memo
@@ -755,7 +778,7 @@
                      Rcpp
                      RcppEigen
                      repr
-                   # reshape2
+                     reshape2
                      rpart
                      shiny
                      shinyjs
@@ -764,7 +787,7 @@
                      stringr
                    # TDA
                      tensorflow
-                   # tidyr
+                     tidyr
                      uuid
                      yaml
                    ];
