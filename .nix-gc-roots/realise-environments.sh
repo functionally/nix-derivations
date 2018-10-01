@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ee="haskellEnv ghcEnv7 ghcEnv8 juliaEnv pythonEnv rEnv"
+ee="ghcEnv7 ghcEnv8 haskellEnv juliaEnv pythonEnv rEnv unityEnv stardog stella-simulator"
 
 case "$(hostname)" in
   "lemur")
