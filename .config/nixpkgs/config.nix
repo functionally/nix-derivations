@@ -25,6 +25,12 @@
         # sha256 = "0maw671jf54nx6gdlqhr5srl8kk78951mj847r325824f5bg8rsj";
         }
       ) { config = cfg; };
+      pin1803  = import (
+        fetchNixpkgs {
+          rev = "beef7ae1b389b15505c6283b420dd05561928cbe";
+          sha256 = "0sfs8i0ngi722n6qbhggdyg91cvj18b9ra578bzkbpacmjjvb6vj";
+        }
+      ) { config = cfg; };
       recent   = import (
         fetchNixpkgs {
           rev = "f7ac0760a14999837462e7338ef81e5632c93b2f";
@@ -116,7 +122,8 @@
           paths = [
             unstable.discord
             gajim
-            recent.skype
+          # recent.skype
+            skype
             slack
             tigervnc
           ];
@@ -524,7 +531,7 @@
           paths = with haskell8Packages; [
             (ghcWithHoogle (h: [ ]))
             cabal-install
-            ghc-mod
+          # ghc-mod
             ghcid
             hasktags
             hdevtools
@@ -536,7 +543,7 @@
           ];
         };
 
-        haskell8Packages = old1709.haskell.packages.ghc802.override {
+        haskell8Packages = old1803.haskell.packages.ghc822.override {
           overrides = localHaskellPackages false;
         };
 
