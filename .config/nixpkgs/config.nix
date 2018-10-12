@@ -225,7 +225,7 @@
             gprolog
             html-tidy
             jre
-            julia_05
+            julia
             maxima
             mono
             monodevelop
@@ -626,7 +626,7 @@
           name = "env-julia";
           # Custom Julia environment.
           paths = [
-            julia
+            old1809.julia_07
             busybox
           ];
         };
