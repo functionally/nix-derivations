@@ -29,6 +29,9 @@
     synaptics = {
       enable = true;
     };
+    wacom = {
+      enable = true;
+    };
 
     desktopManager.xfce = {
       enable = true;

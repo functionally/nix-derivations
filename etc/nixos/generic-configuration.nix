@@ -83,9 +83,17 @@
     upower.enable = true;
 
     udev.extraRules = ''
+      # Blink
       SUBSYSTEM=="usb", ATTR{idVendor}=="27b8", ATTR{idProduct}=="01ed", MODE="0666", GROUP="plugdev" OWNER="bbush"
+      # Yubico usb key (Yubico Security Key by Yubico)
       KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1050", ATTRS{idProduct}=="0120", MODE="0666", TAG+="uaccess"
+      # Feitan bluetooth key
       KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="096e", ATTRS{idProduct}=="085a", MODE="0666", TAG+="uaccess"
+      # Titan bluetooth key (FS ePass FIDO)
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="096e", ATTRS{idProduct}=="085b", MODE="0666", TAG+="uaccess"
+      # Titan usb key (FT U2F)
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="096e", ATTRS{idProduct}=="0858", MODE="0666", TAG+="uaccess"
+      # Space Navigator
       KERNEL=="event[0-9]*", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c626", MODE="0664", GROUP="plugdev", SYMLINK+="input/spacenavigator"
     '';
 
