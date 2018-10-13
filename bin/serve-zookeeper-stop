@@ -1,0 +1,11 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p jre zookeeper
+
+unset JAVA_HOME
+unset JRE_HOME
+
+BASE_DIR=/data/kafka
+ZOOKEEPER_DIR=$BASE_DIR/zookeeper-logs
+
+export ZOOCFGDIR=$BASE_DIR
+zkServer.sh stop zookeeper.properties

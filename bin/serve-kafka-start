@@ -6,7 +6,6 @@ unset JRE_HOME
 
 BASE_DIR=/data/kafka
 KAFKA_DIR=$BASE_DIR/kafka-logs
-ZOOKEEPER_DIR=$BASE_DIR/zookeeper-logs
 
 if [ ! -d $BASE_DIR ]
 then
@@ -14,26 +13,14 @@ then
 fi
 cd $BASE_DIR
 
-if [ ! -d $ZOOKEEPER_DIR ]
-then
-  mkdir $ZOOKEEPER_DIR
-fi
-
 if [ ! -d $KAFKA_DIR ]
 then
   mkdir $KAFKA_DIR
 fi
 
 
-cat << EOI > zookeeper.properties
-dataDir=$ZOOKEEPER_DIR
-clientPort=2181
-maxClientCnxns=0
-EOI
-
 cat << EOI > server.properties
 broker.id=0
-delete.topic.enable=true
 num.network.threads=3
 num.io.threads=8
 socket.send.buffer.bytes=102400
@@ -45,19 +32,21 @@ num.recovery.threads.per.data.dir=1
 offsets.topic.replication.factor=1
 transaction.state.log.replication.factor=1
 transaction.state.log.min.isr=1
-log.retention.hours=168
 log.segment.bytes=1073741824
 log.retention.check.interval.ms=300000
 zookeeper.connect=localhost:2181
 zookeeper.connection.timeout.ms=6000
 group.initial.rebalance.delay.ms=0
+delete.topic.enable=true
+#log.retention.hours=-1
+#log.retention.bytes=-1
+log.cleanup.policy=compact
+replica.fetch.max.bytes=33554432
+max.request.size=33554432
+message.max.bytes=33554432
+fetch.message.max.bytes=33554432
+socket.request.max.bytes=2147483647
 EOI
 
-
-ZOOCFGDIR=$BASE_DIR zkServer.sh start zookeeper.properties
-
-sleep 10s
-
+export KAFKA_HEAP_OPTS="-Xmx6G -Xms1G"
 kafka-server-start.sh server.properties
-
-wait
