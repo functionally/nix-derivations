@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-ee="ghcEnv7 ghcEnv8 haskellEnv juliaEnv pythonEnv rEnv unityEnv stardog stella-simulator"
+ee="ghcEnv7 ghcEnv8 haskellEnv juliaEnv pythonEnv rEnv stardog stella-simulator"
 
 case "$(hostname)" in
   "lemur")
-    ee+=" nativeGraphicalEnv";;
+    ee+=" nativeGraphicalEnv unityEnv";;
   "gazelle")
     ee+=" nativeServerEnv";;
   *)
