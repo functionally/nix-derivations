@@ -1,4 +1,11 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -I https://github.com/NixOS/nixpkgs/archive/b62c50ce5d3b6053f6f4afa10f2c4013ac0bfe9c.tar.gz -i bash -p postgresql
 
-pg_ctl -D /data/postgresql -l logfile start
+pg_ctl -D /data/postgresql -l logfile -w start
+
+
+while true
+do
+  pg_ctl -D /data/postgresql -w status
+  sleep 300s
+done
