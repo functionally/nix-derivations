@@ -244,15 +244,14 @@
             cacert
             dnsutils
             globusconnectpersonal
+            inetutils
           # miniHttpd
             openssl
             samba
             tcpdump
             telnet
-            traceroute
           # vrpn
             wget
-            whois
           ];
         };
 
@@ -635,7 +634,7 @@
           name = "env-python";
           # Custom Python environment.
           paths = [
-            (python3.withPackages (ps: with ps; [
+            (old1803.python3.withPackages (ps: with ps; [
               async-timeout
               asyncio
               bokeh
