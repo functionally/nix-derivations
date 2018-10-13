@@ -1,4 +1,0 @@
-#!/usr/bin/env nix-shell
-#!nix-shell -i bash --packages gridcoinresearchd boinc
-
-watch -n 60 'gridcoinresearchd getmininginfo ; gridcoinresearchd getinfo'
