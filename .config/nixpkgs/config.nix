@@ -249,7 +249,6 @@
             openssl
             samba
             tcpdump
-            telnet
           # vrpn
             wget
           ];
@@ -611,7 +610,11 @@
           # Custome Unity3d environment.
           paths = [
             android-studio
+            android-udev-rules
             androidndk
+            androidsdk
+          # androidenv.buildTools
+          # androidenv.platformTools
             fsharp
             openjdk
             mono
@@ -625,7 +628,7 @@
           name = "env-julia";
           # Custom Julia environment.
           paths = [
-            old1809.julia_07
+            julia
             busybox
           ];
         };
