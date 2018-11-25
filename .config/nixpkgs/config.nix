@@ -484,7 +484,7 @@
             {
               names = [
                 "ctrlp"                 # See <https://github.com/kien/ctrlp.vim>.
-                "ghc-mod-vim"
+              # "ghc-mod-vim"
                 "neco-ghc"
               # "neocomplete"
               # "snipmate"
@@ -657,6 +657,7 @@
               Keras
             # lightgbm
               matplotlib
+              networkx
               nltk
               numpy
               pandas
