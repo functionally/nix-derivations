@@ -14,11 +14,11 @@
       self = super.pkgs;
 
       cfg = { allowUnfree = localUnfree; allowBroken = localBroken; };
-      unstable = import <nixos-unstable>{ config = cfg; };
-      old1703  = import <nixos-17.03>{ config = cfg; };
-      old1709  = import <nixos-17.09>{ config = cfg; };
-      old1803  = import <nixos-18.03>{ config = cfg; };
-      old1809  = import <nixos-18.09>{ config = cfg; };
+      unstable = import <pinned-unstable>{ config = cfg; };
+      old1703  = import <pinned-17.03>{ config = cfg; };
+      old1709  = import <pinned-17.09>{ config = cfg; };
+      old1803  = import <pinned-18.03>{ config = cfg; };
+      old1809  = import <pinned-18.09>{ config = cfg; };
       pin1709  = import (
         fetchNixpkgs {
           rev = "b62c50ce5d3b6053f6f4afa10f2c4013ac0bfe9c";
@@ -637,7 +637,7 @@
           name = "env-python";
           # Custom Python environment.
           paths = [
-            (old1803.python3.withPackages (ps: with ps; [
+            (unstable.python36.withPackages (ps: with ps; [
               async-timeout
               asyncio
               bokeh
@@ -666,20 +666,21 @@
               plotly
               protobuf
               pydot
-            # pytorch
-            # rasterio
+              pytorch
+              rasterio
               scikitlearn
               scipy
-              scrapy
+            # scrapy
               seaborn
-              spacy
+            # snakes
+            # spacy
             # spark-deep-learning
               spyder
               statsmodels
               tensorflow
             # tensorflow_hub
             # tensorflowjs
-              Theano
+            # Theano
               websockets
               xgboost
             ]))
