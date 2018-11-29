@@ -647,7 +647,7 @@
               plotly
               protobuf
               pydot
-              pytorch
+            # pytorch
               rasterio
               scikitlearn
               scipy
@@ -746,6 +746,7 @@
                      crayon
                      data_table
                      DBI
+                     devtools
                      digest
                    # dplr
                      evaluate
