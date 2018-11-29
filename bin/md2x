@@ -5,4 +5,4 @@ input="$2"
 output=${input%%.md}.$format
 today=$(date +%e\ %B\ %Y)
 
-pandoc -s -S -M "date:$today" -i "$input" -o "$output"
+pandoc -s -f markdown+smart -M "date:$today" -i "$input" -o "$output"
