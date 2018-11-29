@@ -4,5 +4,8 @@ https://nixos.org/channels/nixos-18.03 nixos-18.03
 https://nixos.org/channels/nixos-18.09 nixos-18.09
 https://nixos.org/channels/nixos-unstable nixos-unstable
 https://github.com/NixOS/nixpkgs/archive/beef7ae1b389b15505c6283b420dd05561928cbe.tar.gz nixpkgs
+https://github.com/NixOS/nixpkgs/archive/1849e695b00a54cda86cb75202240d949c10c7ce.tar.gz pinned-17.03
 https://github.com/NixOS/nixpkgs/archive/b62c50ce5d3b6053f6f4afa10f2c4013ac0bfe9c.tar.gz pinned-17.09
 https://github.com/NixOS/nixpkgs/archive/e163794cded4cd1bbc06470b07698de204edb763.tar.gz pinned-18.03
+https://github.com/NixOS/nixpkgs/archive/beef7ae1b389b15505c6283b420dd05561928cbe.tar.gz pinned-18.09
+https://github.com/NixOS/nixpkgs/archive/1b6a4d3979f13f990617d32ee9ec99b1f02673ec.tar.gz pinned-unstable
