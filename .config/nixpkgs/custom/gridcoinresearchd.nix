@@ -1,9 +1,24 @@
-{stdenv, fetchgit, boost, curl, db48, libzip, miniupnpc, openssl, qrencode, zlib}:
+{
+  stdenv
+, fetchgit
+, autoreconfHook
+, boost
+, curl
+, db48
+, hexdump
+, libzip
+, miniupnpc
+, openssl
+, pkgconfig
+, qrencode
+, which
+, zlib
+}:
 
 let
 
   aname = "gridcoinresearchd";
-  version = "3.7.11.0";
+  version = "4.0.0.0";
 
 in
 
@@ -13,31 +28,39 @@ in
 
     src = fetchgit {
       url    = "https://github.com/gridcoin/Gridcoin-Research.git";
-      rev    = "375a78e6ac50c9615d76d12583ec8b78d0471bd0";
-      sha256 = "1vnkyisaiglbgflvl2z5hwzpn8x33wisvar9ff2zydldny9j2y2v";
+      rev    = "d544449ede53fb371671fecb1c8f1ced7c383ffc";
+      sha256 = "07my2zw971srzxhmzaz4nslp8667zshdkp76gsxnix3s4fv5s2ds";
     };
 
-    postUnpack = "sourceRoot=\${sourceRoot}/src";
+    configureFlags = [
+      "--with-tests=no"
+      "--with-boost=${boost.dev}"
+      "--with-boost-libdir=${boost.out}/lib"
+    ];
 
-    preConfigure = ''
-      mkdir -p obj/zerocoin && chmod +x leveldb/build_detect_platform
-      ln -s makefile.unix Makefile
-    '';
-
-    installPhase = ''
-      strip gridcoinresearchd
-      mkdir -p $out/bin
-      install -m 755 gridcoinresearchd $out/bin/gridcoinresearchd
-    '';
+####    preConfigure = ''
+####      mkdir -p obj/zerocoin && chmod +x leveldb/build_detect_platform
+####      ln -s makefile.unix Makefile
+####    '';
+####
+####    installPhase = ''
+####      strip gridcoinresearchd
+####      mkdir -p $out/bin
+####      install -m 755 gridcoinresearchd $out/bin/gridcoinresearchd
+####    '';
 
     nativeBuildInputs = [
+      autoreconfHook
       boost
       curl
       db48
+      hexdump
       libzip
       miniupnpc
       openssl
+      pkgconfig
       qrencode
+      which
       zlib
     ];
 
