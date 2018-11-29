@@ -14,29 +14,12 @@
       self = super.pkgs;
 
       cfg = { allowUnfree = localUnfree; allowBroken = localBroken; };
+
+      pin1703  = import <pinned-17.03>   { config = cfg; };
+      pin1709  = import <pinned-17.09>   { config = cfg; };
+      pin1803  = import <pinned-18.03>   { config = cfg; };
+      pin1809  = import <pinned-18.09>   { config = cfg; };
       unstable = import <pinned-unstable>{ config = cfg; };
-      old1703  = import <pinned-17.03>{ config = cfg; };
-      old1709  = import <pinned-17.09>{ config = cfg; };
-      old1803  = import <pinned-18.03>{ config = cfg; };
-      old1809  = import <pinned-18.09>{ config = cfg; };
-      pin1709  = import (
-        fetchNixpkgs {
-          rev = "b62c50ce5d3b6053f6f4afa10f2c4013ac0bfe9c";
-        # sha256 = "0maw671jf54nx6gdlqhr5srl8kk78951mj847r325824f5bg8rsj";
-        }
-      ) { config = cfg; };
-      pin1803  = import (
-        fetchNixpkgs {
-          rev = "beef7ae1b389b15505c6283b420dd05561928cbe";
-          sha256 = "0sfs8i0ngi722n6qbhggdyg91cvj18b9ra578bzkbpacmjjvb6vj";
-        }
-      ) { config = cfg; };
-      recent   = import (
-        fetchNixpkgs {
-          rev = "f7ac0760a14999837462e7338ef81e5632c93b2f";
-        # sha256 = "0x5fmjk98ipi6jx5784fz5nymn6a3rpv5m4i69z3rhp0djn4hipc";
-        }
-      ) { config = cfg; };
 
       excludeList = xs: if workarounds then [] else xs;
       includeSet  = xs: if workarounds then xs else {};
@@ -122,7 +105,6 @@
           paths = [
             unstable.discord
             gajim
-          # recent.skype
             skype
             slack
             tigervnc
@@ -148,7 +130,7 @@
             librdf_redland
             mongodb
             mongodb-tools
-            old1803.kafkacat
+            pin1803.kafkacat
           # perseus
           # proj
             saxonb
@@ -167,7 +149,6 @@
           # cura
             evince
             flashprint
-          # old1803.freecad
             freecad
             freemind
             gephi
@@ -193,7 +174,7 @@
             rstudio
             scribus
             shutter
-          # old1803.slic3r
+          # pin1803.slic3r
           # teigha
             vlc
             xclip
@@ -541,7 +522,7 @@
           ];
         };
 
-        haskell8Packages = old1803.haskell.packages.ghc822.override {
+        haskell8Packages = pin1803.haskell.packages.ghc822.override {
           overrides = localHaskellPackages false;
         };
 
@@ -627,7 +608,7 @@
         juliaEnv = pkgs.buildEnv {
           name = "env-julia";
           # Custom Julia environment.
-          paths = [
+          paths = with unstable.pkgs; [
             julia
             busybox
           ];
