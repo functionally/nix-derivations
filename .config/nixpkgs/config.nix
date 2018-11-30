@@ -647,7 +647,7 @@
               plotly
               protobuf
               pydot
-            # pytorch
+#             pytorch
               rasterio
               scikitlearn
               scipy
