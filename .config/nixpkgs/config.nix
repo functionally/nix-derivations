@@ -354,15 +354,6 @@
 
         inherit (import ./unity.nix { inherit super pkgs pin1803; }) unity3d unityEnv;
 
-        juliaEnv = pkgs.buildEnv {
-          name = "env-julia";
-          # Custom Julia environment.
-          paths = with unstable.pkgs; [
-            julia
-            busybox
-          ];
-        };
-
         pythonEnv =
           let
             python =
