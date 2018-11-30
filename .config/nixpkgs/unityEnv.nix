@@ -4,7 +4,7 @@
 , pin1803
 }:
 
-rec {
+let
 
   unity3d = super.stdenv.lib.overrideDerivation super.unity3d (attrs: {
     preFixup = ''
@@ -22,7 +22,9 @@ rec {
     '' + attrs.preFixup;
   });
 
-  unityEnv = pkgs.buildEnv {
+in
+
+  pkgs.buildEnv {
     name = "env-unity";
     # Custome Unity3d environment.
     paths = with pin1803; [
@@ -39,6 +41,4 @@ rec {
       steam-run-native
       unity3d
     ];
-  };
-
-}
+  }

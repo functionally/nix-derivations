@@ -350,16 +350,21 @@
 
         vimEnv = import ./vimEnv.nix { inherit pkgs; };
 
-        inherit (import ./haskellEnv.nix { inherit pkgs pin1709 pin1803 unstable; }) haskellEnv ghcEnv7 ghcEnv8 ghcEnvLatest;
+        unityEnv = import ./unityEnv.nix { inherit super pkgs pin1803; };
 
-        inherit (import ./unityEnv.nix { inherit super pkgs pin1803; }) unity3d unityEnv;
+        rEnv = import ./rEnv.nix { inherit pkgs; };
 
         pythonEnv = import ./pythonEnv.nix {
                       inherit pkgs unstable excludeList;
                       base = if workarounds then pin1809 else unstable;
                     };
 
-        rEnv = import ./rEnv.nix { inherit pkgs; };
+        inherit (import ./haskellEnv.nix { inherit pkgs pin1709 pin1803 unstable; })
+          haskellEnv
+          ghcEnv7
+          ghcEnv8
+          ghcEnvLatest
+        ; 
 
       } // (
 
