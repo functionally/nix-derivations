@@ -1,4 +1,9 @@
-{ pkgs, localUnfree ? true, localBroken ? false, workarounds ? false }:
+{
+  pkgs
+, localUnfree ? (builtins.getEnv "NIX_REQUIREFREE" != "1")
+, localBroken ? (builtins.getEnv "NIX_ALLOWBROKEN" == "1")
+, workarounds ? (builtins.getEnv "NIX_WORKAROUNDS" == "1")
+}:
 
 {
 
@@ -8,8 +13,6 @@
 
   packageOverrides = super:
     let
-
-      fetchNixpkgs = import ./fetchNixpkgs.nix;
 
       self = super.pkgs;
 
@@ -614,59 +617,71 @@
           ];
         };
 
-        pythonEnv = pkgs.buildEnv {
-          name = "env-python";
-          # Custom Python environment.
-          paths = [
-            (unstable.python36.withPackages (ps: with ps; [
-              async-timeout
-              asyncio
-              bokeh
-              bootstrapped-pip
-            # catboost
-            # dist-keras
-            # elephas
-            # eli5
-              fiona
-              flask
-              gensim
-              geopandas
-            # ggplot
-              h5py
-            # json
-              jupyter
-              Keras
-            # lightgbm
-              matplotlib
-              networkx
-              nltk
-              numpy
-              pandas
-              pip
-              pipenv
-              plotly
-              protobuf
-              pydot
-#             pytorch
-              rasterio
-              scikitlearn
-              scipy
-            # scrapy
-              seaborn
-            # snakes
-            # spacy
-            # spark-deep-learning
-              spyder
-              statsmodels
-              tensorflow
-            # tensorflow_hub
-            # tensorflowjs
-            # Theano
-              websockets
-              xgboost
-            ]))
-          ];
-        };
+        pythonEnv =
+          let
+            python =
+              let
+                packageOverrides = self: super: {
+#                 tensorFlow = unstable.python36Packages.tensorflow;
+                };
+              in
+                pin1809.python36.override { inherit packageOverrides; };
+          in
+            pkgs.buildEnv {
+            name = "env-python";
+            # Custom Python environment.
+            paths = [
+              (python.withPackages (ps: with ps; [
+                async-timeout
+                asyncio
+                bokeh
+                bootstrapped-pip
+              # catboost
+              # dist-keras
+              # elephas
+              # eli5
+                fiona
+                flask
+                gensim
+                geopandas
+              # ggplot
+                h5py
+              # json
+                jupyter
+              # lightgbm
+                matplotlib
+                networkx
+                nltk
+                numpy
+                pandas
+                pip
+                pipenv
+                plotly
+                protobuf
+                pydot
+              # rasterio
+                scikitlearn
+                scipy
+              # scrapy
+                seaborn
+              # snakes
+              # spacy
+              # spark-deep-learning
+                spyder
+                statsmodels
+              # tensorflow_hub
+              # tensorflowjs
+              # Theano
+                websockets
+                xgboost
+              ]
+              ++ excludeList [
+                Keras
+                pytorch
+                tensorflow
+              ]))
+            ];
+          };
 
         pipEnv = pkgs.buildEnv {
           name = "env-pip";
@@ -796,69 +811,6 @@
         in
           super.lib.mapAttrs' toPackage (builtins.readDir ./custom)
 
-      ) // includeSet {
-
-        # The following are required by Peregrine.
-        libuv = super.stdenv.lib.overrideDerivation super.libuv (attrs: {
-          doCheck = false;
-        });
-        sharutils = super.stdenv.lib.overrideDerivation super.sharutils (attrs: {
-          doCheck = false;
-        });
-        gnutls = super.stdenv.lib.overrideDerivation super.gnutls (attrs: {
-          doCheck = false;
-          configureFlags = [
-            (__elemAt attrs.configureFlags 0)
-            (__elemAt attrs.configureFlags 1)
-            (__elemAt attrs.configureFlags 2)
-          ];
-        });
-        unbound = super.stdenv.lib.overrideDerivation super.unbound (attrs: {
-          configureFlags = [
-            (__elemAt attrs.configureFlags 0)
-            (__elemAt attrs.configureFlags 1)
-            (__elemAt attrs.configureFlags 2)
-            (__elemAt attrs.configureFlags 3)
-            (__elemAt attrs.configureFlags 4)
-            (__elemAt attrs.configureFlags 5)
-            (__elemAt attrs.configureFlags 7)
-            (__elemAt attrs.configureFlags 8)
-          ];
-        });
-        nix = super.stdenv.lib.overrideDerivation super.nix (attrs: {
-          doInstallCheck = false;
-        });
-        jemalloc = super.stdenv.lib.overrideDerivation super.jemalloc (attrs: {
-          doCheck = false;
-        });
-        libgit2 = super.stdenv.lib.overrideDerivation super.libgit2 (attrs: {
-          src = fetchurl {
-            name = attrs.name + ".tar.gz";
-            url = "http://github.com/libgit2/libgit2/tarball/v" + attrs.version;
-            sha256 = "07bdqc1m3vmfk7i1ck1w4xcj88kfk74rir1zz3nfjc5vmykkibrv";
-          };
-        });
-        go_bootstrap = super.stdenv.lib.overrideDerivation super.go_bootstrap (attrs: {
-          preBuild = ''
-            find src -type f -name  user_test.go -ls -delete
-            find src -type f -name pprof_test.go -ls -delete
-          '';
-        });
-        go_1_8 = super.stdenv.lib.overrideDerivation super.go_1_8 (attrs: {
-          preBuild = ''
-            find src -type f -name  user_test.go -ls -delete
-            find src -type f -name pprof_test.go -ls -delete
-          '';
-        });
-        python = super.python.override {
-          packageOverrides = python-self: python-super: {
-            dulwich = python-super.dulwich.overrideAttrs ( oldAttrs: {
-              doInstallCheck = false;
-            });
-          };
-        };
-        python2Packages = python.pkgs;
-
-      };
+      );
 
 }
