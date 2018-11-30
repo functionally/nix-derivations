@@ -625,7 +625,7 @@
 #                 tensorFlow = unstable.python36Packages.tensorflow;
                 };
               in
-                pin1809.python36.override { inherit packageOverrides; };
+                (if workarounds then pin1809 else unstable).python36.override { inherit packageOverrides; };
           in
             pkgs.buildEnv {
             name = "env-python";
