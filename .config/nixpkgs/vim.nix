@@ -2,6 +2,7 @@
   pkgs
 }:
 
+with pkgs;
 let
 
   vimLocal = vim_configurable.customize {
@@ -137,7 +138,7 @@ let
 
 in
 
-  pkgs.buildEnv {
+  buildEnv {
     name = "env-vim";
     # Customized Vim.
     paths = [ vimLocal ];
