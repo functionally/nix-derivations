@@ -348,18 +348,18 @@
           ];
         };
 
-        vimEnv = import ./vim.nix { inherit pkgs; };
+        vimEnv = import ./vimEnv.nix { inherit pkgs; };
 
-        inherit (import ./haskell.nix { inherit pkgs pin1709 pin1803 unstable; }) haskellEnv ghcEnv7 ghcEnv8 ghcEnvLatest;
+        inherit (import ./haskellEnv.nix { inherit pkgs pin1709 pin1803 unstable; }) haskellEnv ghcEnv7 ghcEnv8 ghcEnvLatest;
 
-        inherit (import ./unity.nix { inherit super pkgs pin1803; }) unity3d unityEnv;
+        inherit (import ./unityEnv.nix { inherit super pkgs pin1803; }) unity3d unityEnv;
 
-        pythonEnv = import ./python.nix {
+        pythonEnv = import ./pythonEnv.nix {
                       inherit pkgs unstable excludeList;
                       base = if workarounds then pin1809 else unstable;
                     };
 
-        rEnv = import ./r.nix { inherit pkgs; };
+        rEnv = import ./rEnv.nix { inherit pkgs; };
 
       } // (
 
