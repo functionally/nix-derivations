@@ -354,81 +354,10 @@
 
         inherit (import ./unity.nix { inherit super pkgs pin1803; }) unity3d unityEnv;
 
-        pythonEnv =
-          let
-            python =
-              let
-                packageOverrides = self: super: {
-#                 tensorFlow = unstable.python36Packages.tensorflow;
-                };
-              in
-                (if workarounds then pin1809 else unstable).python36.override { inherit packageOverrides; };
-          in
-            pkgs.buildEnv {
-            name = "env-python";
-            # Custom Python environment.
-            paths = [
-              (python.withPackages (ps: with ps; [
-                async-timeout
-                asyncio
-                bokeh
-                bootstrapped-pip
-              # catboost
-              # dist-keras
-              # elephas
-              # eli5
-                fiona
-                flask
-                gensim
-                geopandas
-              # ggplot
-                h5py
-              # json
-                jupyter
-              # lightgbm
-                matplotlib
-                networkx
-                nltk
-                numpy
-                pandas
-                pip
-                pipenv
-                plotly
-                protobuf
-                pydot
-              # rasterio
-                scikitlearn
-                scipy
-              # scrapy
-                seaborn
-              # snakes
-              # spacy
-              # spark-deep-learning
-                spyder
-                statsmodels
-              # tensorflow_hub
-              # tensorflowjs
-              # Theano
-                websockets
-                xgboost
-              ]
-              ++ excludeList [
-                Keras
-                pytorch
-                tensorflow
-              ]))
-            ];
-          };
-
-        pipEnv = pkgs.buildEnv {
-          name = "env-pip";
-          paths = [
-            (unstable.python3.withPackages (ps: with ps; [
-              unstable.pipenv
-            ]))
-          # unstable.pipenv
-          ];
-        };
+        pythonEnv = import ./python.nix {
+                      inherit pkgs unstable excludeList;
+                      base = if workarounds then pin1809 else unstable;
+                    };
 
         rEnv = let
                  deriveR = {name, src, buildInputs, postPatch}:
