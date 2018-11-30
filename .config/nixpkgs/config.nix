@@ -589,7 +589,7 @@
         unityEnv = buildEnv {
           name = "env-unity";
           # Custome Unity3d environment.
-          paths = [
+          paths = with pin1803; [
             android-studio
             android-udev-rules
             androidndk
