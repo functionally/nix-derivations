@@ -26,7 +26,7 @@ in
 
   pkgs.buildEnv {
     name = "env-unity";
-    # Custome Unity3d environment.
+    # Custom Unity3d environment.
     paths = with pin1803; [
       android-studio
       android-udev-rules
