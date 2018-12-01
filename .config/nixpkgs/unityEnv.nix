@@ -18,7 +18,6 @@ let
           patchelf --set-rpath "$newrpath" "$path" || echo Error setting rpath: $path
         fi
       done
-
     '' + attrs.preFixup;
   });
 
