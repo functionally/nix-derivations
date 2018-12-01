@@ -352,6 +352,8 @@
 
         unityEnv = import ./unityEnv.nix { inherit super pkgs pin1803; };
 
+        juliaEnv = import ./juliaEnv.nix { inherit pkgs unstable; };
+
         rEnv = import ./rEnv.nix { inherit pkgs; };
 
         pythonEnv = import ./pythonEnv.nix {
