@@ -63,10 +63,21 @@ in
           #
           # For instance, for IPython, these can be found using:
           # `LD_DEBUG=libs ipython --pylab`
-          xorg.libSM
-          xorg.libICE
-          xorg.libXrender
+        # alsaLib
           libselinux
+          xorg.libICE
+          xorg.libSM
+          xorg.libX11
+        # xorg.libXcomposite
+        # xorg.libXcursor
+        # xorg.libXdamage
+          xorg.libXext
+        # xorg.libXfixes
+        # xorg.libXi
+        # xorg.libXrandr
+          xorg.libXrender
+        # xorg.libXScrnSaver
+        # xorg.libXtst
   
           # Just in case one installs a package with pip instead of conda and pip
           # needs to compile some C sources
