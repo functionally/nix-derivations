@@ -23,6 +23,7 @@
       pin1803  = import <pinned-18.03>   { config = cfg; };
       pin1809  = import <pinned-18.09>   { config = cfg; };
       unstable = import <pinned-unstable>{ config = cfg; };
+      latest   = import <nixos-latest>   { config = cfg; };
 
       excludeList = xs: if workarounds then [] else xs;
       includeSet  = xs: if workarounds then xs else {};
@@ -106,10 +107,10 @@
           name = "env-comm";
           # Graphical clients for communication.
           paths = [
-            unstable.discord
+            latest.discord
             gajim
             skype
-            slack
+            latest.slack
             tigervnc
           ];
         };

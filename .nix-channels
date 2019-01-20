@@ -2,6 +2,7 @@ https://nixos.org/channels/nixos-17.03 nixos-17.03
 https://nixos.org/channels/nixos-17.09 nixos-17.09
 https://nixos.org/channels/nixos-18.03 nixos-18.03
 https://nixos.org/channels/nixos-18.09 nixos-18.09
+https://github.com/NixOS/nixpkgs/archive/ff2341afc9a10e4e59a7b62d31d93bc73b7d2e49.tar.gz nixos-latest
 https://nixos.org/channels/nixos-unstable nixos-unstable
 https://github.com/NixOS/nixpkgs/archive/e163794cded4cd1bbc06470b07698de204edb763.tar.gz nixpkgs
 https://github.com/NixOS/nixpkgs/archive/1849e695b00a54cda86cb75202240d949c10c7ce.tar.gz pinned-17.03
