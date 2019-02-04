@@ -229,6 +229,7 @@
             cacert
             dnsutils
             globusconnectpersonal
+            httpie
             inetutils
           # miniHttpd
             openssl
