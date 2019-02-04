@@ -64,6 +64,7 @@ in
           # For instance, for IPython, these can be found using:
           # `LD_DEBUG=libs ipython --pylab`
         # alsaLib
+          atom
           libselinux
           xorg.libICE
           xorg.libSM
