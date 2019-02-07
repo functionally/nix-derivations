@@ -119,6 +119,7 @@ let
       {
         names = [
           "ctrlp"                 # See <https://github.com/kien/ctrlp.vim>.
+          "easymotion"
         # "ghc-mod-vim"
           "neco-ghc"
         # "neocomplete"
