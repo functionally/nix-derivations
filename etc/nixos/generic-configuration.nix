@@ -51,6 +51,7 @@
       extraCommands = ''
         iptables -I INPUT -p udp -s 192.168.0.0/16 --match multiport --dports 1900,5353 -m udp                           -j nixos-fw-accept # chromecast, see <https://github.com/NixOS/nixpkgs/issues/3107#issuecomment-377716548>
         iptables -I INPUT -p tcp                                     --dport   2181     -m state --state NEW,ESTABLISHED -j nixos-fw-accept # zookeeper
+        iptables -I INPUT -p tcp                                     --dport   4001     -m state --state NEW,ESTABLISHED -j nixos-fw-accept # ipfs
         iptables -I INPUT -p tcp                                     --dport   5432     -m state --state NEW,ESTABLISHED -j nixos-fw-accept # postgresql
         iptables -I INPUT -p tcp                                     --dport   5820     -m state --state NEW,ESTABLISHED -j nixos-fw-accept # stardog
         iptables -I INPUT -p tcp                                     --dport   9092     -m state --state NEW,ESTABLISHED -j nixos-fw-accept # kafka
@@ -83,6 +84,11 @@
     upower.enable = true;
 
     udev.extraRules = ''
+      # Oculus Go
+      SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0083", MODE="0666", GROUP="plugdev" OWNER="bbush"
+      SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0086", MODE="0666", GROUP="plugdev" OWNER="bbush"
+      # Phab 2 Pro
+      SUBSYSTEM=="usb", ATTR{idVendor}=="17ef", ATTR{idProduct}=="7a13", MODE="0666", GROUP="plugdev" OWNER="bbush"
       # Blink
       SUBSYSTEM=="usb", ATTR{idVendor}=="27b8", ATTR{idProduct}=="01ed", MODE="0666", GROUP="plugdev" OWNER="bbush"
       # Yubico usb key (Yubico Security Key by Yubico)

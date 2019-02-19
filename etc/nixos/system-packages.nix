@@ -4,13 +4,12 @@
   environment.systemPackages = with pkgs; [
 
     acpi
-  # at
-  # apparmor-utils
+    apparmor-utils
     binutils
     btrfs-dedupe
+  # busybox
     cifs-utils
     coreutils
-  # cron
     cryptsetup
     ddrescue
     efibootmgr
@@ -20,7 +19,7 @@
     gptfdisk
   # linuxConsoleTools
     lsof
-  # lshw
+    lshw
     mkpasswd
     mtools
     parted
@@ -28,24 +27,22 @@
     patchutils
     pbzip2
     psmisc
+    pv
     sshguard
     telnet
     traceroute
+    tree
     unzip
     usbutils
     wget
     whois
-  # wput
 
     bluez
     bluez-tools
     cacert
-#   dbus
     libu2f-host
     mmc-utils
     strongswan
-#   upower
-  # vrpn
 
     atop
     htop
@@ -56,9 +53,6 @@
 
     git
     mercurial
-
-  # acbuild
-  # rkt
 
   ];
 }

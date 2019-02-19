@@ -15,7 +15,11 @@
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
-      grub.device = "/dev/nvme0n1p1";
+      grub = {
+        device = "/dev/nvme0n1p1";
+        efiSupport = true;
+        memtest86.enable = true;
+      };
     };
     initrd.luks.devices = [
       {
@@ -42,6 +46,11 @@
       fsType = "btrfs";
       options = [ "subvol=@scratch" "compress=zstd" ];
     };
+    "/scratch" = {
+      device = "/dev/vgmain/extra";
+      fsType = "btrfs";
+      options = [ "subvol=@extra" "compress=zstd" ];
+    };
   };
 
   networking = {
@@ -56,6 +65,6 @@
   ];
 
   # The NixOS release to be compatible with for stateful data such as databases.
-  system.stateVersion = "18.03";
+  system.stateVersion = "18.09";
 
 }

@@ -4,7 +4,7 @@
 
   environment.systemPackages = with pkgs; [
     blueman
-    electricsheep
+  # electricsheep
     pavucontrol
     xfce.xfce4_battery_plugin
     xfce.xfce4_cpufreq_plugin
