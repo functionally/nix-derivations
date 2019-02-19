@@ -2,13 +2,13 @@
 
 {
   stdenv, fetchurl, dpkg, patchelf, makeDesktopItem,
-  gcc, mesa, qt5, udev
+  gcc, libGL, libGLU, qt59, udev
 }:
 
 let
 
   aname = "flashprint";
-  version = "3.22.0";
+  version = "3.25.1";
   name = "${aname}-${version}";
 
 in
@@ -17,8 +17,8 @@ in
     inherit name;
     src = fetchurl {
       name = "${name}.deb";
-      url = "http://www.sz3dp.com/upfile/2018/03/30/20180330181621_276.deb";
-      sha256 = "0cjlrmpyw772vcxc627214dg7x1x9a2hgil3llgjh3lqk33zk3sj";
+      url = "http://www.sz3dp.com/upfile/2018/12/03/20181203162713_662.deb";
+      sha256 = "1haxm7s1d5chnvrl9sjdp45n5ph3pz8q984m8jqdcbampfvh7c1b";
     };
 
   nativeBuildInputs = [
@@ -26,9 +26,10 @@ in
   ];
 
   libPath = stdenv.lib.makeLibraryPath [
-    qt5.qtbase
+    qt59.qtbase
+    libGL
+    libGLU
     gcc.cc
-    mesa
     udev
   ];
 ##dontStrip = true;

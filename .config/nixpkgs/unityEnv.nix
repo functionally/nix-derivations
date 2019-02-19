@@ -1,7 +1,7 @@
 {
   super
 , pkgs
-, pin1803
+, pin1809
 }:
 
 let
@@ -26,17 +26,17 @@ in
   pkgs.buildEnv {
     name = "env-unity";
     # Custom Unity3d environment.
-    paths = with pin1803; [
+    paths = with pin1809; [
       android-studio
       android-udev-rules
       androidndk
       androidsdk
     # androidenv.buildTools
     # androidenv.platformTools
-      fsharp
+    # fsharp
       openjdk
       mono
-      monodevelop
+    # monodevelop
       steam-run-native
       unity3d
     ];

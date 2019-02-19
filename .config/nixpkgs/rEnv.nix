@@ -79,9 +79,11 @@
         digest
       # dplr
         evaluate
+        fitdistrplus
         FNN
         GGally
         ggplot2
+        glmulti
         highr
         Hmisc
         httr

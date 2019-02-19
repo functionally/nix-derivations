@@ -11,6 +11,8 @@
 
   allowBroken = localBroken;
 
+  android_sdk.accept_license = true;
+
   packageOverrides = super:
     let
 
@@ -108,10 +110,10 @@
           # Graphical clients for communication.
           paths = [
             latest.discord
-            gajim
-            skype
+          # gajim
+            latest.skype
             latest.slack
-            tigervnc
+          # tigervnc
           ];
         };
 
@@ -134,7 +136,7 @@
             librdf_redland
             mongodb
             mongodb-tools
-            pin1803.kafkacat
+            kafkacat
           # perseus
           # proj
             saxonb
@@ -159,8 +161,7 @@
             ggobi
           # ghostscriptX
             gimp
-            unstable.google-chrome
-          # google-chrome
+            google-chrome
           # googleearth
           # google-earth
           # gramps
@@ -168,17 +169,18 @@
             inkscape
             libreoffice
             musescore
-            unstable.meshlab
+            meshlab
             xfce.mousepad
             paraview
             xfce.parole
             protege
             qgis
+            qpdfview
             remmina
             rstudio
             scribus
             shutter
-          # pin1803.slic3r
+          # slic3r
           # teigha
             vlc
             xclip
@@ -210,7 +212,7 @@
             gprolog
             html-tidy
             jre
-            julia
+          # julia
             maxima
             mono
             monodevelop
@@ -231,6 +233,7 @@
             globusconnectpersonal
             httpie
             inetutils
+          # ipfs
           # miniHttpd
             openssl
             samba
@@ -252,7 +255,6 @@
             screen
             tmux
             tree
-          # vim
           ] ++ excludeList [
             atop
           ];
@@ -296,7 +298,6 @@
             mkpasswd
           # mpack
             nix-index
-            nix-repl
             nixpkgs-lint
             p7zip
             haskellPackages.pandoc
@@ -352,14 +353,14 @@
 
         vimEnv = import ./vimEnv.nix { inherit pkgs; };
 
-        unityEnv = import ./unityEnv.nix { inherit super pkgs pin1803; };
+        unityEnv = import ./unityEnv.nix { inherit super pkgs pin1809; };
 
-        juliaEnv = import ./juliaEnv.nix { inherit pkgs unstable; };
+        juliaEnv = import ./juliaEnv.nix { inherit pkgs; };
 
         rEnv = import ./rEnv.nix { inherit pkgs; };
 
         pythonEnv = import ./pythonEnv.nix {
-                      inherit pkgs unstable excludeList;
+                      inherit pkgs excludeList;
                       base = if workarounds then pin1809 else unstable;
                     };
 

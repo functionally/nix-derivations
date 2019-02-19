@@ -1,12 +1,11 @@
 {
   pkgs
-, unstable
 }:
 
 pkgs.buildEnv {
   name = "env-julia";
   # Basic Julia environment.
-  paths = with unstable; [
+  paths = with pkgs; [
     julia_10
   ];
 }

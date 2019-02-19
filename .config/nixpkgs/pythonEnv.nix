@@ -1,7 +1,6 @@
 {
   pkgs
 , base
-, unstable
 , excludeList
 }:
 
@@ -10,7 +9,7 @@ let
   python =
     let
       packageOverrides = self: super: {
-        tensorFlow = unstable.python36Packages.tensorflow;
+#       tensorFlow = pkgs.python3Packages.tensorflow;
       };
     in
       base.python36.override { inherit packageOverrides; };
@@ -21,12 +20,15 @@ in
     name = "env-python";
     # Custom Python environment.
     paths = [
+      pkgs.atom
+      pkgs.spyder
       (python.withPackages (ps: with ps; [
         async-timeout
         asyncio
         bokeh
         bootstrapped-pip
       # catboost
+        cufflinks
       # dist-keras
       # elephas
       # eli5
@@ -48,7 +50,7 @@ in
         plotly
         protobuf
         pydot
-      # rasterio
+        rasterio
         scikitlearn
         scipy
       # scrapy
@@ -56,7 +58,6 @@ in
       # snakes
       # spacy
       # spark-deep-learning
-      # spyder
         statsmodels
       # tensorflow_hub
       # tensorflowjs
