@@ -87,9 +87,9 @@ let
       ];
     };
   
-    sparql-kernel = python3.pkgs.buildPythonPackage {
+    sparql-kernel = python36.pkgs.buildPythonPackage {
       name = "sparqlkernel-1.0.5";
-      buildInputs = [ python3Packages.notebook python3Packages.SPARQLWrapper python3Packages.rdflib ];
+      buildInputs = [ python36Packages.notebook python36Packages.SPARQLWrapper python36Packages.rdflib ];
       src = fetchgit {
         url = "https://github.com/paulovn/sparql-kernel";
         rev = "f91d56a029ebb2a8517181a124437e02c1e226c7";
@@ -107,9 +107,9 @@ let
     jupyter_config_dir = stdenv.mkDerivation {
       name = "jupyter-config";
       buildInputs = [
-        python3Packages.jupyter
+        python36Packages.jupyter
         IRkernel
-        sparql-kernel python3Packages.notebook python3Packages.SPARQLWrapper python3Packages.rdflib graphviz
+        sparql-kernel python36Packages.notebook python36Packages.SPARQLWrapper python36Packages.rdflib graphviz
       ];
       ir_json = builtins.toJSON {
         argv = [ "${R}/bin/R"
@@ -140,51 +140,53 @@ in
   stdenv.mkDerivation rec {
     name = "jupyter-local";
     buildInputs = [
-      python3Packages.jupyter jupyter_config_dir
-      python3Packages.async-timeout
-      python3Packages.asyncio
-      python3Packages.bokeh
-      python3Packages.bootstrapped-pip
-    # python3Packages.catboost
-    # python3Packages.dist-keras
-    # python3Packages.elephas
-    # python3Packages.eli5
-      python3Packages.fiona
-      python3Packages.flask
-      python3Packages.gensim
-      python3Packages.geopandas
-    # python3Packages.ggplot
-      python3Packages.h5py
-    # python3Packages.json
-      python3Packages.jupyter
-      python3Packages.Keras
-    # python3Packages.lightgbm
-      python3Packages.matplotlib
-      python3Packages.nltk
-      python3Packages.numpy
-      python3Packages.pandas
-      python3Packages.pip
-    #                 pipenv
-      python3Packages.plotly
-      python3Packages.protobuf
-      python3Packages.pydot
-    # python3Packages.pytorch
-    # python3Packages.rasterio
-      python3Packages.scikitlearn
-      python3Packages.scipy
-      python3Packages.scrapy
-      python3Packages.seaborn
-      python3Packages.spacy
-    # python3Packages.spark-deep-learning
-    # python3Packages.spyder
-    # python3Packages.statsmodels
-      python3Packages.tensorflow
-    # python3Packages.tensorflow_hub
-    # python3Packages.tensorflowjs
-    # python3Packages.Theano
-      python3Packages.websockets
-      python3Packages.xgboost
-      sparql-kernel python3Packages.notebook python3Packages.SPARQLWrapper python3Packages.rdflib graphviz
+      jupyter_config_dir
+      python36Packages.async-timeout
+      python36Packages.asyncio
+      python36Packages.bokeh
+      python36Packages.bootstrapped-pip
+    # python36Packages.catboost
+      python36Packages.cufflinks
+    # python36Packages.dist-keras
+    # python36Packages.elephas
+    # python36Packages.eli5
+      python36Packages.fiona
+      python36Packages.flask
+      python36Packages.gensim
+      python36Packages.geopandas
+    # python36Packages.ggplot
+      python36Packages.h5py
+    # python36Packages.json
+      python36Packages.jupyter
+      python36Packages.Keras
+    # python36Packages.lightgbm
+      python36Packages.matplotlib
+      python36Packages.networkx
+      python36Packages.nltk
+      python36Packages.numpy
+      python36Packages.pandas
+      python36Packages.pip
+    #        6         pipenv
+      python36Packages.plotly
+      python36Packages.protobuf
+      python36Packages.pydot
+    # python36Packages.pytorch
+      python36Packages.rasterio
+      python36Packages.scikitlearn
+      python36Packages.scipy
+    # python36Packages.scrapy
+      python36Packages.seaborn
+    # python36Packages.snakes
+    # python36Packages.spacy
+    # python36Packages.spark-deep-learning
+      python36Packages.statsmodels
+      python36Packages.tensorflow
+    # python36Packages.tensorflow_hub
+    # python36Packages.tensorflowjs
+    # python36Packages.Theano
+      python36Packages.websockets
+      python36Packages.xgboost
+      sparql-kernel python36Packages.notebook python36Packages.SPARQLWrapper python36Packages.rdflib graphviz
       gmp mpfr
     ];
     shellHook = ''
