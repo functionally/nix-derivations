@@ -371,6 +371,8 @@
           ghcEnvLatest
         ; 
 
+        apacheKafka011 = self.apacheKafka.override { majorVersion = "0.11"; };
+
       } // (
 
         let

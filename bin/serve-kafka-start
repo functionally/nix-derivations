@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i bash -p jre zookeeper apacheKafka
+#!nix-shell -i bash -p jre zookeeper apacheKafka011
 
 unset JAVA_HOME
 unset JRE_HOME
@@ -34,7 +34,7 @@ transaction.state.log.replication.factor=1
 transaction.state.log.min.isr=1
 log.segment.bytes=1073741824
 log.retention.check.interval.ms=300000
-zookeeper.connect=localhost:2181
+zookeeper.connect=127.0.0.1:2181
 zookeeper.connection.timeout.ms=6000
 group.initial.rebalance.delay.ms=0
 delete.topic.enable=true
@@ -46,6 +46,7 @@ max.request.size=33554432
 message.max.bytes=33554432
 fetch.message.max.bytes=33554432
 socket.request.max.bytes=2147483647
+listeners=PLAINTEXT://127.0.0.1:9092
 EOI
 
 export KAFKA_HEAP_OPTS="-Xmx6G -Xms1G"
