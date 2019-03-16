@@ -212,7 +212,7 @@
             gprolog
             html-tidy
             jre
-          # julia
+            julia
             maxima
             mono
             monodevelop
@@ -354,8 +354,6 @@
         vimEnv = import ./vimEnv.nix { inherit pkgs; };
 
         unityEnv = import ./unityEnv.nix { inherit super pkgs pin1809; };
-
-        juliaEnv = import ./juliaEnv.nix { inherit pkgs; };
 
         rEnv = import ./rEnv.nix { inherit pkgs; };
 
