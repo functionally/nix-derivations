@@ -109,7 +109,7 @@
           name = "env-comm";
           # Graphical clients for communication.
           paths = [
-            latest.discord
+          # latest.discord
           # gajim
             latest.skype
             latest.slack
@@ -161,6 +161,7 @@
             ggobi
           # ghostscriptX
             gimp
+            gitter
             google-chrome
           # googleearth
           # google-earth
