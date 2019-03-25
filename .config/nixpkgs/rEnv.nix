@@ -94,7 +94,9 @@
         kernlab
         knitr
         kSamples
+        lhs
         lubridate
+        MASS
         memo
         pbdZMQ
         plotrix
@@ -106,6 +108,7 @@
         rpart
         shiny
         shinyjs
+        SobolSequence
         SPARQL
         sqldf
         stringr
