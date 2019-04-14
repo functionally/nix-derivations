@@ -333,7 +333,6 @@
             getmail
           # hadoop
             libpst
-            nethack
             protobuf
             qrencode
             rcs
@@ -349,6 +348,15 @@
             spacenavd
             spnavcfg
             vrpn
+          ];
+        };
+
+        gameEnv = pkgs.buildEnv {
+          name = "env-game";
+          # Games.
+          paths = [
+            freeorion
+            nethack
           ];
         };
 
