@@ -303,6 +303,7 @@
             p7zip
             haskellPackages.pandoc
             haskellPackages.pandoc-citeproc
+            ncdu
             parallel
             patchelf
             patchutils
