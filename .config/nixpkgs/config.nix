@@ -26,6 +26,7 @@
       pin1809  = import <pinned-18.09>   { config = cfg; };
       unstable = import <pinned-unstable>{ config = cfg; };
       latest   = import <nixos-latest>   { config = cfg; };
+      textiler = import <textiler>       { config = cfg; };
 
       excludeList = xs: if workarounds then [] else xs;
       includeSet  = xs: if workarounds then xs else {};
@@ -380,6 +381,8 @@
         ; 
 
         apacheKafka011 = self.apacheKafka.override { majorVersion = "0.11"; };
+
+        textile054 = textiler.callPackage ( ./custom/textile.nix ) { };
 
       } // (
 
