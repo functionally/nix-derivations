@@ -169,6 +169,7 @@
           # gramps
             guvcview
             inkscape
+            keybase-gui
             libreoffice
             musescore
             meshlab
@@ -290,11 +291,15 @@
             findutils
             gawk
             git
+            git-crypt
             git-lfs
+            gitAndTools.gitRemoteGcrypt
             gnumake
             gnupg
             inotify-tools
           # john
+            kbfs
+            keybase
             lzma
             mercurial
             mkpasswd
