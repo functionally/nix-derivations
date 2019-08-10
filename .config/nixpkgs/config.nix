@@ -382,7 +382,7 @@
 
         apacheKafka011 = self.apacheKafka.override { majorVersion = "0.11"; };
 
-        textile054 = textiler.callPackage ( ./custom/textile.nix ) { };
+        textile069 = textiler.callPackage ( ./custom/textile.nix ) { };
 
       } // (
 

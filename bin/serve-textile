@@ -1,4 +1,4 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i bash -p textile054
+#!nix-shell -i bash -p textile069
 
 textile daemon --repo=/data/textile/repo

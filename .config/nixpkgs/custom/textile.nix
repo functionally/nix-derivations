@@ -7,18 +7,18 @@
 
 stdenv.mkDerivation rec {
 
-  name = "textile-0.5.4";
+  name = "textile-0.6.9";
 
   src = fetchgit {
     url    = "https://github.com/textileio/go-textile.git"         ;
-    rev    = "a07d47f5e1e9925069b968c68786a6629ae4fdf6"            ;
-    sha256 = "041vwd0gzmmflqw3xwc5542qc2s5xjaangbqz6jrxazck38xkmp9";
+    rev    = "fee010289b16afa20c3cded3835d91969933d57a"            ;
+    sha256 = "0pb0g45zwhdhzgwd6zy448z12zs5ki7yjqdidhmc3102jagv8860";
   };
 
   src_deps = fetchurl {
-    name   = "go-textile-v0.5.4-dependencies.tar.gz"                                           ;
-    url    = "https://gateway.pinata.cloud/ipfs/QmQrDg12WgmvuiSg1rAAgbpoKPcUi7uR128BgHTgUjj5MA";
-    sha256 = "1jrdrm3ks3hf1vy67aplcgkx6fh71lc6cvdvzyvdiqmf8di3g92y"                            ;
+    name   = "go-textile-v0.6.9-dependencies.tar.gz"                                           ;
+    url    = "https://gateway.pinata.cloud/ipfs/QmfTnyLbyHDEFMMSM7guEjuUyh9hp9sfRHAX8rriSpTT3r";
+    sha256 = "1mjr43f20r7qdz7sjl9zq3ckprgilz9isnlxknwps2lyby4cfj7l"                            ;
   };
 
   nativeBuildInputs = [ go_1_12 ];
@@ -30,12 +30,12 @@ stdenv.mkDerivation rec {
     export GOPATH=$DOWNLOADDIR:$GOPATH
     mkdir cache
     export GOCACHE=$PWD/cache
-    go build .
+    go build ./cmd/textile
   '';
 
   installPhase = ''
     mkdir -p $out/bin
-    cp go-textile $out/bin/textile
+    cp textile $out/bin/textile
   '';
 
   meta = {
