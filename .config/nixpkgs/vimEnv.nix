@@ -68,14 +68,14 @@ let
       let g:syntastic_check_on_open = 0
       let g:syntastic_check_on_wq = 0
 
-      " Set up ghc-mod.  See <http://www.stephendiehl.com/posts/vim_2016.html#ghc-mod-1>.
-
-      let g:ghcmod_ghc_options = ['-Wall']
-
-      map <silent> tw :GhcModTypeInsert<CR>
-      map <silent> ts :GhcModSplitFunCase<CR>
-      map <silent> tq :GhcModType<CR>
-      map <silent> te :GhcModTypeClear<CR>
+      """"" Set up ghc-mod.  See <http://www.stephendiehl.com/posts/vim_2016.html#ghc-mod-1>.
+      """"
+      """"let g:ghcmod_ghc_options = ['-Wall']
+      """"
+      """"map <silent> tw :GhcModTypeInsert<CR>
+      """"map <silent> ts :GhcModSplitFunCase<CR>
+      """"map <silent> tq :GhcModType<CR>
+      """"map <silent> te :GhcModTypeClear<CR>
 
       " Set up supertab.  See <http://www.stephendiehl.com/posts/vim_2016.html#supertab>.
 
@@ -92,9 +92,9 @@ let
       let g:haskellmode_completion_ghc = 1
       autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
-      " Set up nerdtree.  See <http://www.stephendiehl.com/posts/vim_2016.html#nerdtree>.
-
-      map <Leader>n :Ntree<CR>
+      """"" Set up nerdtree.  See <http://www.stephendiehl.com/posts/vim_2016.html#nerdtree>.
+      """"
+      """"map <Leader>n :Ntree<CR>
 
       " Set up tabularize.  See <http://www.stephendiehl.com/posts/vim_2016.html#tabularize>.
 
@@ -110,6 +110,15 @@ let
       noremap <leader>b<space> :CtrlPBuffer<cr>
       let g:ctrlp_custom_ignore = '\v[\/]dist$'
 
+      " Set up tslime.  See <https://github.com/jgdavey/tslime.vim>.
+
+      let g:tslime_always_current_session = 1
+      let g:tslime_always_current_window = 1
+
+      vmap gt <Plug>SendSelectionToTmux
+      nmap gt <Plug>NormalModeSendToTmux
+      nmap gv <Plug>SetTmuxVars
+
       " Set up pointfree.  See <http://www.stephendiehl.com/posts/vim_haskell.html>.
 
       autocmd FileType haskell set formatprg=pointfree\ `cat`
@@ -119,8 +128,9 @@ let
       {
         names = [
           "ctrlp"                 # See <https://github.com/kien/ctrlp.vim>.
-          "easymotion"
+        # "easymotion"
         # "ghc-mod-vim"
+          "julia-vim"
           "neco-ghc"
         # "neocomplete"
         # "snipmate"
@@ -128,8 +138,10 @@ let
           "Syntastic"             # See <https://github.com/vim-syntastic/syntastic>.
           "Tabular"
         # "tlib"
+          "tslime-vim"            # See <https://github.com/jgdavey/tslime.vim>.
         # "vim-addon-mw-utils"
           "vim-hdevtools"
+        # "vimux"
         # "vim-nerdtree-tabs"
           "vimproc"               # See <https://github.com/Shougo/vimproc.vim>.
         ];
