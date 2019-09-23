@@ -49,6 +49,7 @@ let
         repr
         uuid
         # Custom packages
+        arm
         BH
         circlize
         codetools
@@ -57,26 +58,31 @@ let
       # dplr
         FNN
         GGally
+        glmulti
         ggplot2
         highr
         Hmisc
         httr
         igraph
+        InformationValue
       # iplot
         keras
         kernlab
         knitr
         kSamples
         lubridate
+        magrittr
         memo
         plotrix
         quantmod
         Rcpp
         RcppEigen
+        regclass
         reshape2
         rpart
         shiny
         shinyjs
+        smbinning
         SPARQL
         sqldf
         stringr
