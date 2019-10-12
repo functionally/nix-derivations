@@ -75,6 +75,7 @@ let
         memo
         plotrix
         quantmod
+        quantreg
         Rcpp
         RcppEigen
         regclass
@@ -176,6 +177,7 @@ in
       python36Packages.plotly
       python36Packages.protobuf
       python36Packages.pydot
+      python36Packages.pydotplus
     # python36Packages.pytorch
       python36Packages.rasterio
       python36Packages.scikitlearn
