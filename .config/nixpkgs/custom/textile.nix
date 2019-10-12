@@ -7,18 +7,18 @@
 
 stdenv.mkDerivation rec {
 
-  name = "textile-0.6.9";
+  name = "textile-0.7.4";
 
   src = fetchgit {
     url    = "https://github.com/textileio/go-textile.git"         ;
-    rev    = "fee010289b16afa20c3cded3835d91969933d57a"            ;
-    sha256 = "0pb0g45zwhdhzgwd6zy448z12zs5ki7yjqdidhmc3102jagv8860";
+    rev    = "2618daee223632ed89b28fc86053674b4270b35a"            ;
+    sha256 = "1dv1d83cgxcis4b038r8653svqhl1h45f4gf35ihvbfm432jd0kw";
   };
 
   src_deps = fetchurl {
-    name   = "go-textile-v0.6.9-dependencies.tar.gz"                                           ;
-    url    = "https://gateway.pinata.cloud/ipfs/QmfTnyLbyHDEFMMSM7guEjuUyh9hp9sfRHAX8rriSpTT3r";
-    sha256 = "1mjr43f20r7qdz7sjl9zq3ckprgilz9isnlxknwps2lyby4cfj7l"                            ;
+    name   = "go-textile-v0.7.4-dependencies.tar.gz"                             ;
+    url    = "http://ipfs.io/ipfs/QmNUfjkXkXSicyamS8aDhM5E8369s83fGfwFeZz5xseSCe";
+    sha256 = "0c73lnc9ayn90y217fzjwpb2f8rphjm580y5c5shn40a9ac86i41"              ;
   };
 
   nativeBuildInputs = [ go_1_12 ];

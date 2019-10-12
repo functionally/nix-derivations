@@ -1,4 +1,17 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i bash -p textile069
+#!nix-shell -i bash -p textile
 
-textile daemon --repo=/data/textile/repo
+if [ -d /data/textile/repo ]
+then
+    export TEXTILE_PATH=/data/textile/repo
+elif [ -d /data/textile ]
+then
+    export TEXTILE_PATH=/data/textile
+elif [ -d "$HOME"/textile ]
+then
+    export TEXTILE_PATH="$HOME"/textile
+else
+    export TEXTILE_PATH="$HOME"/.textile
+fi
+
+textile daemon --repo="$TEXTILE_PATH"

@@ -178,7 +178,7 @@ in
       python36Packages.protobuf
       python36Packages.pydot
       python36Packages.pydotplus
-    # python36Packages.pytorch
+      python36Packages.pytorch
       python36Packages.rasterio
       python36Packages.scikitlearn
       python36Packages.scipy

@@ -2,13 +2,13 @@
 
 {
   stdenv, fetchurl, dpkg, patchelf, makeDesktopItem,
-  gcc, libGL, libGLU, qt59, udev
+  gcc, libGL, libGLU, qt5, udev
 }:
 
 let
 
   aname = "flashprint";
-  version = "3.25.1";
+  version = "3.28.0";
   name = "${aname}-${version}";
 
 in
@@ -17,8 +17,8 @@ in
     inherit name;
     src = fetchurl {
       name = "${name}.deb";
-      url = "http://www.sz3dp.com/upfile/2018/12/03/20181203162713_662.deb";
-      sha256 = "1haxm7s1d5chnvrl9sjdp45n5ph3pz8q984m8jqdcbampfvh7c1b";
+      url = "http://en.fss.flashforge.com/10000/software/a33f804f90a30e66e47bc75b6b6e6d7d.deb";
+      sha256 = "15cvhhf0j38c98ap6cjxw51lriz8wyhzrdpmqi7wqpin6y0kd6nc";
     };
 
   nativeBuildInputs = [
@@ -26,7 +26,7 @@ in
   ];
 
   libPath = stdenv.lib.makeLibraryPath [
-    qt59.qtbase
+    qt5.qtbase
     libGL
     libGLU
     gcc.cc

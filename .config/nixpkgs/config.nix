@@ -11,22 +11,25 @@
 
   allowBroken = localBroken;
 
-  android_sdk.accept_license = true;
-
   packageOverrides = super:
     let
 
       self = super.pkgs;
 
-      cfg = { allowUnfree = localUnfree; allowBroken = localBroken; };
+      cfg = {
+         allowUnfree = localUnfree;
+         allowBroken = localBroken;
+         android_sdk.accept_license = true;
+      };
 
       pin1703  = import <pinned-17.03>   { config = cfg; };
       pin1709  = import <pinned-17.09>   { config = cfg; };
       pin1803  = import <pinned-18.03>   { config = cfg; };
       pin1809  = import <pinned-18.09>   { config = cfg; };
+      pin1903  = import <pinned-19.03>   { config = cfg; };
+      pin1909  = import <pinned-19.09>   { config = cfg; };
       unstable = import <pinned-unstable>{ config = cfg; };
       latest   = import <nixos-latest>   { config = cfg; };
-      textiler = import <textiler>       { config = cfg; };
 
       excludeList = xs: if workarounds then [] else xs;
       includeSet  = xs: if workarounds then xs else {};
@@ -112,8 +115,8 @@
           paths = [
           # latest.discord
           # gajim
-            latest.skype
-            latest.slack
+     latest.skype
+     latest.slack
           # tigervnc
           ];
         };
@@ -164,8 +167,7 @@
             gimp
             gitter
             google-chrome
-          # googleearth
-          # google-earth
+            googleearth
           # gramps
             guvcview
             inkscape
@@ -177,7 +179,7 @@
             paraview
             xfce.parole
             protege
-            qgis
+    pin1809.qgis
             qpdfview
             remmina
             rstudio
@@ -205,6 +207,7 @@
           name = "env-lang";
           # Programming languages.
           paths = [
+            dart
             erlang
             fsharp
             ghostscript
@@ -236,12 +239,12 @@
             globusconnectpersonal
             httpie
             inetutils
-          # ipfs
+     latest.ipfs
           # miniHttpd
             openssl
             samba
             tcpdump
-          # vrpn
+            textile
             wget
           ];
         };
@@ -375,7 +378,7 @@
 
         pythonEnv = import ./pythonEnv.nix {
                       inherit pkgs excludeList;
-                      base = if workarounds then pin1809 else unstable;
+                      base = if workarounds then pin1909 else unstable;
                     };
 
         inherit (import ./haskellEnv.nix { inherit pkgs pin1709 pin1803 unstable; })
@@ -386,8 +389,6 @@
         ; 
 
         apacheKafka011 = self.apacheKafka.override { majorVersion = "0.11"; };
-
-        textile069 = textiler.callPackage ( ./custom/textile.nix ) { };
 
       } // (
 

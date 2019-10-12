@@ -1,20 +1,19 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/ff2341afc9a10e4e59a7b62d31d93bc73b7d2e49.tar.gz -i bash -p ipfs
+#!nix-shell -p ipfs -i bash
 
 
-case "$HOSTNAME" in
-  "lemur" )
-    export IPFS_PATH=/data/ipfs ;;
-  "gazelle" )
-    export IPFS_PATH=/scratch/ipfs.brianwbush.info ;;
-  * )
-    if [ -d "$HOME"/ipfs ]
-    then
-      export IPFS_PATH="$HOME"/ipfs
-    else
-      export IPFS_PATH="$HOME"/.ipfs
-    fi ;;
-esac
+if [ -d /data/ipfs/repo ]
+then
+    export IPFS_PATH=/data/ipfs/repo
+elif [ -d /data/ipfs ]
+then
+    export IPFS_PATH=/data/ipfs
+elif [ -d "$HOME"/ipfs ]
+then
+    export IPFS_PATH="$HOME"/ipfs
+else
+    export IPFS_PATH="$HOME"/.ipfs
+fi
 
-ipfs daemon --enable-namesys-pubsub
-
+#ipfs daemon --enable-gc --enable-namesys-pubsub
+IPFS_LOGGING=warning ipfs daemon --enable-gc
