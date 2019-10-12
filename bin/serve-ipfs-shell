@@ -1,2 +1,0 @@
-#!/usr/bin/env nix-shell
-#!nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/ff2341afc9a10e4e59a7b62d31d93bc73b7d2e49.tar.gz -p ipfs
