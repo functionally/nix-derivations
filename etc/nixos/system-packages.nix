@@ -22,6 +22,7 @@
     lshw
     mkpasswd
     mtools
+    nethogs
     parted
     patchelf
     patchutils

@@ -46,7 +46,7 @@
       fsType = "btrfs";
       options = [ "subvol=@scratch" "compress=zstd" ];
     };
-    "/scratch" = {
+    "/extra" = {
       device = "/dev/vgmain/extra";
       fsType = "btrfs";
       options = [ "subvol=@extra" "compress=zstd" ];
@@ -63,6 +63,8 @@
   environment.systemPackages = with pkgs; [
     efibootmgr
   ];
+
+  virtualisation.docker.enable = false;
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "18.09";

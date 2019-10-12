@@ -49,14 +49,26 @@
     # allowedTCPPorts = [ ... ];
     # allowedUDPPorts = [ ... ];
       extraCommands = ''
-        iptables -I INPUT -p udp -s 192.168.0.0/16 --match multiport --dports 1900,5353 -m udp                           -j nixos-fw-accept # chromecast, see <https://github.com/NixOS/nixpkgs/issues/3107#issuecomment-377716548>
-        iptables -I INPUT -p tcp                                     --dport   2181     -m state --state NEW,ESTABLISHED -j nixos-fw-accept # zookeeper
-        iptables -I INPUT -p tcp                                     --dport   4001     -m state --state NEW,ESTABLISHED -j nixos-fw-accept # ipfs
-        iptables -I INPUT -p tcp                                     --dport   5432     -m state --state NEW,ESTABLISHED -j nixos-fw-accept # postgresql
-        iptables -I INPUT -p tcp                                     --dport   5820     -m state --state NEW,ESTABLISHED -j nixos-fw-accept # stardog
-        iptables -I INPUT -p tcp                                     --dport   9092     -m state --state NEW,ESTABLISHED -j nixos-fw-accept # kafka
-        iptables -I INPUT -p tcp                                     --dport  27017     -m state --state NEW,ESTABLISHED -j nixos-fw-accept # mongodb
-        iptables -I INPUT -p tcp                                     --dport  32749     -m state --state NEW,ESTABLISHED -j nixos-fw-accept # gridcoinresearchd
+        iptables -I INPUT -s 67.190.101.121  -j nixos-fw-accept # home
+        iptables -I INPUT -s 192.168.86.23   -j nixos-fw-accept # lemur
+        iptables -I INPUT -s 192.168.86.42   -j nixos-fw-accept # gazelle
+        iptables -I INPUT -s 104.198.152.159 -j nixos-fw-accept # brianwbush.info
+
+        iptables -I INPUT -p udp -s 192.168.0.0/16 --match multiport --dports 1900,5353 -m udp -j nixos-fw-accept # chromecast, see <https://github.com/NixOS/nixpkgs/issues/3107#issuecomment-377716548>
+
+        iptables -I INPUT -p tcp --dport   2181 -m state --state NEW,ESTABLISHED -j nixos-fw-accept # zookeeper
+        iptables -I INPUT -p tcp --dport   4001 -m state --state NEW,ESTABLISHED -j nixos-fw-accept # ipfs
+        iptables -I INPUT -p tcp --dport   5432 -m state --state NEW,ESTABLISHED -j nixos-fw-accept # postgresql
+        iptables -I INPUT -p tcp --dport   5820 -m state --state NEW,ESTABLISHED -j nixos-fw-accept # stardog
+        iptables -I INPUT -p tcp --dport   9092 -m state --state NEW,ESTABLISHED -j nixos-fw-accept # kafka
+        iptables -I INPUT -p tcp --dport  10022 -m state --state NEW,ESTABLISHED -j nixos-fw-accept # ssh
+        iptables -I INPUT -p tcp --dport  27017 -m state --state NEW,ESTABLISHED -j nixos-fw-accept # mongodb
+        iptables -I INPUT -p tcp --dport  32749 -m state --state NEW,ESTABLISHED -j nixos-fw-accept # gridcoinresearchd
+        iptables -I INPUT -p tcp --dport  5050 -m state --state NEW,ESTABLISHED -j nixos-fw-accept # textile gateway
+        iptables -I INPUT -p tcp --dport 14348 -m state --state NEW,ESTABLISHED -j nixos-fw-accept # textile swarm
+        iptables -I INPUT -p tcp --dport 19429 -m state --state NEW,ESTABLISHED -j nixos-fw-accept # textile swarm
+        iptables -I INPUT -p tcp --dport 27663 -m state --state NEW,ESTABLISHED -j nixos-fw-accept # textile swarm
+        iptables -I INPUT -p tcp --dport 40601 -m state --state NEW,ESTABLISHED -j nixos-fw-accept # textile cafe
       '';
     };
 
@@ -109,6 +121,17 @@
     };
 
     openssh.enable = true;
+
+    keybase.enable = true;
+
+    kbfs = {
+      enable = true;
+      extraFlags = [
+        "-label kbfs"
+        "-mount-type normal"
+      ];
+      mountPoint = "/data/keybase";
+    };
 
   };
 
