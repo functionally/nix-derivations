@@ -23,24 +23,25 @@
       options = [ "subvol=bbush" ];
     };
 
-  fileSystems."/scratch/gdrive"                     = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=gdrive"                     ]; };
-  fileSystems."/scratch/library.bwbush.io"          = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=library.bwbush.io"          ]; };
-  fileSystems."/scratch/ed.bwbush.io"               = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=ed.bwbush.io"               ]; };
-  fileSystems."/scratch/env.bwbush.io"              = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=env.bwbush.io"              ]; };
-  fileSystems."/scratch/opt.bwbush.io"              = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=opt.bwbush.io"              ]; };
-  fileSystems."/scratch/zotero.bwbush.io"           = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=zotero.bwbush.io"           ]; };
-  fileSystems."/scratch/sangha.bwbush.io"           = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=sangha.bwbush.io"           ]; };
-  fileSystems."/scratch/personal.bwbush.io"         = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=personal.bwbush.io"         ]; };
-  fileSystems."//data"                              = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=data"                       ]; };
-  fileSystems."/scratch/deploy.brianwbush.info"     = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=deploy.brianwbush.info"     ]; };
-  fileSystems."/scratch/staging.bwbush.io"          = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=staging.bwbush.io"          ]; };
-  fileSystems."/scratch/staging.brianwbush.info"    = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=staging.brianwbush.info"    ]; };
-  fileSystems."/scratch/rkt-images.functionally.io" = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "subvol=rkt-images.functionally.io" ]; };
+  fileSystems."/data"                            = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [      "compress=zstd" "subvol=data"                    ]; };
+  fileSystems."/scratch/gdrive"                  = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [      "compress=zstd" "subvol=gdrive"                  ]; };
+  fileSystems."/scratch/deploy.brianwbush.info"  = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [      "compress=zstd" "subvol=deploy.brianwbush.info"  ]; };
+  fileSystems."/scratch/family.bwbush.io"        = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [      "compress=zstd" "subvol=family.bwbush.io"        ]; };
+  fileSystems."/scratch/ipfs.brianwbush.info"    = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [      "compress=zstd" "subvol=ipfs.brianwbush.info"    ]; };
+  fileSystems."/scratch/library.brianwbush.info" = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "ro" "compress=zstd" "subvol=library.brianwbush.info" ]; };
+  fileSystems."/scratch/opt.bwbush.io"           = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [      "compress=zstd" "subvol=opt.bwbush.io"           ]; };
+  fileSystems."/scratch/staging.brianwbush.info" = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [      "compress=zstd" "subvol=staging.brianwbush.info" ]; };
+  fileSystems."/scratch/staging.bwbush.io"       = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [      "compress=zstd" "subvol=staging.bwbush.io"       ]; };
+  fileSystems."/scratch/caltech.brianwbush.info" = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "ro" "compress=zstd" "subvol=caltech.brianwbush.info" ]; };
+  fileSystems."/scratch/lanl.brianwbush.info"    = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "ro" "compress=zstd" "subvol=lanl.brianwbush.info"    ]; };
+  fileSystems."/scratch/ncar.brianwbush.info"    = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "ro" "compress=zstd" "subvol=ncar.brianwbush.info"    ]; };
+  fileSystems."/scratch/psrc.brianwbush.info"    = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "ro" "compress=zstd" "subvol=psrc.brianwbush.info"    ]; };
+  fileSystems."/scratch/yale.brianwbush.info"    = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "ro" "compress=zstd" "subvol=yale.brianwbush.info"    ]; };
 
   boot.initrd.luks.devices."crypt-files".device = "/dev/disk/by-uuid/eb0f7b3a-a450-4f8a-8c93-67db4e3dde05";
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/044bea2d-9fc3-4eb6-b086-f5467e3f8e34"; }
+    [ { device = "/dev/disk/by-uuid/2a7dc867-f34f-49e5-9382-9101395b2c30"; }
     ];
 
   nix.maxJobs = lib.mkDefault 8;
