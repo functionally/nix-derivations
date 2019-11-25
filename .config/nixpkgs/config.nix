@@ -181,6 +181,7 @@
             protege
     pin1809.qgis
             qpdfview
+            rdesktop
             remmina
             rstudio
             scribus
@@ -234,13 +235,16 @@
           name = "env-net";
           # Networking tools.
           paths = [
+            bmon
             cacert
             dnsutils
             globusconnectpersonal
+            gping
             httpie
             inetutils
      latest.ipfs
           # miniHttpd
+            mtr
             openssl
             samba
             tcpdump
@@ -320,6 +324,7 @@
             pinentry
             pixz
           # pxz
+            ripgrep
           # stow
             time
             unar
@@ -376,10 +381,7 @@
 
         rEnv = import ./rEnv.nix { inherit pkgs; };
 
-        pythonEnv = import ./pythonEnv.nix {
-                      inherit pkgs excludeList;
-                      base = if workarounds then pin1909 else unstable;
-                    };
+        pythonEnv = import ./pythonEnv.nix { inherit pkgs; };
 
         inherit (import ./haskellEnv.nix { inherit pkgs pin1709 pin1803 unstable; })
           haskellEnv

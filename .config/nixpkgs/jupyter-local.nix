@@ -149,7 +149,7 @@ in
     buildInputs = [
       jupyter_config_dir
       python36Packages.async-timeout
-      python36Packages.asyncio
+    # python36Packages.asyncio
       python36Packages.bokeh
       python36Packages.bootstrapped-pip
     # python36Packages.catboost
@@ -166,34 +166,36 @@ in
     # python36Packages.json
       python36Packages.jupyter
       python36Packages.Keras
-    # python36Packages.lightgbm
+      python36Packages.lightgbm
       python36Packages.matplotlib
       python36Packages.networkx
       python36Packages.nltk
       python36Packages.numpy
       python36Packages.pandas
       python36Packages.pip
-    #        6         pipenv
+    #                  pipenv
       python36Packages.plotly
       python36Packages.protobuf
       python36Packages.pydot
       python36Packages.pydotplus
+      python36Packages.pyomo
       python36Packages.pytorch
       python36Packages.rasterio
       python36Packages.scikitlearn
       python36Packages.scipy
-    # python36Packages.scrapy
+      python36Packages.scrapy
       python36Packages.seaborn
     # python36Packages.snakes
-    # python36Packages.spacy
+      python36Packages.spacy
     # python36Packages.spark-deep-learning
       python36Packages.statsmodels
       python36Packages.tensorflow
     # python36Packages.tensorflow_hub
     # python36Packages.tensorflowjs
-    # python36Packages.Theano
+      python36Packages.Theano
       python36Packages.websockets
       python36Packages.xgboost
+      cbc glpk ipopt
       sparql-kernel python36Packages.notebook python36Packages.SPARQLWrapper python36Packages.rdflib graphviz
       gmp mpfr
     ];

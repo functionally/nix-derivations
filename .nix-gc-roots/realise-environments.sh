@@ -4,7 +4,7 @@ ee="ghcEnv7 ghcEnv8 haskellEnv pythonEnv rEnv stardog stella-simulator"
 
 case "$(hostname)" in
   "lemur")
-    ee+=" nativeGraphicalEnv unityEnv";;
+    ee+=" nativeGraphicalEnv";;
   "gazelle")
     ee+=" nativeServerEnv";;
   *)

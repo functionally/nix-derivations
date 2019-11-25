@@ -1,6 +1,6 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -i bash /home/bbush/.config/nixpkgs/jupyter-local.nix
-#!nix-shell -I nixpkgs=/home/bbush/.nix-defexpr/channels/pinned-unstable
+#!nix-shell -I nixpkgs=/home/bbush/.nix-defexpr/channels/pinned-19.09
 
 export HOME=$PWD
 
