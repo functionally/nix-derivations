@@ -7,23 +7,25 @@
 
 stdenv.mkDerivation rec {
 
-  name = "textile-0.7.4";
+  name = "textile-0.7.6";
 
   src = fetchgit {
     url    = "https://github.com/textileio/go-textile.git"         ;
-    rev    = "2618daee223632ed89b28fc86053674b4270b35a"            ;
-    sha256 = "1dv1d83cgxcis4b038r8653svqhl1h45f4gf35ihvbfm432jd0kw";
+    rev    = "2904cf0b7e331fab5b19d4355fc2271284ab3084"            ;
+    sha256 = "0slykqmsw5p45dzxvl65zxyngx79dai9wd56v201vghl0vrsdpd3";
   };
 
   src_deps = fetchurl {
-    name   = "go-textile-v0.7.4-dependencies.tar.gz"                             ;
-    url    = "http://ipfs.io/ipfs/QmNUfjkXkXSicyamS8aDhM5E8369s83fGfwFeZz5xseSCe";
-    sha256 = "0c73lnc9ayn90y217fzjwpb2f8rphjm580y5c5shn40a9ac86i41"              ;
+    name   = "go-textile-v0.7.6-dependencies.tar.gz"                             ;
+    url    = "http://ipfs.io/ipfs/QmcKRKaCFTszteg9HDsmuT6WiWgLznJbWsfVxUX6TNCpRH";
+    sha256 = "1r6ibik9xx59i1l9gy4prmnva95cr68g99qqwfwlbvbd9zsmy9jf"              ;
   };
 
   nativeBuildInputs = [ go_1_12 ];
 
   buildPhase = ''
+    sed -i -e '163s/600/12/ ; 164s/900/15/ ; 167s/20/15/' core/config.go
+    sed -i -e ' 84s/600/12/ ;  85s/900/15/ ;  86s/20/15/' repo/config/init_ipfs.go
     DOWNLOADDIR=$PWD/downloads
     mkdir $DOWNLOADDIR
     tar xf $src_deps -C $DOWNLOADDIR
