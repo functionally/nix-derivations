@@ -24,8 +24,8 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [ go_1_12 ];
 
   buildPhase = ''
-    sed -i -e '163s/600/12/ ; 164s/900/15/ ; 167s/20/15/' core/config.go
-    sed -i -e ' 84s/600/12/ ;  85s/900/15/ ;  86s/20/15/' repo/config/init_ipfs.go
+    sed -i -e '159s/200/12/ ; 160s/500/15/ ; 163s/600/12/ ; 164s/900/15/ ; 167s/20/15/' core/config.go
+    sed -i -e ' 88s/200/12/ ;  89s/500/15/ ;  84s/600/12/ ;  85s/900/15/ ;  86s/20/15/' repo/config/init_ipfs.go
     DOWNLOADDIR=$PWD/downloads
     mkdir $DOWNLOADDIR
     tar xf $src_deps -C $DOWNLOADDIR
