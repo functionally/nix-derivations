@@ -170,6 +170,7 @@
             googleearth
           # gramps
             guvcview
+    pin1809.handbrake
             inkscape
             keybase-gui
             libreoffice
