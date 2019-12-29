@@ -155,7 +155,7 @@
           # anki
             baobab
             blender
-          # calibre
+            calibre
           # cura
             evince
             flashprint
@@ -304,6 +304,7 @@
             gitAndTools.gitRemoteGcrypt
             gnumake
             gnupg
+            google-music-scripts
             inotify-tools
           # john
             kbfs
@@ -314,16 +315,17 @@
           # mpack
             nix-index
             nixpkgs-lint
-            p7zip
             haskellPackages.pandoc
             haskellPackages.pandoc-citeproc
             ncdu
+            p7zip
             parallel
             patchelf
             patchutils
             pbzip2
             pinentry
             pixz
+            pdftk
           # pxz
             ripgrep
           # stow
