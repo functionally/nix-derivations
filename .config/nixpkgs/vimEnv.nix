@@ -127,9 +127,13 @@ let
     vimrcConfig.vam.pluginDictionaries = [
       {
         names = [
+          "ale"
           "ctrlp"                 # See <https://github.com/kien/ctrlp.vim>.
+#         "deoplete-go"
+#         "deoplete-julia"
         # "easymotion"
         # "ghc-mod-vim"
+#         "gitv"
           "julia-vim"
           "neco-ghc"
         # "neocomplete"
@@ -140,6 +144,8 @@ let
         # "tlib"
           "tslime-vim"            # See <https://github.com/jgdavey/tslime.vim>.
         # "vim-addon-mw-utils"
+#         "vim-gitgutter"
+#         "vim-go"
           "vim-hdevtools"
         # "vimux"
         # "vim-nerdtree-tabs"
