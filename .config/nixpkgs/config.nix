@@ -246,6 +246,7 @@
      latest.ipfs
           # miniHttpd
             mtr
+            nethogs
             openssl
             samba
             tcpdump
@@ -327,6 +328,7 @@
             pixz
             pdftk
           # pxz
+            qrencode
             ripgrep
           # stow
             time
@@ -352,7 +354,6 @@
           # hadoop
             libpst
             protobuf
-            qrencode
             rcs
           # spark
             subversion
