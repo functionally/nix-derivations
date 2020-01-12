@@ -14,4 +14,9 @@ else
     export TEXTILE_PATH="$HOME"/.textile
 fi
 
-textile daemon --repo="$TEXTILE_PATH"
+while true
+do
+  textile daemon --repo="$TEXTILE_PATH"
+  echo "Restarting Textile server in 90 seconds . . ."
+  sleep 90s
+done

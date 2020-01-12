@@ -15,5 +15,9 @@ else
     export IPFS_PATH="$HOME"/.ipfs
 fi
 
-#ipfs daemon --enable-gc --enable-namesys-pubsub
-IPFS_LOGGING=warning ipfs daemon --enable-gc
+while true
+do
+  IPFS_LOGGING=warning ipfs daemon --enable-gc  --enable-namesys-pubsub
+  echo "Restarting IPFS server in 90 seconds . . ."
+  sleep 90s
+done
