@@ -1,0 +1,2 @@
+#!/usr/bin/env nix-shell
+#!nix-shell --run tor-browser --packages tor-browser-bundle-bin-unstable
