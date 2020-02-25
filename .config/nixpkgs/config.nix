@@ -394,7 +394,18 @@
           ghcEnvLatest
         ; 
 
+        tor-browser-bundle-bin-unstable = unstable.tor-browser-bundle-bin;
+
         apacheKafka011 = self.apacheKafka.override { majorVersion = "0.11"; };
+
+        julia_13 = import <nixpkgs/pkgs/development/compilers/julia/shared.nix> {
+          majorVersion       = "1"                                                   ;
+          minorVersion       = "2"                                                   ;
+          maintenanceVersion = "0"                                                   ;
+          src_sha256         = "02ijqw3b9l8vvrl2xqmhynr95cq1p873ml7xj4fwjrs7n0gl7p65";
+          libuvVersion       = "2348256acf5759a544e5ca7935f638d2bc091d60"            ;
+          libuvSha256        = "1363f4vqayfcv5zqg07qmzjff56yhad74k16c22ian45lram8mv8";
+        } { inherit ApplicationServices arpack cmake CoreServices curl fetchurl fetchzip fftw fftwSinglePrec gfortran gmp libunwind libgit2 m4 makeWrapper mpfr openblas openlibm openspecfun patchelf pcre2 perl python2 readline stdenv utf8proc which zlib; };
 
       } // (
 
