@@ -6,4 +6,4 @@ export HOME=$PWD
 
 jupyter notebook --no-browser --ip 0.0.0.0
 
-rm -rf .ihaskell .ipython .jupyter .local .R
+rm -rf .ipython .jupyter .local .R

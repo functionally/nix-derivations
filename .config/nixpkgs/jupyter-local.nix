@@ -54,6 +54,7 @@ let
         circlize
         codetools
         data_table
+        deSolve
         DBI
       # dplr
         FNN
@@ -73,6 +74,10 @@ let
         lubridate
         magrittr
         memo
+        mlogit
+        mnlogit
+        multinomRob
+        nnet
         plotrix
         quantmod
         quantreg
@@ -103,7 +108,6 @@ let
         sha256 = "0lr5zybl7rg4xv9qxrc03sn7zx79fp0qgxkzghfrk8vwci9xhlq9";
         fetchSubmodules = true;
       };
-
       meta = {
         homepage = https://github.com/paulovn/sparql-kernel/;
         description = "A Jupyter kernel to launch queries against SPARQL endpoints.";
@@ -201,8 +205,6 @@ in
     ];
     shellHook = ''
       mkdir -p $PWD/.R
-      cp -nr ${jupyter_config_dir}/.jupyter  $PWD/
-      chmod -R u+w .R .jupyter
       export HOME=$PWD
       export JUPYTER_PATH=${jupyter_config_dir}/share/jupyter
       export JUPYTER_CONFIG_DIR=${jupyter_config_dir}/share/jupyter
