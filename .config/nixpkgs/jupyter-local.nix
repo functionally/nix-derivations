@@ -49,6 +49,7 @@ let
         repr
         uuid
         # Custom packages
+        abind
         arm
         BH
         circlize
@@ -86,6 +87,7 @@ let
         regclass
         reshape2
         rpart
+        rTensor
         shiny
         shinyjs
         smbinning
