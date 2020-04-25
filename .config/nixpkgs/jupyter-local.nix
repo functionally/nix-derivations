@@ -62,6 +62,7 @@ let
         GGally
         glmulti
         ggplot2
+        GSAR
         highr
         Hmisc
         httr
