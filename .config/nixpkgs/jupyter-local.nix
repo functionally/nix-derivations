@@ -54,14 +54,19 @@ let
         BH
         circlize
         codetools
+        crayon
         data_table
-        deSolve
         DBI
+        deSolve
+        devtools
+        digest
       # dplr
+        evaluate
+        fitdistrplus
         FNN
         GGally
-        glmulti
         ggplot2
+        glmulti
         GSAR
         highr
         Hmisc
@@ -69,35 +74,47 @@ let
         igraph
         InformationValue
       # iplot
+        jsonlite
         keras
         kernlab
         knitr
         kSamples
+        LaplacesDemon
+        lhs
         lubridate
         magrittr
+        MASS
         memo
         mlogit
         mnlogit
+        modes
         multinomRob
         nnet
+        np
+        pbdZMQ
         plotrix
         quantmod
         quantreg
+        randtoolbox
         Rcpp
         RcppEigen
         regclass
+        repr
         reshape2
         rpart
         rTensor
+        sensitivity
         shiny
         shinyjs
         smbinning
+        SobolSequence
         SPARQL
         sqldf
         stringr
       # TDA
         tensorflow
         tidyr
+        uuid
         yaml
       ];
     };
@@ -169,6 +186,7 @@ in
       python36Packages.gensim
       python36Packages.geopandas
     # python36Packages.ggplot
+    # python36Packages.GUDHI
       python36Packages.h5py
     # python36Packages.json
       python36Packages.jupyter
@@ -188,6 +206,7 @@ in
       python36Packages.pyomo
       python36Packages.pytorch
       python36Packages.rasterio
+    # python36Packages.SALib
       python36Packages.scikitlearn
       python36Packages.scipy
       python36Packages.scrapy

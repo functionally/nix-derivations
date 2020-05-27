@@ -165,7 +165,6 @@
             ggobi
           # ghostscriptX
             gimp
-            gitter
             google-chrome
             googleearth
           # gramps
@@ -188,9 +187,12 @@
             scribus
             shutter
           # slic3r
+            stellarium
           # teigha
+            tikzit
             vlc
             xclip
+            xkbd
             zotero
           ];
         };

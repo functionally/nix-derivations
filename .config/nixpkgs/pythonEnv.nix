@@ -24,6 +24,7 @@ pkgs.buildEnv {
       gensim
       geopandas
     # ggplot
+    # GUDHI
       h5py
     # json
       jupyter
@@ -42,6 +43,7 @@ pkgs.buildEnv {
       pyomo
       pytorch
       rasterio
+    # SALib
       scikitlearn
       scipy
       scrapy
