@@ -166,6 +166,14 @@ let
 
   };
 
+  python =
+    let
+      packageOverrides = self: super: {
+        scikitlearn = super.scikitlearn.overridePythonAttrs(old: {doCheck = false;});
+      };
+    in
+      pkgs.python36.override {inherit packageOverrides;};
+
 in
 
   with dependencies;
@@ -174,57 +182,58 @@ in
     buildInputs = [
       jupyter_config_dir
 
-      python36Packages.async-timeout
-    # python36Packages.asyncio
-      python36Packages.bokeh
-      python36Packages.bootstrapped-pip
-    # python36Packages.catboost
-      python36Packages.cufflinks
-    # python36Packages.dist-keras
-    # python36Packages.elephas
-    # python36Packages.eli5
-      python36Packages.fiona
-      python36Packages.flask
-      python36Packages.gensim
-      python36Packages.geopandas
-    # python36Packages.ggplot
-    # python36Packages.GUDHI
-      python36Packages.h5py
-    # python36Packages.json
-      python36Packages.jupyter
-      python36Packages.Keras
-      python36Packages.lightgbm
-      python36Packages.matplotlib
-      python36Packages.networkx
-      python36Packages.nltk
-      python36Packages.numpy
-      python36Packages.pandas
-      python36Packages.pip
-      python36Packages.plotly
-      python36Packages.protobuf
-      python36Packages.psycopg2
-      python36Packages.pydot
-      python36Packages.pydotplus
-      python36Packages.pyomo
- #    python36Packages.pytorch
-      python36Packages.rasterio
-    # python36Packages.SALib
-      python36Packages.scikitlearn
-      python36Packages.scipy
-      python36Packages.scrapy
-      python36Packages.seaborn
-    # python36Packages.snakes
-      python36Packages.spacy
-    # python36Packages.spark-deep-learning
-      python36Packages.statsmodels
-      python36Packages.sympy
-      python36Packages.tensorflow
-    # python36Packages.tensorflow_hub
-    # python36Packages.tensorflowjs
-      python36Packages.Theano
-      python36Packages.websockets
-      python36Packages.xgboost
-
+      (python.withPackages (ps: with ps; [
+        async-timeout
+      # asyncio
+        bokeh
+        bootstrapped-pip
+      # catboost
+        cufflinks
+      # dist-keras
+      # elephas
+      # eli5
+        fiona
+        flask
+        gensim
+        geopandas
+      # ggplot
+      # GUDHI
+        h5py
+      # json
+        jupyter
+        Keras
+        lightgbm
+        matplotlib
+        networkx
+        nltk
+        numpy
+        pandas
+        pip
+        plotly
+        protobuf
+        psycopg2
+        pydot
+        pydotplus
+        pyomo
+        pytorch
+        rasterio
+      # SALib
+        scikitlearn
+        scipy
+        scrapy
+        seaborn
+      # snakes
+      # spacy
+      # spark-deep-learning
+        statsmodels
+        sympy
+        tensorflow
+      # tensorflow_hub
+      # tensorflowjs
+        Theano
+        websockets
+        xgboost
+      ]))
       cbc glpk ipopt
       sparql-kernel python36Packages.notebook python36Packages.SPARQLWrapper python36Packages.rdflib graphviz
       gmp mpfr
