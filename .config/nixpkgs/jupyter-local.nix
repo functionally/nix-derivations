@@ -56,6 +56,7 @@ let
         codetools
         crayon
         data_table
+        deSolve
         DBI
         deSolve
         devtools
@@ -172,6 +173,7 @@ in
     name = "jupyter-local";
     buildInputs = [
       jupyter_config_dir
+
       python36Packages.async-timeout
     # python36Packages.asyncio
       python36Packages.bokeh
@@ -198,13 +200,13 @@ in
       python36Packages.numpy
       python36Packages.pandas
       python36Packages.pip
-    #                  pipenv
       python36Packages.plotly
       python36Packages.protobuf
+      python36Packages.psycopg2
       python36Packages.pydot
       python36Packages.pydotplus
       python36Packages.pyomo
-      python36Packages.pytorch
+ #    python36Packages.pytorch
       python36Packages.rasterio
     # python36Packages.SALib
       python36Packages.scikitlearn
@@ -215,12 +217,14 @@ in
       python36Packages.spacy
     # python36Packages.spark-deep-learning
       python36Packages.statsmodels
+      python36Packages.sympy
       python36Packages.tensorflow
     # python36Packages.tensorflow_hub
     # python36Packages.tensorflowjs
       python36Packages.Theano
       python36Packages.websockets
       python36Packages.xgboost
+
       cbc glpk ipopt
       sparql-kernel python36Packages.notebook python36Packages.SPARQLWrapper python36Packages.rdflib graphviz
       gmp mpfr
