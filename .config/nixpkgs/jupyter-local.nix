@@ -209,6 +209,7 @@ in
         numpy
         pandas
         pip
+      # pipenv
         plotly
         protobuf
         psycopg2
@@ -223,7 +224,7 @@ in
         scrapy
         seaborn
       # snakes
-      # spacy
+        spacy
       # spark-deep-learning
         statsmodels
         sympy

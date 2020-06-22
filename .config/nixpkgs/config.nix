@@ -296,6 +296,7 @@
             diffstat
             diffutils
             dos2unix
+            expect
           # fcrackzip
             fdupes
             file
