@@ -72,9 +72,12 @@
         abind
         arm
         BH
+        bnlearn
+        causaleffect
         circlize
         codetools
         crayon
+        dagitty
         data_table
         DBI
         deSolve
@@ -87,6 +90,8 @@
         GGally
         ggplot2
         glmulti
+      # gRain
+        graph
         GSAR
         highr
         Hmisc
@@ -100,6 +105,7 @@
         knitr
         kSamples
         LaplacesDemon
+        lavaan
         lhs
         lubridate
         magrittr
@@ -112,12 +118,14 @@
         nnet
         np
         pbdZMQ
+      # pcalg
         plotrix
         quantmod
         quantreg
         randtoolbox
         Rcpp
         RcppEigen
+        Rgraphviz
         regclass
         repr
         reshape2

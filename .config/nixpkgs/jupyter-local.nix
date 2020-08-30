@@ -52,9 +52,12 @@ let
         abind
         arm
         BH
+        bnlearn
+        causaleffect
         circlize
         codetools
         crayon
+        dagitty
         data_table
         deSolve
         DBI
@@ -68,6 +71,8 @@ let
         GGally
         ggplot2
         glmulti
+      # gRain
+        graph
         GSAR
         highr
         Hmisc
@@ -81,6 +86,7 @@ let
         knitr
         kSamples
         LaplacesDemon
+        lavaan
         lhs
         lubridate
         magrittr
@@ -93,12 +99,14 @@ let
         nnet
         np
         pbdZMQ
+      # pcalg
         plotrix
         quantmod
         quantreg
         randtoolbox
         Rcpp
         RcppEigen
+        Rgraphviz
         regclass
         repr
         reshape2
@@ -216,7 +224,7 @@ in
         pydot
         pydotplus
         pyomo
-        pytorch
+#       pytorch
         rasterio
       # SALib
         scikitlearn
