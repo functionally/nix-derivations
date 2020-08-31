@@ -261,11 +261,14 @@
           name = "env-term";
           # Terminal tools.
           paths = [
+            broot
             bvi
             python3Packages.glances
             htop
             mc
+            meld
             pv
+            ranger
             screen
             tmux
             tree

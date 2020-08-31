@@ -232,7 +232,7 @@ in
         scrapy
         seaborn
       # snakes
-        spacy
+      # spacy
       # spark-deep-learning
         statsmodels
         sympy

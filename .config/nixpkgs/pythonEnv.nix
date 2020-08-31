@@ -20,7 +20,6 @@ in
     paths = [
       (python.withPackages (ps: with ps; [
         async-timeout
-      # asyncio
         bokeh
         bootstrapped-pip
       # catboost
