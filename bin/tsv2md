@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+read -rd '' SED_SCRIPT << EOI
+1s/\?//g
+s/^"//
+s/"$//
+s/"\t/\t/g
+s/\t"/\t/g
+s/^/| /
+s/$/ |/
+s/\t/ | /g
+1 {p ; s/[^|]/-/g}
+EOI
+
+exec sed "$SED_SCRIPT" "$@"
