@@ -28,6 +28,8 @@
       pin1809  = import <pinned-18.09>   { config = cfg; };
       pin1903  = import <pinned-19.03>   { config = cfg; };
       pin1909  = import <pinned-19.09>   { config = cfg; };
+      pin2003  = import <pinned-20.03>   { config = cfg; };
+      pin2009  = import <pinned-20.09>   { config = cfg; };
       unstable = import <pinned-unstable>{ config = cfg; };
       latest   = import <nixos-latest>   { config = cfg; };
 
@@ -101,7 +103,7 @@
           name = "env-cloud";
           # Cloud tools.
           paths = [
-            awscli
+     latest.awscli2
           # ec2-api-tools
             google-cloud-sdk
           ] ++ excludeList [
@@ -159,17 +161,17 @@
           # cura
             evince
             flashprint
-            freecad
+    pin1909.freecad
             freemind
             gephi
             ggobi
           # ghostscriptX
             gimp
-            google-chrome
+   unstable.google-chrome
             googleearth
           # gramps
             guvcview
-    pin1809.handbrake
+#   pin1809.handbrake
             inkscape
             keybase-gui
             libreoffice
@@ -241,7 +243,7 @@
             bmon
             cacert
             dnsutils
-            globusconnectpersonal
+          # globusconnectpersonal
             gping
             httpie
             inetutils
@@ -294,7 +296,7 @@
             aspellDicts.en
             bc
             binutils
-            btrfs-dedupe
+          # btrfs-dedupe
             coreutils
             diffstat
             diffutils
@@ -311,7 +313,7 @@
             gitAndTools.gitRemoteGcrypt
             gnumake
             gnupg
-            google-music-scripts
+          # google-music-scripts
             inotify-tools
           # john
             kbfs

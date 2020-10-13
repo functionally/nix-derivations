@@ -128,9 +128,9 @@ let
       ];
     };
   
-    sparql-kernel = python36.pkgs.buildPythonPackage {
+    sparql-kernel = python37.pkgs.buildPythonPackage {
       name = "sparqlkernel-1.0.5";
-      buildInputs = [ python36Packages.notebook python36Packages.SPARQLWrapper python36Packages.rdflib ];
+      buildInputs = [ python37Packages.notebook python37Packages.SPARQLWrapper python37Packages.rdflib ];
       src = fetchgit {
         url = "https://github.com/paulovn/sparql-kernel";
         rev = "f91d56a029ebb2a8517181a124437e02c1e226c7";
@@ -147,9 +147,9 @@ let
     jupyter_config_dir = stdenv.mkDerivation {
       name = "jupyter-config";
       buildInputs = [
-        python36Packages.jupyter
+        python37Packages.jupyter
         IRkernel
-        sparql-kernel python36Packages.notebook python36Packages.SPARQLWrapper python36Packages.rdflib graphviz
+        sparql-kernel python37Packages.notebook python37Packages.SPARQLWrapper python37Packages.rdflib graphviz
       ];
       ir_json = builtins.toJSON {
         argv = [ "${R}/bin/R"
@@ -180,7 +180,7 @@ let
         scikitlearn = super.scikitlearn.overridePythonAttrs(old: {doCheck = false;});
       };
     in
-      pkgs.python36.override {inherit packageOverrides;};
+      pkgs.python37.override {inherit packageOverrides;};
 
 in
 
@@ -196,12 +196,12 @@ in
         bokeh
         bootstrapped-pip
       # catboost
-        cufflinks
+      # cufflinks
       # dist-keras
       # elephas
       # eli5
         fiona
-        flask
+      # flask
         gensim
         geopandas
       # ggplot
@@ -229,7 +229,7 @@ in
       # SALib
         scikitlearn
         scipy
-        scrapy
+      # scrapy
         seaborn
       # snakes
       # spacy
@@ -244,7 +244,7 @@ in
         xgboost
       ]))
       cbc glpk ipopt
-      sparql-kernel python36Packages.notebook python36Packages.SPARQLWrapper python36Packages.rdflib graphviz
+      sparql-kernel python37Packages.notebook python37Packages.SPARQLWrapper python37Packages.rdflib graphviz
       gmp mpfr
     ];
     shellHook = ''

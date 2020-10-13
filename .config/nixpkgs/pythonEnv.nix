@@ -10,7 +10,7 @@ let
         scikitlearn = super.scikitlearn.overridePythonAttrs(old: {doCheck = false;});
       };
     in
-      pkgs.python36.override {inherit packageOverrides;};
+      pkgs.python37.override {inherit packageOverrides;};
 
 in
 
@@ -20,15 +20,15 @@ in
     paths = [
       (python.withPackages (ps: with ps; [
         async-timeout
-        bokeh
+      # bokeh
         bootstrapped-pip
       # catboost
-        cufflinks
+      # cufflinks
       # dist-keras
       # elephas
       # eli5
         fiona
-        flask
+      # flask
         gensim
         geopandas
       # ggplot
@@ -50,12 +50,12 @@ in
         pydot
         pydotplus
         pyomo
-        pytorch
+      # pytorch
         rasterio
       # SALib
         scikitlearn
         scipy
-        scrapy
+      # scrapy
         seaborn
       # snakes
       # spacy
