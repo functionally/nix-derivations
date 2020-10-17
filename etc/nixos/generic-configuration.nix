@@ -12,7 +12,7 @@
   };
 
   powerManagement = {
-    enable = true;
+  ##enable = true;
   # resumeCommands = ''
   #   ${pkgs.xfce.xfce4_power_manager}/bin/xfce4-power-manager
   # '';
@@ -80,20 +80,17 @@
 
   time.timeZone = "America/Denver";
 
-  users.extraGroups = [
-    {
-      name = "plugdev"  ;
-      gid  = 46         ;
-    }
-    {
-      name = "rkt"      ;
-      gid  = 98         ;
-    }
-    {
-      name = "rkt-admin";
-      gid  = 99         ;
-    } 
-  ];
+  users.extraGroups = {
+    plugdev = {
+      gid  = 46;
+    };
+    rkt = {
+      gid  = 98;
+    };
+    rkt-admin = {
+      gid  = 99;
+    };
+  };
 
   services = {
 
@@ -103,6 +100,10 @@
       # Oculus Go
       SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0083", MODE="0666", GROUP="plugdev" OWNER="bbush"
       SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0086", MODE="0666", GROUP="plugdev" OWNER="bbush"
+      # Oculus Quest
+      SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0137", MODE="0666", GROUP="plugdev" OWNER="bbush"
+      SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0182", MODE="0666", GROUP="plugdev" OWNER="bbush"
+      SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0186", MODE="0666", GROUP="plugdev" OWNER="bbush"
       # Phab 2 Pro
       SUBSYSTEM=="usb", ATTR{idVendor}=="17ef", ATTR{idProduct}=="7a13", MODE="0666", GROUP="plugdev" OWNER="bbush"
       # Blink
@@ -148,9 +149,11 @@
   };
 
   i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
+  };
+  console = {
+    font   = "Lat2-Terminus16";
+    keyMap = "us";
   };
 
 # fonts = {

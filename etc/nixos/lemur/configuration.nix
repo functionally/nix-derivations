@@ -21,13 +21,12 @@
         memtest86.enable = true;
       };
     };
-    initrd.luks.devices = [
-      {
-        name = "main";
+    initrd.luks.devices = {
+      main = {
         device = "/dev/nvme0n1p2";
         preLVM = true;
-      }
-    ];
+      };
+    };
   };
 
   fileSystems = {

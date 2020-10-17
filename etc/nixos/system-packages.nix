@@ -6,7 +6,6 @@
     acpi
     apparmor-utils
     binutils
-    btrfs-dedupe
   # busybox
     cifs-utils
     coreutils

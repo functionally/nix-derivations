@@ -25,10 +25,8 @@
   # layout = "us";
   # xkbOptions = "eurosign:e";
 
-  # libinput.enable = true;
-    synaptics = {
-      enable = true;
-    };
+    libinput.enable = true;
+  # synaptics.enable = true;
     wacom = {
       enable = true;
     };
