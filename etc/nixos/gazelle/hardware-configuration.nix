@@ -9,8 +9,11 @@
     ];
 
   boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "xhci_pci" "firewire_ohci" "usbhid" "sd_mod" "sr_mod" "sdhci_pci" ];
+  boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+
+  boot.initrd.luks.devices."crypt-files".device = "/dev/disk/by-uuid/eb0f7b3a-a450-4f8a-8c93-67db4e3dde05";
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/4e6eb6ec-f3fc-431f-b50d-7e2b00a42219";
@@ -20,23 +23,20 @@
   fileSystems."/home/bbush" =
     { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04";
       fsType = "btrfs";
-      options = [ "subvol=bbush" ];
+      options = [ "subvol=bbush" "compress=zstd" ];
     };
 
-  fileSystems."/data"                                    = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [      "compress=zstd" "subvol=data"                           ]; };
-  fileSystems."/scratch/gazelle.deploy.functionally.dev" = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [      "compress=zstd" "subvol=gazelle.deploy.functionally.dev"]; };
-# fileSystems."/scratch/gdrive"                          = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [      "compress=zstd" "subvol=gdrive"                         ]; };
-# fileSystems."/scratch/family.bwbush.io"                = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [      "compress=zstd" "subvol=family.bwbush.io"               ]; };
-# fileSystems."/scratch/library.brianwbush.info"         = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [      "compress=zstd" "subvol=library.brianwbush.info"        ]; };
-# fileSystems."/scratch/staging.brianwbush.info"         = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [      "compress=zstd" "subvol=staging.brianwbush.info"        ]; };
-# fileSystems."/scratch/staging.bwbush.io"               = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [      "compress=zstd" "subvol=staging.bwbush.io"              ]; };
-# fileSystems."/scratch/caltech.brianwbush.info"         = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "ro" "compress=zstd" "subvol=caltech.brianwbush.info"        ]; };
-# fileSystems."/scratch/lanl.brianwbush.info"            = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "ro" "compress=zstd" "subvol=lanl.brianwbush.info"           ]; };
-# fileSystems."/scratch/ncar.brianwbush.info"            = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "ro" "compress=zstd" "subvol=ncar.brianwbush.info"           ]; };
-# fileSystems."/scratch/psrc.brianwbush.info"            = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "ro" "compress=zstd" "subvol=psrc.brianwbush.info"           ]; };
-# fileSystems."/scratch/yale.brianwbush.info"            = { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04"; fsType = "btrfs"; options = [ "ro" "compress=zstd" "subvol=yale.brianwbush.info"           ]; };
+  fileSystems."/data" =
+    { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04";
+      fsType = "btrfs";
+      options = [ "subvol=data" "compress=zstd" ];
+    };
 
-  boot.initrd.luks.devices."crypt-files".device = "/dev/disk/by-uuid/eb0f7b3a-a450-4f8a-8c93-67db4e3dde05";
+  fileSystems."/scratch/gazelle.deploy.functionally.dev" =
+    { device = "/dev/disk/by-uuid/2bebc2f7-4df9-42f9-a563-e066b67b7f04";
+      fsType = "btrfs";
+      options = [ "subvol=gazelle.deploy.functionally.dev" "compress=zstd" ];
+    };
 
   swapDevices =
     [ { device = "/dev/disk/by-uuid/2a7dc867-f34f-49e5-9382-9101395b2c30"; }
