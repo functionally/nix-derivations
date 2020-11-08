@@ -233,6 +233,7 @@
             rhino
             sage
             squeak
+            vscode
           ];
         };
 
@@ -265,13 +266,18 @@
           paths = [
             broot
             bvi
+            cheat
+            dstat
             python3Packages.glances
             htop
+            iftop
+          # manix
             mc
             meld
             pv
             ranger
             screen
+            sysstat
             tmux
             tree
           ] ++ excludeList [
@@ -317,7 +323,7 @@
             inotify-tools
           # john
             kbfs
-            keybase
+          # keybase
             lzma
             mercurial
             mkpasswd
