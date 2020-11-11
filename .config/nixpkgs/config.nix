@@ -213,6 +213,7 @@
           name = "env-lang";
           # Programming languages.
           paths = [
+            android-studio
             dart
             erlang
             fsharp
@@ -341,6 +342,7 @@
             pinentry
             pixz
             pdftk
+            pgpdump
           # pxz
             qrencode
             ripgrep
