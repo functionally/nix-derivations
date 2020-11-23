@@ -173,7 +173,7 @@
             guvcview
 #   pin1809.handbrake
             inkscape
-            keybase-gui
+          # keybase-gui
             libreoffice
             musescore
             meshlab
@@ -323,7 +323,7 @@
           # google-music-scripts
             inotify-tools
           # john
-            kbfs
+          # kbfs
           # keybase
             lzma
             mercurial
