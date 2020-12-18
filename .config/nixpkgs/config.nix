@@ -11,6 +11,8 @@
 
   allowBroken = localBroken;
 
+  android_sdk.accept_license = true;
+
   packageOverrides = super:
     let
 
@@ -248,11 +250,13 @@
           # globusconnectpersonal
             gping
             httpie
+            iftop
             inetutils
      latest.ipfs
           # miniHttpd
             mtr
             nethogs
+            nmap
             openssl
             samba
             tcpdump
@@ -271,7 +275,6 @@
             dstat
             python3Packages.glances
             htop
-            iftop
           # manix
             mc
             meld
