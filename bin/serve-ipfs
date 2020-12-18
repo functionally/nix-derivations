@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -p ipfs -i bash
+#!nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/bc260badaebf67442befe20fb443034d3a91f2b3.tar.gz -p ipfs -i bash
 
 
 if [ -d /data/ipfs/repo ]
@@ -17,7 +17,8 @@ fi
 
 while true
 do
-  IPFS_LOGGING=warning ipfs daemon --enable-gc  --enable-namesys-pubsub
+# IPFS_LOGGING=warning ipfs daemon --enable-gc --enable-namesys-pubsub
+  IPFS_LOGGING=error   ipfs daemon --enable-gc --enable-namesys-pubsub --enable-pubsub-experiment
   echo "Restarting IPFS server in 90 seconds . . ."
   sleep 90s
 done
