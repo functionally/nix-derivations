@@ -25,6 +25,8 @@
     parted
     patchelf
     patchutils
+    pinentry
+    pinentry-curses
     pbzip2
     psmisc
     pv
@@ -42,6 +44,7 @@
     cacert
     libu2f-host
     mmc-utils
+    openvpn
   # strongswan
 
     atop
