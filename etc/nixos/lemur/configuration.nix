@@ -7,7 +7,7 @@
     ./generic-configuration.nix
     ./system-packages.nix
     ./desktop-packages.nix
-    ./vpn-configuration.nix
+  # ./vpn-configuration.nix
     ./users-groups.nix
   ];
 

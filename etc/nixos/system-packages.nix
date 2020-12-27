@@ -21,7 +21,7 @@
     lshw
     mkpasswd
     mtools
-    nethogs
+  # nethogs
     parted
     patchelf
     patchutils
@@ -42,7 +42,7 @@
     cacert
     libu2f-host
     mmc-utils
-    strongswan
+  # strongswan
 
     atop
     htop

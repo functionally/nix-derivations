@@ -118,6 +118,7 @@
           # Graphical clients for communication.
           paths = [
           # latest.discord
+     latest.element-desktop
           # gajim
      latest.skype
      latest.slack
