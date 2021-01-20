@@ -52,6 +52,7 @@ in
         pyomo
       # pytorch
         rasterio
+        recommonmark
       # SALib
         scikitlearn
         scipy
@@ -60,6 +61,7 @@ in
       # snakes
       # spacy
       # spark-deep-learning
+        sphinx
         statsmodels
         sympy
         tensorflow
