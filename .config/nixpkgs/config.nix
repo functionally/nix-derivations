@@ -122,6 +122,7 @@
           # gajim
      latest.skype
      latest.slack
+     latest.tdesktop
           # tigervnc
           ];
         };
