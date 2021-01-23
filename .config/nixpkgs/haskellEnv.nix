@@ -29,7 +29,7 @@ let
     overrides = localHaskellPackages false;
   };
 
-  haskellLatestPackages = unstable.haskell.packages.ghc822.override {
+  haskellLatestPackages = unstable.haskell.packages.ghc8102.override {
     overrides = localHaskellPackages false;
   };
 
@@ -89,13 +89,13 @@ in
         (ghcWithHoogle (h: [ ]))
         cabal-install
       # ghc-mod
-        ghcid
+      # ghcid
       # hasktags
-        hdevtools
-        hindent
-        hlint
-        pointfree
-        pointful
+      # hdevtools
+      # hindent
+      # hlint
+      # pointfree
+      # pointful
       # threadscope
       ];
     };
