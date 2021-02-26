@@ -2,7 +2,7 @@
   pkgs
 , pin1709
 , pin1803
-, unstable
+, pin2009
 }:
 
 let
@@ -16,20 +16,25 @@ let
       };
       packages = pkgs.lib.mapAttrs' toPackage (builtins.readDir ./haskell);
     in
-      packages // {
-         ghcmod7 = super.ghc-mod.override { cabal-helper = super.cabal-helper; };
-      };
+#     packages // {
+#        ghcmod7 = super.ghc-mod.override { cabal-helper = super.cabal-helper; };
+#     };
+      packages;
 
 
-  haskell7Packages = pin1709.haskell.packages.ghc7103.override {
+  haskell7103Packages = pin1709.haskell.packages.ghc7103.override {
     overrides = localHaskellPackages false;
   };
 
-  haskell8Packages = pin1803.haskell.packages.ghc822.override {
+  haskell822Packages = pin1803.haskell.packages.ghc822.override {
     overrides = localHaskellPackages false;
   };
 
-  haskellLatestPackages = unstable.haskell.packages.ghc8102.override {
+  haskell865Packages = pin2009.haskell.packages.ghc865.override {
+    overrides = localHaskellPackages false;
+  };
+
+  haskell8102Packages = pin2009.haskell.packages.ghc8102.override {
     overrides = localHaskellPackages false;
   };
 
@@ -46,13 +51,13 @@ in
       ];
     };
   
-    ghcEnv7 = pkgs.buildEnv {
-      name = "env-ghc7";
-      # GHC 7 tools.
-      paths = with haskell7Packages; [
+    ghcEnv7103 = pkgs.buildEnv {
+      name = "env-ghc7103";
+      # GHC tools.
+      paths = with haskell7103Packages; [
         (ghcWithHoogle (h: [ ]))
         cabal-install
-        ghcmod7
+      # ghcmod7
         ghcid
         hasktags
         hdevtools
@@ -64,13 +69,12 @@ in
       ];
     };
   
-    ghcEnv8 = pkgs.buildEnv {
-      name = "env-ghc8";
-      # GHC 8 tools.
-      paths = with haskell8Packages; [
+    ghcEnv822 = pkgs.buildEnv {
+      name = "env-ghc822";
+      # GHC tools.
+      paths = with haskell822Packages; [
         (ghcWithHoogle (h: [ ]))
         cabal-install
-      # ghc-mod
         ghcid
         hasktags
         hdevtools
@@ -82,22 +86,24 @@ in
       ];
     };
   
-    ghcEnvLatest = pkgs.buildEnv {
-      name = "env-ghc-latest";
-      # LatestGHC tools.
-      paths = with haskellLatestPackages; [
+    ghcEnv865 = pkgs.buildEnv {
+      name = "env-ghc865";
+      # GHC tools.
+      paths = with haskell865Packages; [
         (ghcWithHoogle (h: [ ]))
         cabal-install
-      # ghc-mod
-      # ghcid
-      # hasktags
-      # hdevtools
-      # hindent
-      # hlint
-      # pointfree
-      # pointful
-      # threadscope
+        hlint
       ];
     };
   
+    ghcEnv8102 = pkgs.buildEnv {
+      name = "env-ghc8102";
+      # GHC tools.
+      paths = with haskell8102Packages; [
+        (ghcWithHoogle (h: [ ]))
+        cabal-install
+        hlint
+      ];
+    };
+
   }

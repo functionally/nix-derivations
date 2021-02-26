@@ -255,6 +255,7 @@
             iftop
             inetutils
      latest.ipfs
+     latest.ipget
           # miniHttpd
             mtr
             nethogs
@@ -408,11 +409,12 @@
 
         pythonEnv = import ./pythonEnv.nix { inherit pkgs; };
 
-        inherit (import ./haskellEnv.nix { inherit pkgs pin1709 pin1803 unstable; })
+        inherit (import ./haskellEnv.nix { inherit pkgs pin1709 pin1803 pin2009; })
           haskellEnv
-          ghcEnv7
-          ghcEnv8
-          ghcEnvLatest
+          ghcEnv7103
+          ghcEnv822
+          ghcEnv865
+          ghcEnv8102
         ; 
 
         tor-browser-bundle-bin-unstable = unstable.tor-browser-bundle-bin;

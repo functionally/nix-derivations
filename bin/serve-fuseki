@@ -1,0 +1,6 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p apache-jena apache-jena-fuseki
+
+export FUSEKI_BASE=/data/fuseki
+
+fuseki-server --update --localhost --port 8070

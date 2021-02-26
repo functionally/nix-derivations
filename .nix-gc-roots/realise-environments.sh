@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ee="ghcEnv7 ghcEnv8 haskellEnv pythonEnv rEnv stardog stella-simulator tor-browser-bundle-bin-unstable"
+ee="ghcEnv7103 ghcEnv822 ghcEnv865 ghcEnv8102 haskellEnv pythonEnv rEnv stardog stella-simulator tor-browser-bundle-bin-unstable"
 
 case "$(hostname)" in
   "lemur")
