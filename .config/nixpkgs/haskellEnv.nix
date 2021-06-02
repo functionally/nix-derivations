@@ -58,9 +58,9 @@ in
         (ghcWithHoogle (h: [ ]))
         cabal-install
       # ghcmod7
-        ghcid
+      # ghcid
         hasktags
-        hdevtools
+      # hdevtools
         hindent
         hlint
         pointfree
@@ -75,9 +75,9 @@ in
       paths = with haskell822Packages; [
         (ghcWithHoogle (h: [ ]))
         cabal-install
-        ghcid
+      # ghcid
         hasktags
-        hdevtools
+      # hdevtools
         hindent
         hlint
         pointfree
@@ -92,6 +92,7 @@ in
       paths = with haskell865Packages; [
         (ghcWithHoogle (h: [ ]))
         cabal-install
+        haskell-language-server
         hlint
       ];
     };
@@ -102,6 +103,7 @@ in
       paths = with haskell8102Packages; [
         (ghcWithHoogle (h: [ ]))
         cabal-install
+        haskell-language-server
         hlint
       ];
     };
