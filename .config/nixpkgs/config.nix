@@ -230,6 +230,7 @@
             html-tidy
             jre
             julia
+            lean
             maxima
             mono
             monodevelop
@@ -327,14 +328,17 @@
             gnumake
             gnupg
           # google-music-scripts
+            html-tidy
             inotify-tools
           # john
+            jq
           # kbfs
           # keybase
             lzma
             mercurial
             mkpasswd
           # mpack
+            niv
             nix-index
             nixpkgs-lint
             haskellPackages.pandoc
@@ -354,6 +358,7 @@
             ripgrep
           # stow
             time
+            trezor_agent
             unar
             unzip
           # usbutils
@@ -401,7 +406,7 @@
           ];
         };
 
-        vimEnv = import ./vimEnv.nix { inherit pkgs; };
+        vimEnv  = import  ./nvimEnv.nix { inherit pkgs; };
 
         unityEnv = import ./unityEnv.nix { inherit super pkgs pin1809; };
 

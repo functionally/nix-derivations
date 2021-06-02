@@ -53,6 +53,7 @@ let
         arm
         BH
         bnlearn
+        caTools
         causaleffect
         circlize
         codetools
@@ -69,6 +70,7 @@ let
         fitdistrplus
         FNN
         GGally
+        ggdendro
         ggplot2
         glmulti
       # gRain
@@ -100,6 +102,7 @@ let
         np
         pbdZMQ
       # pcalg
+        PerMallows
         plotrix
         quantmod
         quantreg
