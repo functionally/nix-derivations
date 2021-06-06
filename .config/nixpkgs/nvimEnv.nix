@@ -115,7 +115,8 @@ let
       hi link ALEError   Item
       hi link ALEWarning Item
       hi link ALEInfo    Item
-      hi Item cterm=bold ctermfg=LightGray ctermbg=DarkGray
+      "i Item cterm=bold ctermfg=LightGray ctermbg=DarkGray
+      hi Item cterm=underline ctermfg=Red
 
       '';
     };

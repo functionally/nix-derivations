@@ -32,6 +32,7 @@
       pin1909  = import <pinned-19.09>   { config = cfg; };
       pin2003  = import <pinned-20.03>   { config = cfg; };
       pin2009  = import <pinned-20.09>   { config = cfg; };
+      pin2105  = import <pinned-21.05>   { config = cfg; };
       unstable = import <pinned-unstable>{ config = cfg; };
       latest   = import <nixos-latest>   { config = cfg; };
 
@@ -414,12 +415,12 @@
 
         pythonEnv = import ./pythonEnv.nix { inherit pkgs; };
 
-        inherit (import ./haskellEnv.nix { inherit pkgs pin1709 pin1803 pin2009; })
+        inherit (import ./haskellEnv.nix { inherit pkgs pin1709 pin1803 pin2009 pin2105; })
           haskellEnv
           ghcEnv7103
           ghcEnv822
           ghcEnv865
-          ghcEnv8102
+          ghcEnv8104
         ; 
 
         tor-browser-bundle-bin-unstable = unstable.tor-browser-bundle-bin;
