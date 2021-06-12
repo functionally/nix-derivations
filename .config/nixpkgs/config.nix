@@ -33,7 +33,7 @@
       pin2003  = import <pinned-20.03>   { config = cfg; };
       pin2009  = import <pinned-20.09>   { config = cfg; };
       pin2105  = import <pinned-21.05>   { config = cfg; };
-      unstable = import <pinned-unstable>{ config = cfg; };
+      unstable = import <nixos-unstable> { config = cfg; };
       latest   = import <nixos-latest>   { config = cfg; };
 
       excludeList = xs: if workarounds then [] else xs;
@@ -118,7 +118,7 @@
           name = "env-comm";
           # Graphical clients for communication.
           paths = [
-          # latest.discord
+     unstable.discord
      latest.element-desktop
           # gajim
      latest.skype

@@ -6,7 +6,7 @@ https://nixos.org/channels/nixos-19.09 nixos-19.09
 https://nixos.org/channels/nixos-20.03 nixos-20.03
 https://nixos.org/channels/nixos-20.09 nixos-20.09
 https://nixos.org/channels/nixos-21.05 nixos-21.05
-https://github.com/NixOS/nixpkgs/archive/f217c0ea7c148ddc0103347051555c7c252dcafb.tar.gz nixos-latest
+https://github.com/NixOS/nixpkgs/archive/b889a3f7a07515108cc9614639cd307cf2acbec5.tar.gz nixos-latest
 https://nixos.org/channels/nixos-unstable nixos-unstable
 https://github.com/NixOS/nixpkgs/archive/5272327b81ed355bbed5659b8d303cf2979b6953.tar.gz nixpkgs
 https://github.com/NixOS/nixpkgs/archive/1849e695b00a54cda86cb75202240d949c10c7ce.tar.gz pinned-17.03
@@ -17,5 +17,3 @@ https://github.com/NixOS/nixpkgs/archive/d5291756487d70bc336e33512a9baf9fa1788fa
 https://github.com/NixOS/nixpkgs/archive/5272327b81ed355bbed5659b8d303cf2979b6953.tar.gz pinned-20.03
 https://github.com/NixOS/nixpkgs/archive/cd63096d6d887d689543a0b97743d28995bc9bc3.tar.gz pinned-20.09
 https://github.com/NixOS/nixpkgs/archive/7e9b0dff974c89e070da1ad85713ff3c20b0ca97.tar.gz pinned-21.05
-https://github.com/NixOS/nixpkgs/archive/f217c0ea7c148ddc0103347051555c7c252dcafb.tar.gz pinned-unstable
-https://github.com/NixOS/nixpkgs/archive/460136f8a3aad45738172dd428879cc98d49d3b0.tar.gz textiler
