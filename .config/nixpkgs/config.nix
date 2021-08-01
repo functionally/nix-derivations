@@ -174,6 +174,7 @@
             gimp
    unstable.google-chrome
             googleearth
+            gpa
           # gramps
             guvcview
 #   pin1809.handbrake
@@ -335,6 +336,7 @@
             jq
           # kbfs
           # keybase
+            ledger_agent
             lzma
             mercurial
             mkpasswd
