@@ -4,6 +4,7 @@
 , pin1803
 , pin2009
 , pin2105
+, pinHaskell
 }:
 
 let
@@ -35,7 +36,7 @@ let
     overrides = localHaskellPackages false;
   };
 
-  haskell8104Packages = pin2105.haskell.packages.ghc8104.override {
+  haskell8107Packages = pinHaskell.haskell.packages.ghc8107.override {
     overrides = localHaskellPackages false;
   };
 
@@ -98,10 +99,10 @@ in
       ];
     };
   
-    ghcEnv8104 = pkgs.buildEnv {
-      name = "env-ghc8104";
+    ghcEnv8107 = pkgs.buildEnv {
+      name = "env-ghc8107";
       # GHC tools.
-      paths = with haskell8104Packages; [
+      paths = with haskell8107Packages; [
         (ghcWithHoogle (h: [ ]))
         cabal-install
         haskell-language-server

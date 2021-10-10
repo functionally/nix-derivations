@@ -24,17 +24,18 @@
          android_sdk.accept_license = true;
       };
 
-      pin1703  = import <pinned-17.03>   { config = cfg; };
-      pin1709  = import <pinned-17.09>   { config = cfg; };
-      pin1803  = import <pinned-18.03>   { config = cfg; };
-      pin1809  = import <pinned-18.09>   { config = cfg; };
-      pin1903  = import <pinned-19.03>   { config = cfg; };
-      pin1909  = import <pinned-19.09>   { config = cfg; };
-      pin2003  = import <pinned-20.03>   { config = cfg; };
-      pin2009  = import <pinned-20.09>   { config = cfg; };
-      pin2105  = import <pinned-21.05>   { config = cfg; };
-      unstable = import <nixos-unstable> { config = cfg; };
-      latest   = import <nixos-latest>   { config = cfg; };
+      pin1703    = import <pinned-17.03>   { config = cfg; };
+      pin1709    = import <pinned-17.09>   { config = cfg; };
+      pin1803    = import <pinned-18.03>   { config = cfg; };
+      pin1809    = import <pinned-18.09>   { config = cfg; };
+      pin1903    = import <pinned-19.03>   { config = cfg; };
+      pin1909    = import <pinned-19.09>   { config = cfg; };
+      pin2003    = import <pinned-20.03>   { config = cfg; };
+      pin2009    = import <pinned-20.09>   { config = cfg; };
+      pin2105    = import <pinned-21.05>   { config = cfg; };
+      unstable   = import <nixos-unstable> { config = cfg; };
+      latest     = import <nixos-latest>   { config = cfg; };
+      pinHaskell = import <haskell>        { config = cfg; };
 
       excludeList = xs: if workarounds then [] else xs;
       includeSet  = xs: if workarounds then xs else {};
@@ -365,6 +366,7 @@
             unar
             unzip
           # usbutils
+            wacomtablet
           # xxd
           # zbackup
             zip
@@ -417,12 +419,12 @@
 
         pythonEnv = import ./pythonEnv.nix { inherit pkgs; };
 
-        inherit (import ./haskellEnv.nix { inherit pkgs pin1709 pin1803 pin2009 pin2105; })
+        inherit (import ./haskellEnv.nix { inherit pkgs pin1709 pin1803 pin2009 pin2105 pinHaskell; })
           haskellEnv
           ghcEnv7103
           ghcEnv822
           ghcEnv865
-          ghcEnv8104
+          ghcEnv8107
         ; 
 
         tor-browser-bundle-bin-unstable = unstable.tor-browser-bundle-bin;
