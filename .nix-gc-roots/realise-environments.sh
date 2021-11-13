@@ -3,6 +3,8 @@
 ee="ghcEnv8107 haskellEnv pythonEnv rEnv stardog stella-simulator tor-browser-bundle-bin-unstable"
 
 case "$(hostname)" in
+  "oryx")
+    ee+=" nativeGraphicalEnv";;
   "lemur")
     ee+=" nativeGraphicalEnv";;
   "gazelle")
