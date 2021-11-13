@@ -3,6 +3,7 @@
 {
 
   hardware = {
+    system76.enableAll = true;
     enableAllFirmware = true;
     pulseaudio = {
       enable = true;
@@ -12,11 +13,13 @@
     ledger.enable = true;
   };
 
+  sound.enable = true;
+
   powerManagement = {
     enable = true;
-    resumeCommands = ''
-      ${pkgs.xfce.xfce4_power_manager}/bin/xfce4-power-manager
-    '';
+####    resumeCommands = ''
+####      ${pkgs.xfce.xfce4_power_manager}/bin/xfce4-power-manager
+####    '';
   };
 
   boot.cleanTmpDir = true;

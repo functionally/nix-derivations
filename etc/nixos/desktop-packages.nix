@@ -19,6 +19,10 @@
 
   services.xserver = {
 
+### videoDrivers = [
+###   "nvidia"
+### ];
+
     enable = true;
     autorun = true;
 
@@ -35,13 +39,10 @@
       enable = true;
     };
 
-    displayManager.lightdm = {
-      enable = true;
+    displayManager = {
+      lightdm.enable = true;
+      defaultSession = "xfce";
     };
-
-  # desktopManager.plasma5.enable = true;
-  # displayManager.sddm.enable = true;
-  # windowManager.twm.enable = true;
 
   };
 
