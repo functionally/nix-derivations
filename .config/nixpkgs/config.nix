@@ -186,7 +186,7 @@
             meshlab
             xfce.mousepad
             paraview
-            xfce.parole
+       xfce.parole
             protege
     pin1809.qgis
             qpdfview
@@ -198,6 +198,7 @@
           # slic3r
             stellarium
           # teigha
+   unstable.thunderbird
             tikzit
             vlc
             xclip
