@@ -9,6 +9,7 @@
       package = pkgs.pulseaudioFull;
     };
     bluetooth.enable = true;
+    ledger.enable = true;
   };
 
   powerManagement = {
@@ -37,13 +38,15 @@
     ];
 
     extraHosts = ''
-      192.168.0.6   nuc
-      192.168.0.7   gazelle
-      192.168.0.7   textile.brianwbush.info
-      192.168.86.23 lemur-wifi
-      192.168.86.42 gazelle-wifi
-      192.168.86.44 nas
-      172.31.98.1   aruba.odyssys.net
+      192.168.0.6     nuc
+      192.168.0.7     gazelle
+      192.168.0.7     textile.brianwbush.info
+      192.168.86.23   lemur-wifi
+      192.168.86.42   gazelle-wifi
+      192.168.86.52   oryx-wifi
+      192.168.86.44   nas
+      172.31.98.1     aruba.odyssys.net
+      103.103.192.105 dancomputer
     '';
 
     firewall = {
@@ -98,22 +101,33 @@
 
     upower.enable = true;
 
+    udev.packages = [
+      pkgs.ledger-udev-rules
+      pkgs.trezor-udev-rules
+    # pkgs.android-udev-rules
+    ];
+
     udev.extraRules = ''
 
       # Oculus Go
-      SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0083", MODE="0666", GROUP="plugdev" OWNER="bbush"
-      SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0086", MODE="0666", GROUP="plugdev" OWNER="bbush"
+      SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0083", MODE="0666", GROUP="plugdev", OWNER="bbush"
+      SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0086", MODE="0666", GROUP="plugdev", OWNER="bbush"
 
       # Oculus Quest
-      SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0137", MODE="0666", GROUP="plugdev" OWNER="bbush"
-      SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0182", MODE="0666", GROUP="plugdev" OWNER="bbush"
-      SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0186", MODE="0666", GROUP="plugdev" OWNER="bbush"
+      SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0137", MODE="0666", GROUP="plugdev", OWNER="bbush"
+      SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0182", MODE="0666", GROUP="plugdev", OWNER="bbush"
+      SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0186", MODE="0666", GROUP="plugdev", OWNER="bbush"
 
       # Phab 2 Pro
-      SUBSYSTEM=="usb", ATTR{idVendor}=="17ef", ATTR{idProduct}=="7a13", MODE="0666", GROUP="plugdev" OWNER="bbush"
+      SUBSYSTEM=="usb", ATTR{idVendor}=="17ef", ATTR{idProduct}=="7a13", MODE="0666", GROUP="plugdev", OWNER="bbush"
 
       # Blink
-      SUBSYSTEM=="usb", ATTR{idVendor}=="27b8", ATTR{idProduct}=="01ed", MODE="0666", GROUP="plugdev" OWNER="bbush"
+      SUBSYSTEM=="usb", ATTR{idVendor}=="27b8", ATTR{idProduct}=="01ed", MODE="0666", GROUP="plugdev", OWNER="bbush"
+
+#     # Ledger Nano X
+#     SUBSYSTEMS=="usb", ATTRS{idVendor}=="2c97", ATTRS{idProduct}=="4015", TAG+="uaccess", TAG+="udev-acl", MODE="0666", GROUP="plugdev", OWNER="bbush"
+#     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="2c97", ATTRS{idProduct}=="0004", MODE="0666", GROUP="plugdev", OWNER="bbush"
+#     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="2c97", ATTRS{idProduct}=="0004"
 
       # Yubico usb key (Yubico Security Key by Yubico)
       KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1050", ATTRS{idProduct}=="0120", MODE="0666", TAG+="uaccess"
@@ -129,7 +143,6 @@
 
       # Space Navigator
       KERNEL=="event[0-9]*", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c626", MODE="0664", GROUP="plugdev", SYMLINK+="input/spacenavigator"
-
     '';
 
     printing = {
@@ -157,6 +170,15 @@
   #   ];
   #   mountPoint = "/data/keybase";
   # };
+
+    trezord.enable = true;
+
+    pcscd = {
+      enable  = false;
+      plugins = [ pkgs.ccid ];
+    };
+
+    clamav.daemon.enable = false;
 
   };
 

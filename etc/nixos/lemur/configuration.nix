@@ -27,6 +27,9 @@
         preLVM = true;
       };
     };
+    kernel.sysctl={
+      "net.core.rmem_max" = 2500000;
+    };
   };
 
   fileSystems = {
@@ -64,6 +67,11 @@
   ];
 
   virtualisation.docker.enable = false;
+
+  nix = {
+    binaryCaches          = [ "https://hydra.iohk.io" "https://iohk.cachix.org" ];
+    binaryCachePublicKeys = [ "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo=" ];
+  };
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "20.03";

@@ -57,5 +57,10 @@
     git
     mercurial
 
+    # For Trezor, per <https://wiki.trezor.io/Apps:SSH_agent#Setup_.28NixOS.29>.
+    gnupg
+  # pinentry
+    (python3.withPackages(ps: with ps; [ trezor_agent wheel]))
+
   ];
 }

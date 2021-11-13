@@ -9,10 +9,10 @@
     xfce.xfce4_battery_plugin
     xfce.xfce4_cpufreq_plugin
     xfce.xfce4_cpugraph_plugin
-    xfce.xfce4-hardware-monitor-plugin
+#   xfce.xfce4-hardware-monitor-plugin
     xfce.xfce4_power_manager
     xfce.xfce4-sensors-plugin
-    xfce.gvfs
+#   xfce.gvfs
     xorg.xmodmap
     xscreensaver
   ];
