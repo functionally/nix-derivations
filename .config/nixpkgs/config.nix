@@ -33,6 +33,7 @@
       pin2003    = import <pinned-20.03>   { config = cfg; };
       pin2009    = import <pinned-20.09>   { config = cfg; };
       pin2105    = import <pinned-21.05>   { config = cfg; };
+      pin2111    = import <pinned-21.11>   { config = cfg; };
       unstable   = import <nixos-unstable> { config = cfg; };
       latest     = import <nixos-latest>   { config = cfg; };
       pinHaskell = import <haskell>        { config = cfg; };
@@ -122,7 +123,7 @@
      unstable.discord
      latest.element-desktop
           # gajim
-     latest.skype
+     latest.skypeforlinux
      latest.slack
      latest.tdesktop
           # tigervnc
@@ -142,14 +143,15 @@
           # hdf5
           # id3v2
             imagemagick
+            kafkacat
           # lame
             librdf_raptor2
             librdf_rasqal
             librdf_redland
             mongodb
             mongodb-tools
-            kafkacat
           # perseus
+            postgresql
           # proj
             saxonb
             scim
@@ -166,7 +168,7 @@
             calibre
           # cura
             evince
-            flashprint
+#           flashprint
     pin1909.freecad
             freemind
             gephi
@@ -184,25 +186,28 @@
             libreoffice
             musescore
             meshlab
-            xfce.mousepad
+       xfce.mousepad
             paraview
        xfce.parole
-            protege
+#           protege
     pin1809.qgis
             qpdfview
             rdesktop
             remmina
+       xfce.ristretto
             rstudio
             scribus
             shutter
           # slic3r
             stellarium
           # teigha
+       xfce.terminal
    unstable.thunderbird
             tikzit
             vlc
             xclip
             xkbd
+            xdotool
             zotero
           ];
         };
@@ -268,7 +273,7 @@
             openssl
             samba
             tcpdump
-            textile
+#           textile
             wget
           ];
         };
@@ -281,7 +286,7 @@
             bvi
             cheat
             dstat
-            python3Packages.glances
+            glances
             htop
           # manix
             mc
@@ -312,6 +317,7 @@
           # Tools and utilities.
           paths = [
             aspellDicts.en
+            python38Packages.base58
             bc
             binutils
           # btrfs-dedupe
@@ -347,7 +353,7 @@
             nix-index
             nixpkgs-lint
             haskellPackages.pandoc
-            haskellPackages.pandoc-citeproc
+#           haskellPackages.pandoc-citeproc
             ncdu
             p7zip
             parallel
@@ -360,9 +366,11 @@
             pgpdump
           # pxz
             qrencode
+            remarshal
             ripgrep
           # stow
             time
+     latest.tinycbor
             trezor_agent
             unar
             unzip
@@ -426,7 +434,7 @@
           ghcEnv822
           ghcEnv865
           ghcEnv8107
-        ; 
+        ;
 
         tor-browser-bundle-bin-unstable = unstable.tor-browser-bundle-bin;
 

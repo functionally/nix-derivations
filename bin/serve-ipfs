@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/b889a3f7a07515108cc9614639cd307cf2acbec5.tar.gz -p ipfs ipfs-migrator -i bash
+#!nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/b3a47430aebd96f925cd743d67dc183d1e744968.tar.gz -p ipfs ipfs-migrator -i bash
 
 
 if [ -d /data/ipfs/repo ]
@@ -17,8 +17,8 @@ fi
 
 while true
 do
-# IPFS_LOGGING=warning ipfs daemon --enable-gc --enable-namesys-pubsub
-  IPFS_LOGGING=error   ipfs daemon --enable-gc --enable-namesys-pubsub --enable-pubsub-experiment
+# IPFS_LOGGING=warning ionice -c 3 ipfs daemon --enable-gc --enable-namesys-pubsub
+  IPFS_LOGGING=error   ionice -c 3 ipfs daemon --enable-gc --enable-namesys-pubsub --enable-pubsub-experiment
   echo "Restarting IPFS server in 90 seconds . . ."
   sleep 90s
 done

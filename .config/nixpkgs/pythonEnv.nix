@@ -48,7 +48,7 @@ in
         protobuf
         psycopg2
         pydot
-        pydotplus
+#       pydotplus
         pyomo
       # pytorch
         rasterio
