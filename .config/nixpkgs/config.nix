@@ -187,6 +187,7 @@
             musescore
             meshlab
        xfce.mousepad
+            obsidian
             paraview
        xfce.parole
 #           protege
@@ -208,6 +209,7 @@
             xclip
             xkbd
             xdotool
+   unstable.zoom
             zotero
           ];
         };
@@ -261,6 +263,7 @@
             dnsutils
           # globusconnectpersonal
             gping
+            httpdump
             httpie
             iftop
             inetutils
@@ -272,6 +275,7 @@
             nmap
             openssl
             samba
+            socat
             tcpdump
 #           textile
             wget
@@ -320,6 +324,7 @@
             python38Packages.base58
             bc
             binutils
+            blink1-tool
           # btrfs-dedupe
             coreutils
             diffstat
@@ -351,6 +356,7 @@
           # mpack
             niv
             nix-index
+            nix-prefetch-git
             nixpkgs-lint
             haskellPackages.pandoc
 #           haskellPackages.pandoc-citeproc
