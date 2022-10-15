@@ -1,4 +1,4 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -I https://github.com/NixOS/nixpkgs/archive/b62c50ce5d3b6053f6f4afa10f2c4013ac0bfe9c.tar.gz -i bash -p postgresql
+#!nix-shell -I https://github.com/NixOS/nixpkgs/archive/a7ecde854aee5c4c7cd6177f54a99d2c1ff28a31.tar.gz -i bash -p postgresql_13
 
 pg_ctl -D /data/postgresql -w stop
