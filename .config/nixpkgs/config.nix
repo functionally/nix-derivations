@@ -34,6 +34,7 @@
       pin2009    = import <pinned-20.09>   { config = cfg; };
       pin2105    = import <pinned-21.05>   { config = cfg; };
       pin2111    = import <pinned-21.11>   { config = cfg; };
+      pin2205    = import <pinned-22.05>   { config = cfg; };
       unstable   = import <nixos-unstable> { config = cfg; };
       latest     = import <nixos-latest>   { config = cfg; };
       pinHaskell = import <haskell>        { config = cfg; };
@@ -154,7 +155,7 @@
             postgresql
           # proj
             saxonb
-            scim
+            sc-im
           ];
         };
 
@@ -176,7 +177,7 @@
           # ghostscriptX
             gimp
    unstable.google-chrome
-            googleearth
+#           googleearth
             gpa
           # gramps
             guvcview
@@ -190,6 +191,7 @@
             obsidian
             paraview
        xfce.parole
+            plantuml
 #           protege
     pin1809.qgis
             qpdfview
@@ -202,7 +204,7 @@
           # slic3r
             stellarium
           # teigha
-       xfce.terminal
+       xfce.xfce4-terminal
    unstable.thunderbird
             tikzit
             vlc

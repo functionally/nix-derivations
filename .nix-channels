@@ -1,4 +1,3 @@
-https://github.com/NixOS/nixpkgs/archive/bc4e52b69745d86e6eecb52b3d0ff9683cbeadf4.tar.gz haskell
 https://nixos.org/channels/nixos-17.03 nixos-17.03
 https://nixos.org/channels/nixos-17.09 nixos-17.09
 https://nixos.org/channels/nixos-18.03 nixos-18.03
@@ -8,9 +7,10 @@ https://nixos.org/channels/nixos-20.03 nixos-20.03
 https://nixos.org/channels/nixos-20.09 nixos-20.09
 https://nixos.org/channels/nixos-21.05 nixos-21.05
 https://nixos.org/channels/nixos-21.11 nixos-21.11
+https://nixos.org/channels/nixos-22.05 nixos-22.05
 http://github.com/NixOS/nixpkgs/archive/b3a47430aebd96f925cd743d67dc183d1e744968.tar.gz nixos-latest
 https://nixos.org/channels/nixos-unstable nixos-unstable
-https://nixos.org/channels/nixos-21.11 nixpkgs
+https://nixos.org/channels/nixos-22.05 nixpkgs
 https://github.com/NixOS/nixpkgs/archive/1849e695b00a54cda86cb75202240d949c10c7ce.tar.gz pinned-17.03
 https://github.com/NixOS/nixpkgs/archive/b62c50ce5d3b6053f6f4afa10f2c4013ac0bfe9c.tar.gz pinned-17.09
 https://github.com/NixOS/nixpkgs/archive/e163794cded4cd1bbc06470b07698de204edb763.tar.gz pinned-18.03
@@ -20,3 +20,4 @@ https://github.com/NixOS/nixpkgs/archive/5272327b81ed355bbed5659b8d303cf2979b695
 https://github.com/NixOS/nixpkgs/archive/cd63096d6d887d689543a0b97743d28995bc9bc3.tar.gz pinned-20.09
 https://github.com/NixOS/nixpkgs/archive/7e9b0dff974c89e070da1ad85713ff3c20b0ca97.tar.gz pinned-21.05
 https://github.com/NixOS/nixpkgs/archive/a7ecde854aee5c4c7cd6177f54a99d2c1ff28a31.tar.gz pinned-21.11
+https://github.com/NixOS/nixpkgs/archive/ce6aa13369b667ac2542593170993504932eb836.tar.gz pinned-22.05
