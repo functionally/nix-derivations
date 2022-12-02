@@ -192,6 +192,7 @@
             obsidian
             paraview
        xfce.parole
+            plantuml
 #           protege
     pin1809.qgis
             qpdfview
