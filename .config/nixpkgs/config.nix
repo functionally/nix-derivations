@@ -367,6 +367,7 @@
           # mpack
             niv
             nix-index
+            nix-output-monitor
             nix-prefetch-git
             nixpkgs-lint
             haskellPackages.pandoc

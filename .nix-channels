@@ -9,6 +9,7 @@ https://nixos.org/channels/nixos-21.05 nixos-21.05
 https://nixos.org/channels/nixos-21.11 nixos-21.11
 https://nixos.org/channels/nixos-22.05 nixos-22.05
 https://nixos.org/channels/nixos-22.11 nixos-22.11
+https://nixos.org/channels/nixos-unstable nixos-unstable
 https://nixos.org/channels/nixos-22.11 nixpkgs
 https://github.com/NixOS/nixpkgs/archive/1849e695b00a54cda86cb75202240d949c10c7ce.tar.gz pinned-17.03
 https://github.com/NixOS/nixpkgs/archive/b62c50ce5d3b6053f6f4afa10f2c4013ac0bfe9c.tar.gz pinned-17.09
