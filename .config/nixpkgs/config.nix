@@ -37,7 +37,7 @@
       pin2205    = import <pinned-22.05>   { config = cfg; };
       pin2211    = import <pinned-22.11>   { config = cfg; };
       unstable   = import <nixos-unstable> { config = cfg; };
-      latest     = import <nixos-latest>   { config = cfg; };
+      latest     = import <nixpkgs>        { config = cfg; };
       pinHaskell = import <haskell>        { config = cfg; };
 
       excludeList = xs: if workarounds then [] else xs;
@@ -153,6 +153,7 @@
             mongodb
             mongodb-tools
           # perseus
+            pgtop
             postgresql
           # proj
             saxonb
@@ -165,6 +166,7 @@
           # Graphical desktop tools.
           paths = [
           # anki
+            audacity
             baobab
             blender
             calibre
@@ -184,6 +186,7 @@
             guvcview
 #   pin1809.handbrake
             inkscape
+            kdenlive
           # keybase-gui
             libreoffice
             musescore
@@ -194,6 +197,7 @@
        xfce.parole
             plantuml
 #           protege
+            qdigidoc
     pin1809.qgis
             qpdfview
             rdesktop
@@ -209,6 +213,7 @@
    unstable.thunderbird
             tikzit
             vlc
+            write_stylus
             xclip
             xkbd
             xdotool
@@ -294,6 +299,7 @@
             cheat
             dstat
             glances
+            nodePackages.gramma
             htop
           # manix
             mc
@@ -330,6 +336,7 @@
             blink1-tool
           # btrfs-dedupe
             coreutils
+            cpulimit
             diffstat
             diffutils
             dos2unix
@@ -343,6 +350,7 @@
             git-crypt
             git-lfs
             gitAndTools.gitRemoteGcrypt
+            gnupg-pkcs11-scd
             gnumake
             gnupg
           # google-music-scripts
@@ -364,11 +372,13 @@
             haskellPackages.pandoc
 #           haskellPackages.pandoc-citeproc
             ncdu
+            opensc
             p7zip
             parallel
             patchelf
             patchutils
             pbzip2
+            pcsctools
             pinentry
             pixz
             pdftk

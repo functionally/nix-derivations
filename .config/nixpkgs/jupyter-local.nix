@@ -110,6 +110,7 @@ let
         Rcpp
         RcppEigen
         Rgraphviz
+        RPostgreSQL
         regclass
         repr
         reshape2
