@@ -18,11 +18,13 @@ let
           hlint-refactor-vim
           LanguageClient-neovim
         # nvim-fzf
+          rustaceanvim
           tslime
+          vim-agda
         # vim-grepper
           vim-hoogle
         # vim-ormolu
-          vim-lsp
+          vim-lsp # Required by `LanguageClient-neovim`?
         ];
       };
 
@@ -57,7 +59,7 @@ let
       
       set rtp+=~/.vim/pack/XXX/start/LanguageClient-neovim
       
-      let g:LanguageClient_serverCommands = { 'haskell': ['haskell-language-server', '--lsp'] }
+      let g:LanguageClient_serverCommands = { 'haskell': ['haskell-language-server', '--lsp'], 'rust' : ['rust-analyzer'], 'agda': ['als'] }
       """"let g:LanguageClient_diagnosticsSignsMax = 0
       let g:LanguageClient_hoverPreview = "Always"
       

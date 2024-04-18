@@ -60,6 +60,7 @@
             texEnv
             toolEnv
             vimEnv
+          # vscodeEnv
           ] ++ excludeList [
             chessEnv
           ];
@@ -139,6 +140,7 @@
           # easytag
           # exif
             ffmpeg
+          # FlameGraph
           # gdal
           # gpsbabel
             graphviz
@@ -192,11 +194,14 @@
             musescore
             meshlab
        xfce.mousepad
+          # mpv-with-scripts
             obsidian
             paraview
        xfce.parole
             plantuml
 #           protege
+            protonvpn-gui
+            qbittorrent
             qdigidoc
     pin1809.qgis
             qpdfview
@@ -275,8 +280,9 @@
             httpie
             iftop
             inetutils
-     latest.ipfs
-     latest.ipget
+            ipget
+            linux-wifi-hotspot
+            magic-wormhole
           # miniHttpd
             mtr
             nethogs
@@ -287,6 +293,8 @@
             tcpdump
 #           textile
             wget
+            youtube-tui
+            yt-dlp
           ];
         };
 
@@ -330,7 +338,7 @@
           # Tools and utilities.
           paths = [
             aspellDicts.en
-            python38Packages.base58
+            python3Packages.base58
             bc
             binutils
             blink1-tool
@@ -455,6 +463,12 @@
           ghcEnv865
           ghcEnv8107
         ;
+
+        agdaEnv = import ./agdaEnv.nix { inherit pkgs; };
+
+      # rustEnv = import ./rustEnv.nix { inherit pkgs; };
+
+        vscodeEnv = import ./vscodeEnv.nix { inherit pkgs; };
 
         tor-browser-bundle-bin-unstable = unstable.tor-browser-bundle-bin;
 
