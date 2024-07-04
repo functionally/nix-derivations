@@ -123,6 +123,7 @@
           name = "env-comm";
           # Graphical clients for communication.
           paths = [
+            briar
    unstable.discord
             element-desktop
           # gajim
@@ -172,7 +173,6 @@
             audacity
             baobab
             blender
-            briar
             calibre
           # cura
             evince
@@ -191,6 +191,7 @@
             handbrake
             inkscape
             kdenlive
+            lagrange
             libreoffice
             musescore
             meshlab
