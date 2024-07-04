@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 
-####ee="ghcEnv8107 haskellEnv pythonEnv rEnv stardog stella-simulator tor-browser-bundle-bin-unstable"
+ee="chessEnv cloudEnv commEnv dataEnv deskEnv fontEnv netEnv termEnv texEnv toolEnv gameEnv vimEnv agdaEnv rustEnv vscodeEnv tor-browser-bundle-bin-unstable"
 
 case "$(hostname)" in
   "oryx")
     ee+=" nativeGraphicalEnv";;
-  "lemur")
-    ee+=" nativeGraphicalEnv";;
-  "gazelle")
+  "thelio")
     ee+=" nativeServerEnv";;
   *)
     ee+=" hostedServerEnv";;
@@ -15,7 +13,8 @@ esac
 
 for e in $ee
 do
-  echo $e
-  rm $PWD/$e{.drv,}
-  nix-store --realise $(nix-instantiate '<nixpkgs>' --attr $e --indirect --add-root $PWD/$e.drv) --indirect --add-root $PWD/$e
+  set +e
+  rm $PWD/$e{.drv,.env} >& /dev/null
+  set -e
+  nix-store --realise $(nix-instantiate '<nixpkgs>' --attr $e --indirect --add-root $PWD/$e.drv) --indirect --add-root $PWD/$e.env
 done

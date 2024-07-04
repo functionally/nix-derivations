@@ -22,7 +22,7 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "briar-desktop";
-  version = "1.5.1.0";
+  version = "0.6.1-beta";
 
   src = fetchurl {
     url = "https://desktop.briarproject.org/jars/linux/briar-desktop-linux.jar";

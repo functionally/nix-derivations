@@ -111,7 +111,7 @@
           name = "env-cloud";
           # Cloud tools.
           paths = [
-     latest.awscli2
+            awscli2
           # ec2-api-tools
             google-cloud-sdk
           ] ++ excludeList [
@@ -123,12 +123,12 @@
           name = "env-comm";
           # Graphical clients for communication.
           paths = [
-     unstable.discord
-     latest.element-desktop
+   unstable.discord
+            element-desktop
           # gajim
-     latest.skypeforlinux
-     latest.slack
-     latest.tdesktop
+            skypeforlinux
+            slack
+            tdesktop
           # tigervnc
           ];
         };
@@ -137,15 +137,16 @@
           name = "env-data";
           # Data tools.
           paths = [
-          # easytag
-          # exif
+            dasel
+            easytag
+            exif
             ffmpeg
           # FlameGraph
           # gdal
           # gpsbabel
             graphviz
           # hdf5
-          # id3v2
+            id3v2
             imagemagick
             kafkacat
           # lame
@@ -171,11 +172,12 @@
             audacity
             baobab
             blender
+            briar
             calibre
           # cura
             evince
-#           flashprint
-    pin1909.freecad
+            flashprint
+            freecad
             freemind
             gephi
             ggobi
@@ -184,12 +186,11 @@
    unstable.google-chrome
 #           googleearth
             gpa
-          # gramps
+            gramps
             guvcview
-#   pin1809.handbrake
+            handbrake
             inkscape
             kdenlive
-          # keybase-gui
             libreoffice
             musescore
             meshlab
@@ -199,11 +200,11 @@
             paraview
        xfce.parole
             plantuml
-#           protege
+            protege
             protonvpn-gui
             qbittorrent
             qdigidoc
-    pin1809.qgis
+            qgis
             qpdfview
             rdesktop
             remmina
@@ -211,7 +212,7 @@
             rstudio
             scribus
             shutter
-          # slic3r
+            slic3r
             stellarium
           # teigha
        xfce.xfce4-terminal
@@ -231,9 +232,10 @@
           name = "env-font";
           # Fonts.
           paths = [
-#           gentium
+          # gentium
             google-fonts
             hack-font
+            mononoki
           ];
         };
 
@@ -274,9 +276,8 @@
             bmon
             cacert
             dnsutils
-          # globusconnectpersonal
             gping
-#           httpdump
+            httpdump
             httpie
             iftop
             inetutils
@@ -291,7 +292,6 @@
             samba
             socat
             tcpdump
-#           textile
             wget
             youtube-tui
             yt-dlp
@@ -309,13 +309,14 @@
             glances
             nodePackages.gramma
             htop
-          # manix
+            manix
             mc
             meld
             pv
             ranger
             screen
             sysstat
+            telescope
             tmux
             tree
           ] ++ excludeList [
@@ -366,8 +367,7 @@
             inotify-tools
           # john
             jq
-          # kbfs
-          # keybase
+            k3b
             ledger_agent
             lzma
             mercurial
@@ -380,7 +380,7 @@
             nix-prefetch-git
             nixpkgs-lint
             haskellPackages.pandoc
-#           haskellPackages.pandoc-citeproc
+          # haskellPackages.pandoc-citeproc
             ncdu
             opensc
             p7zip
@@ -400,9 +400,10 @@
             ripgrep
           # stow
             time
-     latest.tinycbor
+            tinycbor
             trezor_agent
             unar
+            urlencode
             unzip
           # usbutils
             wacomtablet
@@ -452,11 +453,15 @@
 
         vimEnv  = import  ./nvimEnv.nix { inherit pkgs; };
 
-        unityEnv = import ./unityEnv.nix { inherit super pkgs pin1809; };
-
         rEnv = import ./rEnv.nix { inherit pkgs; };
 
         pythonEnv = import ./pythonEnv.nix { inherit pkgs; };
+
+        agdaEnv = import ./agdaEnv.nix { inherit pkgs; };
+
+        rustEnv = import ./rustShell.nix { inherit pkgs; };
+
+        vscodeEnv = import ./vscodeEnv.nix { inherit pkgs; };
 
         inherit (import ./haskellEnv.nix { inherit pkgs pin1709 pin1803 pin2009 pin2105 pinHaskell; })
           haskellEnv
@@ -465,12 +470,6 @@
           ghcEnv865
           ghcEnv8107
         ;
-
-        agdaEnv = import ./agdaEnv.nix { inherit pkgs; };
-
-      # rustEnv = import ./rustEnv.nix { inherit pkgs; };
-
-        vscodeEnv = import ./vscodeEnv.nix { inherit pkgs; };
 
         tor-browser-bundle-bin-unstable = unstable.tor-browser-bundle-bin;
 
