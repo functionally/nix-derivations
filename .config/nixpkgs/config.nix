@@ -373,6 +373,7 @@
             mercurial
             mkpasswd
           # mpack
+            netcat-gnu
             niv
             nix-index
             nix-output-monitor
@@ -392,6 +393,7 @@
             pixz
             pdftk
             pgpdump
+            podman-tui
           # pxz
             qrencode
             remarshal

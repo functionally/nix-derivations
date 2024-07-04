@@ -1,0 +1,4 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p postgresql_14 pgtop
+
+pgtop -u $USER -d postgres
