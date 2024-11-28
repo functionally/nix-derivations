@@ -11,6 +11,10 @@
 
   allowBroken = localBroken;
 
+  permittedInsecurePackages = [
+    "qbittorrent-4.6.4"
+  ];
+
   android_sdk.accept_license = true;
 
   packageOverrides = super:
@@ -141,9 +145,11 @@
             dasel
             easytag
             exif
+            exiftool
             ffmpeg
           # FlameGraph
           # gdal
+            gifsicle
           # gpsbabel
             graphviz
           # hdf5
@@ -170,7 +176,8 @@
           # Graphical desktop tools.
           paths = [
           # anki
-            audacity
+          # audacity
+          # ardour
             baobab
             blender
             calibre
@@ -192,15 +199,19 @@
             inkscape
             kdenlive
             lagrange
+            ledger-live-desktop
             libreoffice
+            lmms
             musescore
             meshlab
        xfce.mousepad
           # mpv-with-scripts
+            noise-repellent
             obsidian
             paraview
        xfce.parole
             plantuml
+            poppler_utils
             protege
             protonvpn-gui
             qbittorrent
@@ -213,12 +224,17 @@
             rstudio
             scribus
             shutter
+   unstable.signal-desktop
             slic3r
+            soundfont-arachno
+            soundfont-fluid
+            soundfont-generaluser
             stellarium
           # teigha
        xfce.xfce4-terminal
    unstable.thunderbird
             tikzit
+            trezor-suite
             vlc
             write_stylus
             xclip
@@ -375,6 +391,7 @@
             mkpasswd
           # mpack
             netcat-gnu
+            nitrokey-app2
             niv
             nix-index
             nix-output-monitor
@@ -423,7 +440,7 @@
             aspell
             cvs
             fop
-            getmail
+#           getmail
           # hadoop
             libpst
             protobuf
