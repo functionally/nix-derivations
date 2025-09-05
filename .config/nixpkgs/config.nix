@@ -294,6 +294,7 @@
             iftop
             inetutils
             ipget
+            iperf
             linux-wifi-hotspot
             magic-wormhole
           # miniHttpd
@@ -356,6 +357,7 @@
           name = "env-tool";
           # Tools and utilities.
           paths = [
+            ansifilter
             aspellDicts.en
             python3Packages.base58
             bc
@@ -391,6 +393,7 @@
             mercurial
             mkpasswd
           # mpack
+            multitail
             netcat-gnu
             nitrokey-app2
             niv
