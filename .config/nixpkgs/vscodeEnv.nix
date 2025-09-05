@@ -128,8 +128,8 @@ in
     name = "env-vscode";
     paths =
       [ vscodePkgs ]
-      ++ agdaPkgs
-      ++ haskellPkgs
+    # ++ agdaPkgs
+    # ++ haskellPkgs
       ++ leanPkgs
       ++ rustPkgs
     ;

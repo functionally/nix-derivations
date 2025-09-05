@@ -12,7 +12,6 @@
   allowBroken = localBroken;
 
   permittedInsecurePackages = [
-    "qbittorrent-4.6.4"
   ];
 
   android_sdk.accept_license = true;
@@ -28,21 +27,8 @@
          android_sdk.accept_license = true;
       };
 
-      pin1703    = import <pinned-17.03>   { config = cfg; };
-      pin1709    = import <pinned-17.09>   { config = cfg; };
-      pin1803    = import <pinned-18.03>   { config = cfg; };
-      pin1809    = import <pinned-18.09>   { config = cfg; };
-      pin1903    = import <pinned-19.03>   { config = cfg; };
-      pin1909    = import <pinned-19.09>   { config = cfg; };
-      pin2003    = import <pinned-20.03>   { config = cfg; };
-      pin2009    = import <pinned-20.09>   { config = cfg; };
-      pin2105    = import <pinned-21.05>   { config = cfg; };
-      pin2111    = import <pinned-21.11>   { config = cfg; };
-      pin2205    = import <pinned-22.05>   { config = cfg; };
-      pin2211    = import <pinned-22.11>   { config = cfg; };
+      nixos2505  = import <nixos-25.05>    { config = cfg; };
       unstable   = import <nixos-unstable> { config = cfg; };
-      latest     = import <nixpkgs>        { config = cfg; };
-      pinHaskell = import <haskell>        { config = cfg; };
 
       excludeList = xs: if workarounds then [] else xs;
       includeSet  = xs: if workarounds then xs else {};
@@ -119,7 +105,6 @@
           # ec2-api-tools
             google-cloud-sdk
           ] ++ excludeList [
-            drive
           ];
         };
 
@@ -128,13 +113,14 @@
           # Graphical clients for communication.
           paths = [
             briar
+          # briar-desktop
+   unstable.cwtch-ui
    unstable.discord
             element-desktop
-          # gajim
-            skypeforlinux
             slack
+   unstable.signal-desktop
             tdesktop
-          # tigervnc
+   unstable.zoom
           ];
         };
 
@@ -155,13 +141,13 @@
           # hdf5
             id3v2
             imagemagick
-            kafkacat
+            kcat
           # lame
             librdf_raptor2
             librdf_rasqal
             librdf_redland
-            mongodb
-            mongodb-tools
+  nixos2505.mongodb
+  nixos2505.mongodb-tools
           # perseus
             pgtop
             postgresql
@@ -177,9 +163,11 @@
           paths = [
           # anki
           # audacity
+            audio-recorder
           # ardour
             baobab
             blender
+   unstable.brave
             calibre
           # cura
             evince
@@ -187,23 +175,29 @@
             freecad
             freemind
             gephi
-            ggobi
+          # ggobi
           # ghostscriptX
             gimp
    unstable.google-chrome
-#           googleearth
+          # googleearth
             gpa
-            gramps
+            gramps 
+            python3Packages.grip
             guvcview
             handbrake
             inkscape
-            kdenlive
+            kdePackages.kdenlive
+            keybase-gui
             lagrange
             ledger-live-desktop
             libreoffice
+   unstable.librewolf
             lmms
+            marktext
             musescore
             meshlab
+            mongodb-compass
+            monero-gui
        xfce.mousepad
           # mpv-with-scripts
             noise-repellent
@@ -224,23 +218,24 @@
             rstudio
             scribus
             shutter
-   unstable.signal-desktop
-            slic3r
+          # slic3r
             soundfont-arachno
             soundfont-fluid
             soundfont-generaluser
             stellarium
           # teigha
        xfce.xfce4-terminal
+            thedesk
    unstable.thunderbird
+   unstable.tor-browser
             tikzit
             trezor-suite
             vlc
             write_stylus
             xclip
             xkbd
+            xorg.xhost
             xdotool
-   unstable.zoom
             zotero
           ];
         };
@@ -321,14 +316,20 @@
           paths = [
             broot
             bvi
+            caligula
             cheat
-            dstat
+            dool
+            dysk
+            entr
+            fzf
             glances
             nodePackages.gramma
             htop
+            lynx
             manix
             mc
             meld
+            pastel
             pv
             ranger
             screen
@@ -379,14 +380,14 @@
             gnupg-pkcs11-scd
             gnumake
             gnupg
-          # google-music-scripts
             html-tidy
             inotify-tools
+            intel-gpu-tools
           # john
             jq
-            k3b
+          # k3b
             ledger_agent
-            lzma
+            libfido2
             mercurial
             mkpasswd
           # mpack
@@ -426,6 +427,7 @@
           # usbutils
             wacomtablet
           # xxd
+            xz
           # zbackup
             zip
           ];
@@ -440,7 +442,7 @@
             aspell
             cvs
             fop
-#           getmail
+          # getmail
           # hadoop
             libpst
             protobuf
@@ -464,7 +466,7 @@
           name = "env-game";
           # Games.
           paths = [
-            freeorion
+          # freeorion
             nethack
           ];
         };
@@ -475,32 +477,9 @@
 
         pythonEnv = import ./pythonEnv.nix { inherit pkgs; };
 
-        agdaEnv = import ./agdaEnv.nix { inherit pkgs; };
-
         rustEnv = import ./rustShell.nix { inherit pkgs; };
 
         vscodeEnv = import ./vscodeEnv.nix { inherit pkgs; };
-
-        inherit (import ./haskellEnv.nix { inherit pkgs pin1709 pin1803 pin2009 pin2105 pinHaskell; })
-          haskellEnv
-          ghcEnv7103
-          ghcEnv822
-          ghcEnv865
-          ghcEnv8107
-        ;
-
-        tor-browser-bundle-bin-unstable = unstable.tor-browser-bundle-bin;
-
-        apacheKafka011 = self.apacheKafka.override { majorVersion = "0.11"; };
-
-        julia_13 = import <nixpkgs/pkgs/development/compilers/julia/shared.nix> {
-          majorVersion       = "1"                                                   ;
-          minorVersion       = "2"                                                   ;
-          maintenanceVersion = "0"                                                   ;
-          src_sha256         = "02ijqw3b9l8vvrl2xqmhynr95cq1p873ml7xj4fwjrs7n0gl7p65";
-          libuvVersion       = "2348256acf5759a544e5ca7935f638d2bc091d60"            ;
-          libuvSha256        = "1363f4vqayfcv5zqg07qmzjff56yhad74k16c22ian45lram8mv8";
-        } { inherit ApplicationServices arpack cmake CoreServices curl fetchurl fetchzip fftw fftwSinglePrec gfortran gmp libunwind libgit2 m4 makeWrapper mpfr openblas openlibm openspecfun patchelf pcre2 perl python2 readline stdenv utf8proc which zlib; };
 
       } // (
 

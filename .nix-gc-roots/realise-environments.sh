@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ee="chessEnv cloudEnv commEnv dataEnv deskEnv fontEnv netEnv termEnv texEnv toolEnv gameEnv vimEnv agdaEnv rustEnv vscodeEnv tor-browser-bundle-bin-unstable"
+ee="chessEnv cloudEnv commEnv dataEnv deskEnv fontEnv netEnv termEnv texEnv toolEnv gameEnv vimEnv rustEnv vscodeEnv"
 
 case "$(hostname)" in
   "oryx")
